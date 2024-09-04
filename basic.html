@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <title>Financial Quants and Engineers</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
+            background: black;
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        #navbar {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            margin: 0 auto;
+        }
+        #navbar img {
+            max-width: 300px;
+            height: auto;
+        }
+        #navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            width: 30%;
+        }
+        #navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #navbar ul li a:hover {
+            color: #0f0;
+        }
+        #canvas-section {
+            width: 100%;
+            height: 100vh; /* First section covers the entire screen */
+            position: relative;
+        }
+        #extra-section {
+            width: 100%;
+            background: #ebeeee;
+            position: relative; /* Make it the reference point for absolutely positioned cards */
+            overflow: hidden;
+        }
+        #extra-content {
+            margin: 0 auto;
+            text-align: left;
+            color: #6E7881;
+            position: relative; /* Ensure it stays above the cards */
+            z-index: 1;
+        }
+        #extra-content img {
+            display: block;
+            margin: 0 auto 20px; /* Center the image and add space below */
+        }
+        #extra-content h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: #369347;
+            margin-bottom: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #extra-content p {
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        #about-section {
+            width: 70%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+        }
+        #about-container {
+            margin: 0 auto;
+        }
+        #about-container p {
+            width: 80%;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        #content {
+            width: 80%; /* Adjusted to 85% width */
+            margin: 0 auto;
+            position: relative;
+            top: 35%; /* Adjusted to be 45% down on the section */
+            text-align: left; /* Center the content */
+            text-decoration: none;
+        }
+        #content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        #content h3 {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        #content button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Added Styles */
+        #project-section {
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 80px;
+            width: 75%;
+        }
+        #project-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        #project-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .project {
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: flex; /* Use flexbox to align text and image side by side */
+            justify-content: space-between;
+            align-items: center;
+        }
+        .project h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .project-text {
+            width: 60%; /* Adjust width as needed */
+            text-align: left;
+            margin-bottom: 0; /* Remove bottom margin */
+        }
+        .project-img {
+            width: 35%; /* Adjust width as needed */
+            max-width: 100%; /* Ensure images do not overflow */
+        }
+        .project-img img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Card Styles for the Second Section */
+        #card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0; /* Below the content but above the background color */
+        }
+        .card {
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            color: black;
+            animation: float 10s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateX(-200px) rotate(0deg); /* Ensure it starts off-screen */
+            }
+            100% {
+                transform: translateX(calc(100vw + 400px)) rotate(360deg); /* End off-screen to the right and fully rotated */
+            }
+        }
+
+        /* Team Section */
+        #team-section {
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+            width: 75%;
+        }
+        #team-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2%;
+        }
+        
+        .team-member {
+            width: 20%;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #000;
+        }
+        
+        .team-img {
+            width: 100%;
+            padding-top: 100%; /* 1:1 aspect ratio */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .team-member p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            /* Responsive team layout */
+            .team-member {
+                width: 45%;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-image: url('sholes.jpg');
+            background-position: center;
+            position: relative;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content {
+            position: relative; /* Ensure content is above the overlay */
+            z-index: 1;
+            text-align: center;
+        }
+
+        footer h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .footer-content a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: #369347; /* Change this to the color you want on hover */
+        }
+
+        .footer-content i {
+            vertical-align: middle;
+        }
+
+        /* Down Arrow Styles */
+        #down-arrow {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #57e371;
+            color: black;
+            width: 50px; /* Explicit width */
+            height: 50px; /* Explicit height */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            z-index: 1;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        #down-arrow:hover {
+            background-color: #3da350;
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 1s forwards; /* 1s fade-in animation */
+            animation-delay: 1s; /* 2s delay before starting the animation */
+        }
+
+        /* Adjust delay as needed */
+        .fade-in-delayed-1 {
+            animation-delay: 3s;
+        }
+
+        .fade-in-delayed-2 {
+            animation-delay: 4s;
+        }
+
+        @media only screen and (max-width: 768px) {
+            #down-arrow {
+                display: none;
+            }
+    /* Hide the navbar links */
+    #navbar ul {
+        display: none;
+    }
+
+    /* Center the logo at the top */
+    #navbar {
+        justify-content: center;
+    }
+
+    #navbar img {
+        max-width: 70%; /* Adjust the size if necessary */
+    }
+
+    /* Adjust the content position */
+    #content {
+        top: 20%;
+        text-align: center;
+    }
+
+    /* Adjust sections to be more responsive */
+    #about-section, #presentation-section, #project-section, #team-section {
+        width: 95%;
+    }
+
+    /* Change the layout of projects */
+    .project {
+        flex-direction: column;
+    }
+
+    .project-text, .project-img {
+        width: 100%; /* Full width for both text and image */
+        text-align: center; /* Center align the text */
+    }
+
+    .project-img img {
+        margin-top: 20px; /* Add some space between text and image */
+    }
+
+    #presentation-container {
+        flex-direction: column; /* Stack presentations vertically */
+        align-items: center; /* Center the presentations horizontally */
+    }
+
+    .presentation {
+        width: 100% !important; /* Make each presentation take up 100% of the screen width */
+        margin-bottom: 20px; /* Keep space between stacked presentations */
+    }
+
+    .presentation iframe {
+        width: 100% !important; /* Make the iframe take up 100% of the container width */
+        height: auto; /* Adjust the height automatically */
+    }
+}
+
+        #presentation-section {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+    width: 85%;
+}
+
+#presentation-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#presentation-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Wraps the content if it overflows */
+}
+
+.presentation {
+    width: 48%; /* Each presentation takes up about half the container */
+    margin-bottom: 20px;
+}
+
+.presentation iframe {
+    width: 100%;
+    height: 480px; /* Adjust height as necessary */
+}
+
+    </style>
+</head>
+<body>
+    <div id="canvas-section">
+        <canvas></canvas>
+        <div id="navbar">
+            <img src="logo_large_transparent_lighter.png" alt="Logo" class="fade-in">
+            <ul class="fade-in">
+                <li><a href="#about-section">About</a></li>
+                <li><a href="#presentation-section">Past GIM's</a></li>
+                <li><a href="#project-section">Projects</a></li>
+                <li><a href="#team-section">Team</a></li>
+                
+            </ul>
+        </div>
+        <div id="content" class="fade-in">
+            <h1>We are FQE.</h1>
+            <h3>Organization focused on developing the next generation of quants through a series of interactive workshops, finance panels, and more</h3>
+            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdkw3ASPzlRZ6rs_-bA00m5UrIwi89lSpT1c18vgKns2C-YZg/viewform';"><h2>Join Now</h2></button>
+        </div>
+        
+        <!-- Down Arrow -->
+        <a href="#extra-section" id="down-arrow" class="fade-in">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </div>
+    
+    <div id="extra-section">
+        <div id="card-background"></div>
+        <div id="extra-content">
+            <div id="about-section" class="fade-in">
+                <img src="old_logo.png" alt="Old Logo" style="width: 45%;">
+                <h1>About Us</h1>
+                <hr>
+                <div id="about-container">
+                    <p>
+                        The Financial Quants and Engineers club will develop students' technical skills and network at the intersection of quantitative finance and technology. Members will work on a variety of projects within data science, risk analysis, quantitative modeling, and algorithmic trading. The main goal of the organization is to provide the necessary exposure and skills for students to gain roles in quantitative fields. FQE regularly hosts seminars, organizes discussions with leading professors, and offers opportunities for members to work on innovative projects, providing valuable hands-on experience. Our goal is to empower the next generation of quants to lead and innovate in the ever-evolving landscape of finance and technology.
+                    </p>
+                </div>
+            </div>
+            <div id="presentation-section" class="fade-in">
+                <h1>Past GIM's</h1>
+                <hr>
+                <div id="presentation-container">
+                    <!-- Presentation 1 -->
+                    <div class="presentation">
+                        <h2>Spring 2024</h2>
+                        <iframe src="https://docs.google.com/presentation/d/1eE1YPHvTQbyIt0rMupY59dGUGqxVelm3/embed?start=true&loop=true&delayms=10000" frameborder="0"></iframe>
+                    </div>
+            
+                    <!-- Presentation 2 -->
+                    <div class="presentation">
+                        <h2>Fall 2023</h2>
+                        <iframe src="https://docs.google.com/presentation/d/1ZqhD2Vfu_N54kRbKULMo8v9dQDkWCe81/embed?start=true&loop=true&delayms=10000" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div id="project-section" class="fade-in">
+                <h1>Projects</h1>
+                <hr>
+                <div id="project-container">
+                    <div class="project">
+                        <div class="project-text">
+                            <h2>Quantile Machine Learning Deep Dive</h2>
+                            <p>The Quantile Machine Learning Project inspired by Fred Liu's Quantile Machine Learning and the Cross-Section of Stock Returns' is a multi-task neural network designed to predict the cross section of equity returns. We gathered 150+ equity factors from Chen and Zimmerman’s open source cross sectional asset pricing library and replicated the datasets used that are not updated in real time through the WRDS database’s Compustat daily updates such that the trading strategy could be implemented in a real time setting. We use Chen and Zimmerman’s open source factor library to train the multi-task neural network of monthly US equity returns with a rolling window for training and validation sets and begin the out of sample testing in year 2000. Each year proceeding sorts the expected monthly returns into deciles in which we implement a standard long-short portfolio by longing the 10th decile and shorting the 1st to capture the premium implied by the factors. We include an additional constraint upon sorting the expected returns such that all expected returns are calculated assuming you are executing a market order to ensure our portfolio’s expected returns are realistic after costs. The results of our findings exceeded the original paper’s findings with a Sharpe ratio of 2.1 after transactions costs from the period of 2000 to 2023 due to the increase in information provided from additional factors beyond Jeremiah green’s factor library that was originally used in Liu (2023).</p>
+                        </div>
+                        <div class="project-img">
+                            <img src="Picture1.png" alt="Project 1 Image">
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h2>Kelly-criterion Portfolio Optimization</h2>
+                            <p>The Kelly Project extends the Kelly-criterion for optimal portfolio sizing to a practical setting by incorporating both non-normal and correlated returns to solve for optimal weighting in a portfolio of assets that don’t exhibit behaviors assumed by traditional portfolio sizing methods. We use historical stock returns of the assets in our portfolio along with a Cholesky Decomposition to simulate correlated stock returns via Monte Carlo. We use historical stock returns to estimate the distribution of returns for stocks in our portfolio via a Kernel Density Estimator (KDE). We apply a Cholesky Decomposition to simulate correlated returns across all of the individual stocks in our portfolio, and estimate the joint probability distribution using a gaussian mixture model to solve for the optimal Kelly weights. The resulting portfolio beats the benchmark (equally weighted portfolio) in terms of both risk-adjusted performance (Sharpe ratio) and annual return (compound annual growth rate)</p>
+                        </div>
+                        <div class="project-img">
+                            <img src="cluster_2.png" alt="Project 2 Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="team-section" class="fade-in">
+                <h1>Team</h1>
+                <hr>
+                <div id="team-container">
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('villacis.jpeg');"></div>
+                        <h3>William Villacis</h3>
+                        <p>President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('lakaj.jpeg');"></div>
+                        <h3>Lawrence Lakaj</h3>
+                        <p>Vice-President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('gazillo.jpeg');"></div>
+                        <h3>Nick Gazillo</h3>
+                        <p>Treasurer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('bhuiyan.jpeg');"></div>
+                        <h3>Elhaam Bhuiyan</h3>
+                        <p>Secretary</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('shmir.jpeg');"></div>
+                        <h3>Daniel Shmir</h3>
+                        <p>Team Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('ukolov.jpeg');"></div>
+                        <h3>Daniel Ukolov</h3>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('masri.jpeg');"></div>
+                        <h3>Joseph Masri</h3>
+                    </div>
+
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+    <footer>
+        <div class="footer-overlay">
+            <div class="footer-content">
+                <h3>Contact Us</h3>
+                <p>Email: baruchfqe@gmail.com
+                    <a href="https://www.instagram.com/baruchfqe/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/fqebaruch/mycompany/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </p>
+                <p>&copy; 2024 Financial Quants and Engineers.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialising the canvas
+        var canvas = document.querySelector('canvas'),
+            ctx = canvas.getContext('2d');
+
+        // Setting the width and height of the canvas
+        canvas.width = document.querySelector('#canvas-section').offsetWidth; 
+        canvas.height = document.querySelector('#canvas-section').offsetHeight; 
+
+        // Setting up the letters
+        var letters = 'αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ∂∆∇∫∑∏∞≈≠≡≤≥√∝%';
+        letters = letters.split('');
+
+        // Setting up the columns
+        var fontSize = 10,
+            columns = canvas.width / fontSize;
+
+        // Setting up the drops
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        // Setting up the draw function
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillStyle = '#0f0';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                drops[i]++;
+                if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        // Loop the animation
+        setInterval(draw, 28);
+
+        // Resize canvas when window is resized
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {  // Only run this if the screen width is greater than 768px
+                canvas.width = document.querySelector('#canvas-section').offsetWidth;
+                canvas.height = document.querySelector('#canvas-section').offsetHeight;
+                columns = canvas.width / fontSize;
+                drops = [];
+                for (var i = 0; i < columns; i++) {
+                    drops[i] = 1;
+                }
+            }
+        });
+
+        // Card Animation in Extra Section
+        function createCards() {
+            const cardContainer = document.getElementById('card-background');
+            const sectionHeight = document.getElementById('extra-section').offsetHeight;
+            const cardHeight = 150; // height of each card
+            const numberOfCards = Math.floor(sectionHeight / cardHeight);
+
+            const suits = ['♥', '♦', '♣', '♠'];
+            const colors = ['red', 'red', 'black', 'black'];
+
+            for (let i = 0; i < numberOfCards; i++) {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.style.top = `${i * cardHeight + (Math.random() * 50)}px`; // Adding random offset to top position
+                card.style.left = `-${200 + Math.random() * 100}px`; // Ensure card starts off-screen to the left
+                card.style.animationDuration = `${10 + Math.random() * 10}s`; // Random duration between 10 and 20 seconds
+                card.style.animationDelay = `${Math.random() * 1}s`; // Random delay up to 5 seconds
+
+                const suitIndex = Math.floor(Math.random() * suits.length);
+                card.textContent = suits[suitIndex];
+                card.style.color = colors[suitIndex];
+
+                cardContainer.appendChild(card);
+            }
+        }
+
+        createCards();
+
+        document.querySelectorAll('#navbar ul li a, #down-arrow').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    // Scroll to top on page reload
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    };
+
+    </script>
+</body>
+</html>
