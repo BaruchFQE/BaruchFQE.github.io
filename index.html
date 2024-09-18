@@ -48,7 +48,7 @@
             list-style: none;
             display: flex;
             justify-content: space-between;
-            width: 30%;
+            width: 35em;
         }
         #navbar ul li a {
             text-decoration: none;
@@ -162,7 +162,8 @@
             padding: 20px;
             display: flex; /* Use flexbox to align text and image side by side */
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+
         }
         .project h2 {
             font-size: 24px;
@@ -367,7 +368,7 @@
             animation-delay: 4s;
         }
 
-        @media only screen and (max-width: 980px) {
+        @media only screen and (max-width: 950px) {
             #down-arrow {
                 display: none;
             }
@@ -463,16 +464,16 @@
             <img src="logo_large_transparent_lighter.png" alt="Logo" class="fade-in">
             <ul class="fade-in">
                 <li><a href="#about-section">About</a></li>
+                <li><a href="#crnt">Current Work</a></li>
+                <li><a href="#pst">Past Projects</a></li>
                 <li><a href="#presentation-section">Past GIM's</a></li>
-                <li><a href="#project-section">Projects</a></li>
-                <li><a href="#team-section">Team</a></li>
-                
+				<li><a href="#team-section">Team</a></li>
             </ul>
         </div>
         <div id="content" class="fade-in">
             <h1>We are FQE.</h1>
             <h3>Organization focused on developing the next generation of quants through a series of interactive workshops, finance panels, and more</h3>
-            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSd8Fwt1u30tUVl2AHcfracyz8sToS35nZ35skn0sRpdhCGe2A/viewform';"><h2>Join Now</h2></button>
+            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdkw3ASPzlRZ6rs_-bA00m5UrIwi89lSpT1c18vgKns2C-YZg/viewform';"><h2>Join Now</h2></button>
         </div>
         
         <!-- Down Arrow -->
@@ -494,8 +495,40 @@
                     </p>
                 </div>
             </div>
+			<div id="crnt" class="fade-in">
+			<div id="project-section" class="fade-in crnt">
+                <h1>Current Work</h1>
+                <hr>
+                <div id="project-container">
+                    <div class="project">
+                        <div class="project-text">
+                            <h2>Kalman Filter For Volatility Surface</h2>
+                            <p>We construct a methodology that offers a quick way for option market makers to update their
+theoretical values for options in real-time. We use an Unscented Kalman Filter (UKF) to quickly
+calibrate the implied volatility surface parameterization, which replaces the need for a costly
+objective function that needs to be minimized, allowing for real-time updates of the volatility
+surface
+</p>
+                        </div>
+                        <div class="project-img">
+                            <img src="Kalman.png" alt="Project 1 Image">
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project-text">
+                            <h2>Sentiment Analysis Project </h2>
+                            <p>This project aims to predict stock price movements by integrating sentiment analysis of Twitter posts, financial news articles, and Kalshi event contract names with historical stock data. By quantifying public sentiment overall and toward specific stocks, we seek to uncover patterns and correlations that influence market dynamics. A Long-Short-Term Memory (LSTM) neural network will model temporal dependencies within the combined sentiment metrics and stock prices. </p>
+                        </div>
+                        <div class="project-img">
+                            <img src="sentiment.png" alt="Project 2 Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+			</div>
+			<div id="pst" class="fade-in">
             <div id="project-section" class="fade-in">
-                <h1>Projects</h1>
+                <h1>Past Projects</h1>
                 <hr>
                 <div id="project-container">
                     <div class="project">
@@ -518,6 +551,7 @@
                     </div>
                 </div>
             </div>
+			</div>
             <div id="presentation-section" class="fade-in">
                 <h1>Past GIM's</h1>
                 <hr>
@@ -525,16 +559,18 @@
                     <!-- Presentation 1 -->
                     <div class="presentation">
                         <h2>Spring 2024</h2>
-                        <iframe src="https://docs.google.com/presentation/d/1eE1YPHvTQbyIt0rMupY59dGUGqxVelm3/embed?start=true&loop=true&delayms=10000" frameborder="0"></iframe>
+                        <iframe src="https://docs.google.com/presentation/d/1eE1YPHvTQbyIt0rMupY59dGUGqxVelm3/embed?" frameborder="0"></iframe>
                     </div>
             
                     <!-- Presentation 2 -->
                     <div class="presentation">
                         <h2>Fall 2023</h2>
-                        <iframe src="https://docs.google.com/presentation/d/1ZqhD2Vfu_N54kRbKULMo8v9dQDkWCe81/embed?start=true&loop=true&delayms=10000" frameborder="0"></iframe>
+                        <iframe src="https://docs.google.com/presentation/d/1ZqhD2Vfu_N54kRbKULMo8v9dQDkWCe81/embed?" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>
+
+			
             <div id="team-section" class="fade-in">
                 <h1>Team</h1>
                 <hr>
@@ -567,20 +603,18 @@
                     <div class="team-member">
                         <div class="team-img" style="background-image: url('ukolov.jpeg');"></div>
                         <h3>Daniel Ukolov</h3>
-                        <p>Member</p>
+						<p>Member</p>
                     </div>
                     <div class="team-member">
                         <div class="team-img" style="background-image: url('masri.jpeg');"></div>
                         <h3>Joseph Masri</h3>
-                        <p>Team Lead</p>
+						<p>Team Lead</p>
                     </div>
-                    <div class="team-member">
+					<div class="team-member">
                         <div class="team-img" style="background-image: url('reynoso.jpeg');"></div>
                         <h3>Andrew Reynoso</h3>
                         <p>Marketer</p>
                     </div>
-                    
-
                 </div>
             </div>
 
