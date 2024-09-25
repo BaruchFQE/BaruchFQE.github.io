@@ -117,12 +117,14 @@
             margin-bottom: 40px;
         }
         #content {
-            width: 80%; /* Adjusted to 85% width */
-            margin: 0 auto;
-            position: relative;
-            top: 35%; /* Adjusted to be 45% down on the section */
-            text-align: left; /* Center the content */
-            text-decoration: none;
+    width: 80%; /* Adjusted to 85% width */
+    margin: 0 auto;
+    position: absolute; /* Make the content positioned relative to the canvas-section */
+    bottom: 5%; /* Position it near the bottom of the canvas-section */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the content horizontally */
+    text-align: left; /* Center the content text */
+    text-decoration: none;
         }
         #content h1 {
             font-size: 48px;
@@ -390,6 +392,10 @@
     #content {
         top: 20%;
         text-align: center;
+        position: relative; /* Go back to relative positioning for smaller screens */
+        top: 20%; /* Adjust the position back to the top for smaller screens */
+        transform: none; /* Remove the horizontal centering transform */
+        left: 0%;
     }
 
     /* Adjust sections to be more responsive */
@@ -511,7 +517,7 @@ surface
 </p>
                         </div>
                         <div class="project-img">
-                            <img src="kalman.PNG" alt="Project 1 Image">
+                            <img src="Kalman.png" alt="Project 1 Image">
                         </div>
                     </div>
                     <div class="project">
