@@ -12,20 +12,20 @@
     <link rel="manifest" href="favicon_io/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Financial Quants and Engineers Club",
-  "url": "https://yourwebsite.com",
-  "logo": "https://yourwebsite.com/logo_large_transparent_lighter.png",
-  "sameAs": [
-    "https://www.instagram.com/baruchfqe/",
-    "https://www.linkedin.com/company/fqebaruch/"
-  ],
-  "description": "FQE Baruch is a club at Baruch College focused on developing quantitative finance skills through projects, workshops, and panels."
-}
-</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Financial Quants and Engineers Club",
+      "url": "https://yourwebsite.com",
+      "logo": "https://yourwebsite.com/logo_large_transparent_lighter.png",
+      "sameAs": [
+        "https://www.instagram.com/baruchfqe/",
+        "https://www.linkedin.com/company/fqebaruch/"
+      ],
+      "description": "FQE Baruch is a club at Baruch College focused on developing quantitative finance skills through projects, workshops, and panels."
+    }
+    </script>
 
     <style>
         * {
@@ -123,9 +123,6 @@
             text-align: center;
             margin-top: 40px;
         }
-        #about-container {
-            margin: 0 auto;
-        }
         #about-container p {
             width: 80%;
             margin: 0 auto;
@@ -133,15 +130,31 @@
             line-height: 1.6;
             margin-bottom: 40px;
         }
+
+        /* New "Upcoming Events" Section */
+        #upcoming-events-section {
+            width: 70%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+        }
+        #upcoming-events-container p {
+            width: 80%;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
         #content {
-    width: 80%; /* Adjusted to 85% width */
-    margin: 0 auto;
-    position: absolute; /* Make the content positioned relative to the canvas-section */
-    bottom: 15%; /* Position it near the bottom of the canvas-section */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center the content horizontally */
-    text-align: left; /* Center the content text */
-    text-decoration: none;
+            width: 80%; 
+            margin: 0 auto;
+            position: absolute; 
+            bottom: 15%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: left; 
+            text-decoration: none;
         }
         #content h1 {
             font-size: 48px;
@@ -182,7 +195,6 @@
             display: flex; /* Use flexbox to align text and image side by side */
             justify-content: space-between;
             align-items: flex-start;
-
         }
         .project h2 {
             font-size: 24px;
@@ -190,13 +202,13 @@
             text-align: center;
         }
         .project-text {
-            width: 60%; /* Adjust width as needed */
+            width: 60%; 
             text-align: left;
-            margin-bottom: 0; /* Remove bottom margin */
+            margin-bottom: 0; 
         }
         .project-img {
-            width: 35%; /* Adjust width as needed */
-            max-width: 100%; /* Ensure images do not overflow */
+            width: 35%; 
+            max-width: 100%; 
         }
         .project-img img {
             max-width: 100%;
@@ -231,10 +243,10 @@
         }
         @keyframes float {
             0% {
-                transform: translateX(-200px) rotate(0deg); /* Ensure it starts off-screen */
+                transform: translateX(-200px) rotate(0deg); 
             }
             100% {
-                transform: translateX(calc(100vw + 400px)) rotate(360deg); /* End off-screen to the right and fully rotated */
+                transform: translateX(calc(100vw + 400px)) rotate(360deg); 
             }
         }
 
@@ -302,14 +314,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.6); 
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .footer-content {
-            position: relative; /* Ensure content is above the overlay */
+            position: relative; 
             z-index: 1;
             text-align: center;
         }
@@ -331,7 +343,7 @@
         }
 
         .footer-content a:hover {
-            color: #369347; /* Change this to the color you want on hover */
+            color: #369347; 
         }
 
         .footer-content i {
@@ -346,8 +358,8 @@
             transform: translateX(-50%);
             background-color: #57e371;
             color: black;
-            width: 50px; /* Explicit width */
-            height: 50px; /* Explicit height */
+            width: 50px; 
+            height: 50px; 
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -373,12 +385,11 @@
         }
 
         .fade-in {
-            opacity: 0; /* Start invisible */
-            animation: fadeIn 1s forwards; /* 1s fade-in animation */
-            animation-delay: 1s; /* 2s delay before starting the animation */
+            opacity: 0; 
+            animation: fadeIn 1s forwards; 
+            animation-delay: 1s; 
         }
 
-        /* Adjust delay as needed */
         .fade-in-delayed-1 {
             animation-delay: 3s;
         }
@@ -391,93 +402,90 @@
             #down-arrow {
                 display: none;
             }
-    /* Hide the navbar links */
-    #navbar ul {
-        display: none;
-    }
+            /* Hide the navbar links */
+            #navbar ul {
+                display: none;
+            }
 
-    /* Center the logo at the top */
-    #navbar {
-        justify-content: center;
-    }
+            /* Center the logo at the top */
+            #navbar {
+                justify-content: center;
+            }
 
-    #navbar img {
-        max-width: 70%; /* Adjust the size if necessary */
-    }
+            #navbar img {
+                max-width: 70%; 
+            }
 
-    /* Adjust the content position */
-    #content {
-        top: 20%;
-        text-align: center;
-        position: relative; /* Go back to relative positioning for smaller screens */
-        top: 20%; /* Adjust the position back to the top for smaller screens */
-        transform: none; /* Remove the horizontal centering transform */
-        left: 0%;
-    }
+            /* Adjust the content position */
+            #content {
+                top: 20%;
+                text-align: center;
+                position: relative; 
+                top: 20%; 
+                transform: none; 
+                left: 0%;
+            }
 
-    /* Adjust sections to be more responsive */
-    #about-section, #presentation-section, #project-section, #team-section {
-        width: 95%;
-    }
+            #about-section, #presentation-section, #project-section, #team-section {
+                width: 95%;
+            }
 
-    /* Change the layout of projects */
-    .project {
-        flex-direction: column;
-    }
+            .project {
+                flex-direction: column;
+            }
 
-    .project-text, .project-img {
-        width: 100%; /* Full width for both text and image */
-        text-align: center; /* Center align the text */
-    }
+            .project-text, .project-img {
+                width: 100%; 
+                text-align: center; 
+            }
 
-    .project-img img {
-        margin-top: 20px; /* Add some space between text and image */
-    }
+            .project-img img {
+                margin-top: 20px; 
+            }
 
-    #presentation-container {
-        flex-direction: column; /* Stack presentations vertically */
-        align-items: center; /* Center the presentations horizontally */
-    }
+            #presentation-container {
+                flex-direction: column; 
+                align-items: center; 
+            }
 
-    .presentation {
-        width: 100% !important; /* Make each presentation take up 100% of the screen width */
-        margin-bottom: 20px; /* Keep space between stacked presentations */
-    }
+            .presentation {
+                width: 100% !important; 
+                margin-bottom: 20px; 
+            }
 
-    .presentation iframe {
-        width: 100% !important; /* Make the iframe take up 100% of the container width */
-        height: auto; /* Adjust the height automatically */
-    }
-}
+            .presentation iframe {
+                width: 100% !important; 
+                height: auto; 
+            }
+        }
 
         #presentation-section {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 40px;
-    width: 85%;
-}
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+            width: 85%;
+        }
 
-#presentation-section h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
+        #presentation-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
 
-#presentation-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Wraps the content if it overflows */
-}
+        #presentation-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; 
+        }
 
-.presentation {
-    width: 48%; /* Each presentation takes up about half the container */
-    margin-bottom: 20px;
-}
+        .presentation {
+            width: 48%; 
+            margin-bottom: 20px;
+        }
 
-.presentation iframe {
-    width: 100%;
-    height: 480px; /* Adjust height as necessary */
-}
-
+        .presentation iframe {
+            width: 100%;
+            height: 480px; 
+        }
     </style>
 </head>
 <body>
@@ -490,13 +498,15 @@
                 <li><a href="#crnt">Current Work</a></li>
                 <li><a href="#pst">Past Projects</a></li>
                 <li><a href="#presentation-section">Past GIM's</a></li>
-				<li><a href="#team-section">Team</a></li>
+                <li><a href="#team-section">Team</a></li>
             </ul>
         </div>
         <div id="content" class="fade-in">
             <h1>We are FQE.</h1>
             <h3>Organization focused on developing the next generation of quants through a series of interactive workshops, finance panels, and more</h3>
-            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdkw3ASPzlRZ6rs_-bA00m5UrIwi89lSpT1c18vgKns2C-YZg/viewform';"><h2>Join Now</h2></button>
+            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdkw3ASPzlRZ6rs_-bA00m5UrIwi89lSpT1c18vgKns2C-YZg/viewform';">
+                <h2>Join Now</h2>
+            </button>
         </div>
         
         <!-- Down Arrow -->
@@ -508,6 +518,7 @@
     <div id="extra-section">
         <div id="card-background"></div>
         <div id="extra-content">
+            <!-- About Section -->
             <div id="about-section" class="fade-in">
                 <img src="old_logo.png" alt="Old Logo" style="width: 45%;">
                 <h1>About Us</h1>
@@ -518,63 +529,89 @@
                     </p>
                 </div>
             </div>
-			<div id="crnt" class="fade-in">
-			<div id="project-section" class="fade-in crnt">
-                <h1>Current Work</h1>
+
+            <!-- NEW "Upcoming Events" Section (Copy of About Section) -->
+            <div id="upcoming-events-section" class="fade-in">
+                <h1>Upcoming Events</h1>
                 <hr>
-                <div id="project-container">
-                    <div class="project">
-                        <div class="project-text">
-                            <h2>Kalman Filter For Volatility Surface</h2>
-                            <p>We construct a methodology that offers a quick way for option market makers to update their
-theoretical values for options in real-time. We use an Unscented Kalman Filter (UKF) to quickly
-calibrate the implied volatility surface parameterization, which replaces the need for a costly
-objective function that needs to be minimized, allowing for real-time updates of the volatility
-surface
-</p>
+                <!-- Portrait-style image placeholder -->
+                <img src="event.png" alt="Upcoming Events Poster" style="width: 25%; display: block; margin: 0 auto 20px;">
+                <div id="upcoming-events-container">
+                    <p>
+						Here is the quant speaker blurb: Christina Qi is the CEO of Databento, an institutional market data provider. She formerly founded Domeyard LP, a hedge fund focused on high frequency trading (HFT) that traded up to $7.1 billion USD per day. Failing to earn a job offer after a Wall Street internship, Christina started Domeyard from her dorm room with $1000 in savings, in 2012. Her fund was a tiny minnow amongst the tigers of the hedge fund world, but after Michael Lewis’s Flash Boys came out in 2014 and HFT firms hid from the spotlight, Domeyard accidentally found itself in the center of the ring. Over the next decade, her company’s story was featured on the front page of Forbes and Nikkei, and quoted in the Wall Street Journal, Bloomberg, CNN, NBC, and the Financial Times as a result of the controversy and fascination with HFT. By a series of accidents, Christina became a voice in her industry, contributing to the World Economic Forum’s research on AI in finance, guest lecturing at dozens of universities, and teaching Domeyard’s case study at Harvard Business School. She is grateful to be able to open up about her mistakes, and to help people turn failures into opportunities. After a decade, Domeyard winded down gracefully after facing increased headwinds to its strategies, scalability, and operational resources.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Current Work Section -->
+            <div id="crnt" class="fade-in">
+                <div id="project-section" class="fade-in crnt">
+                    <h1>Current Work</h1>
+                    <hr>
+                    <div id="project-container">
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Kalman Filter For Volatility Surface</h2>
+                                <p>
+                                    We construct a methodology that offers a quick way for option market makers to update their
+                                    theoretical values for options in real-time. We use an Unscented Kalman Filter (UKF) to quickly
+                                    calibrate the implied volatility surface parameterization, which replaces the need for a costly
+                                    objective function that needs to be minimized, allowing for real-time updates of the volatility
+                                    surface.
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="Kalman.png" alt="Project 1 Image">
+                            </div>
                         </div>
-                        <div class="project-img">
-                            <img src="Kalman.png" alt="Project 1 Image">
-                        </div>
-                    </div>
-                    <div class="project">
-                        <div class="project-text">
-                            <h2>Sentiment Analysis Project </h2>
-                            <p>This project aims to predict stock price movements by integrating sentiment analysis of Twitter posts, financial news articles, and Kalshi event contract names with historical stock data. By quantifying public sentiment overall and toward specific stocks, we seek to uncover patterns and correlations that influence market dynamics. A Long-Short-Term Memory (LSTM) neural network will model temporal dependencies within the combined sentiment metrics and stock prices. </p>
-                        </div>
-                        <div class="project-img">
-                            <img src="sentiment.png" alt="Project 2 Image">
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Sentiment Analysis Project</h2>
+                                <p>
+                                    This project aims to predict stock price movements by integrating sentiment analysis of Twitter posts, financial news articles, and Kalshi event contract names with historical stock data. By quantifying public sentiment overall and toward specific stocks, we seek to uncover patterns and correlations that influence market dynamics. A Long-Short-Term Memory (LSTM) neural network will model temporal dependencies within the combined sentiment metrics and stock prices.
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="sentiment.png" alt="Project 2 Image">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-			</div>
-			<div id="pst" class="fade-in">
-            <div id="project-section" class="fade-in">
-                <h1>Past Projects</h1>
-                <hr>
-                <div id="project-container">
-                    <div class="project">
-                        <div class="project-text">
-                            <h2>Quantile Machine Learning Deep Dive</h2>
-                            <p>The Quantile Machine Learning Project inspired by Fred Liu's Quantile Machine Learning and the Cross-Section of Stock Returns' is a multi-task neural network designed to predict the cross section of equity returns. We gathered 150+ equity factors from Chen and Zimmerman’s open source cross sectional asset pricing library and replicated the datasets used that are not updated in real time through the WRDS database’s Compustat daily updates such that the trading strategy could be implemented in a real time setting. We use Chen and Zimmerman’s open source factor library to train the multi-task neural network of monthly US equity returns with a rolling window for training and validation sets and begin the out of sample testing in year 2000. Each year proceeding sorts the expected monthly returns into deciles in which we implement a standard long-short portfolio by longing the 10th decile and shorting the 1st to capture the premium implied by the factors. We include an additional constraint upon sorting the expected returns such that all expected returns are calculated assuming you are executing a market order to ensure our portfolio’s expected returns are realistic after costs. The results of our findings exceeded the original paper’s findings with a Sharpe ratio of 2.1 after transactions costs from the period of 2000 to 2023 due to the increase in information provided from additional factors beyond Jeremiah green’s factor library that was originally used in Liu (2023).</p>
+
+            <!-- Past Projects Section -->
+            <div id="pst" class="fade-in">
+                <div id="project-section" class="fade-in">
+                    <h1>Past Projects</h1>
+                    <hr>
+                    <div id="project-container">
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Quantile Machine Learning Deep Dive</h2>
+                                <p>
+                                    The Quantile Machine Learning Project inspired by Fred Liu's “Quantile Machine Learning and the Cross-Section of Stock Returns” is a multi-task neural network designed to predict the cross section of equity returns. We gathered 150+ equity factors from Chen and Zimmerman’s open source cross sectional asset pricing library and replicated the datasets used that are not updated in real time through the WRDS database’s Compustat daily updates such that the trading strategy could be implemented in a real time setting. We use Chen and Zimmerman’s open source factor library to train the multi-task neural network of monthly US equity returns with a rolling window for training and validation sets and begin the out of sample testing in year 2000. Each year proceeding sorts the expected monthly returns into deciles in which we implement a standard long-short portfolio by longing the 10th decile and shorting the 1st to capture the premium implied by the factors. We include an additional constraint upon sorting the expected returns such that all expected returns are calculated assuming you are executing a market order to ensure our portfolio’s expected returns are realistic after costs. The results of our findings exceeded the original paper’s findings with a Sharpe ratio of 2.1 after transactions costs from the period of 2000 to 2023 due to the increase in information provided from additional factors beyond Jeremiah green’s factor library that was originally used in Liu (2023).
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="Picture1.png" alt="Project 1 Image">
+                            </div>
                         </div>
-                        <div class="project-img">
-                            <img src="Picture1.png" alt="Project 1 Image">
-                        </div>
-                    </div>
-                    <div class="project">
-                        <div class="project-text">
-                            <h2>Kelly-criterion Portfolio Optimization</h2>
-                            <p>The Kelly Project extends the Kelly-criterion for optimal portfolio sizing to a practical setting by incorporating both non-normal and correlated returns to solve for optimal weighting in a portfolio of assets that don’t exhibit behaviors assumed by traditional portfolio sizing methods. We use historical stock returns of the assets in our portfolio along with a Cholesky Decomposition to simulate correlated stock returns via Monte Carlo. We use historical stock returns to estimate the distribution of returns for stocks in our portfolio via a Kernel Density Estimator (KDE). We apply a Cholesky Decomposition to simulate correlated returns across all of the individual stocks in our portfolio, and estimate the joint probability distribution using a gaussian mixture model to solve for the optimal Kelly weights. The resulting portfolio beats the benchmark (equally weighted portfolio) in terms of both risk-adjusted performance (Sharpe ratio) and annual return (compound annual growth rate)</p>
-                        </div>
-                        <div class="project-img">
-                            <img src="cluster_2.png" alt="Project 2 Image">
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Kelly-criterion Portfolio Optimization</h2>
+                                <p>
+                                    The Kelly Project extends the Kelly-criterion for optimal portfolio sizing to a practical setting by incorporating both non-normal and correlated returns to solve for optimal weighting in a portfolio of assets that don’t exhibit behaviors assumed by traditional portfolio sizing methods. We use historical stock returns of the assets in our portfolio along with a Cholesky Decomposition to simulate correlated stock returns via Monte Carlo. We use historical stock returns to estimate the distribution of returns for stocks in our portfolio via a Kernel Density Estimator (KDE). We apply a Cholesky Decomposition to simulate correlated returns across all of the individual stocks in our portfolio, and estimate the joint probability distribution using a gaussian mixture model to solve for the optimal Kelly weights. The resulting portfolio beats the benchmark (equally weighted portfolio) in terms of both risk-adjusted performance (Sharpe ratio) and annual return (compound annual growth rate).
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="cluster_2.png" alt="Project 2 Image">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-			</div>
+
+            <!-- Past GIM's Section -->
             <div id="presentation-section" class="fade-in">
                 <h1>Past GIM's</h1>
                 <hr>
@@ -593,7 +630,7 @@ surface
                 </div>
             </div>
 
-			
+            <!-- Team Section -->
             <div id="team-section" class="fade-in">
                 <h1>Team</h1>
                 <hr>
@@ -626,23 +663,20 @@ surface
                     <div class="team-member">
                         <div class="team-img" style="background-image: url('ukolov.jpg');"></div>
                         <h3>Daniel Ukolov</h3>
-						<p>Team Lead</p>
+                        <p>Team Lead</p>
                     </div>
                     <div class="team-member">
                         <div class="team-img" style="background-image: url('masri.jpeg');"></div>
                         <h3>Joseph Masri</h3>
-						<p>Team Lead</p>
+                        <p>Team Lead</p>
                     </div>
-					<div class="team-member">
+                    <div class="team-member">
                         <div class="team-img" style="background-image: url('reynoso.jpeg');"></div>
                         <h3>Andrew Reynoso</h3>
                         <p>Marketer</p>
                     </div>
                 </div>
             </div>
-
-            
-            
         </div>
     </div>
     <footer>
@@ -705,7 +739,7 @@ surface
 
         // Resize canvas when window is resized
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {  // Only run this if the screen width is greater than 768px
+            if (window.innerWidth > 768) { 
                 canvas.width = document.querySelector('#canvas-section').offsetWidth;
                 canvas.height = document.querySelector('#canvas-section').offsetHeight;
                 columns = canvas.width / fontSize;
@@ -729,10 +763,10 @@ surface
             for (let i = 0; i < numberOfCards; i++) {
                 const card = document.createElement('div');
                 card.classList.add('card');
-                card.style.top = `${i * cardHeight + (Math.random() * 50)}px`; // Adding random offset to top position
-                card.style.left = `-${200 + Math.random() * 100}px`; // Ensure card starts off-screen to the left
-                card.style.animationDuration = `${10 + Math.random() * 10}s`; // Random duration between 10 and 20 seconds
-                card.style.animationDelay = `${Math.random() * 1}s`; // Random delay up to 5 seconds
+                card.style.top = `${i * cardHeight + (Math.random() * 50)}px`; 
+                card.style.left = `-${200 + Math.random() * 100}px`; 
+                card.style.animationDuration = `${10 + Math.random() * 10}s`;
+                card.style.animationDelay = `${Math.random() * 1}s`; 
 
                 const suitIndex = Math.floor(Math.random() * suits.length);
                 card.textContent = suits[suitIndex];
@@ -752,11 +786,11 @@ surface
                 });
             });
         });
-    // Scroll to top on page reload
-    window.onbeforeunload = function () {
-        window.scrollTo(0, 0);
-    };
 
+        // Scroll to top on page reload
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
     </script>
 </body>
 </html>
