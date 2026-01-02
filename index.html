@@ -486,6 +486,64 @@
             width: 100%;
             height: 480px; 
         }
+        .past-presentations {
+            display: flex;
+            align-items: center;      
+            justify-content: center;
+            height: 60vh;            
+            gap: 8px;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        #left, #right {
+            flex: 0 0 auto;
+            width: 56px;
+            height: 56px;
+            min-width: 40px;
+            font-size: 28px;
+            padding: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        #left:hover, #right:hover {
+            background-color: #3da350;
+        }
+        #pdfs {
+            flex: 1 1 auto;           
+            min-width: 300px;
+            height: 100%;
+            border: none;
+        }
+        #expand-prev-years-team {
+            font-size: 24px;
+            padding: 10px 20px;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        #expand-prev-years-team:hover {
+            background-color: #3da350; 
+        }
+        #prev-years-team {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        #prev-years-team.expanded {
+            max-height: 1000px; /* change this if transition starts screwing up */
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -597,6 +655,16 @@
                     </div>
                 </div>
             </div>
+            <div class="past-presentations">
+                <button id="left">←</button>
+                <iframe src="2025-S, Sports Exchange Based Betting.pdf" 
+                        id = "pdfs"
+                        width="100%" 
+                        height="600px" 
+                        frameborder="0">
+                </iframe>
+                <button id="right">→</button>
+            </div>
 			<div id="team-section" class="fade-in">
                 <h1>Team</h1>
                 <hr>
@@ -628,7 +696,41 @@
                         <p>Data Officer</p>
                     </div>
 
+                    
 
+
+                </div>
+                <button id="expand-prev-years-team">Previous Teams</button>
+                <div id="prev-years-team">
+                    <h1>2025 Fall Team</h1>
+                    <div id="team-container">
+                    <div class="team-member">
+                    <div class="team-img" style="background-image: url('arthur.jpg');"></div>
+                        <h3>Arthur Faynin</h3>
+                        <p>President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alfred.jpg');"></div>
+                        <h3>Alfred Leong</h3>
+                        <p>Vice-President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alex.jpg');"></div>
+                        <h3>Alexi Tilly</h3>
+                        <p>Treasurer</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('abraham.jpg');"></div>
+                        <h3>Abie Lent</h3>
+                        <p>Secretary</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('frog.jpg');"></div>
+                        <h3>Daniel Shmir</h3>
+                        <p>Data Officer</p>
+                    </div>
+                    </div>
                 </div>
             </div>
 
@@ -705,6 +807,51 @@
                     drops[i] = 1;
                 }
             }
+        });
+
+
+        // Expand and unexpand previous teams
+        document.getElementById('expand-prev-years-team').addEventListener('click', function() {
+
+            const content = document.getElementById('prev-years-team');
+            content.classList.toggle('expanded')
+        });
+
+        // Switch between past pdfs 
+        const pdfPaths = [
+            '2025-S, Sports Exchange Based Betting.pdf',
+            '2025-S, Weather Contracts.pdf',
+            '2025-S,Pairs Trading Exploration.pdf',
+            '2025-F, FQE VOL MARKOV 2025.pdf',
+            '2025-F, HFT with Fractional Brownian Motion.pdf',
+            '2025-F, Markov Switching Variance Gamma.pdf',
+            '2025-F, Momentum Risk Management.pdf',
+            '2025-F, MonteCarloConvertibleBondPricing.pdf',
+            '2025-F, Sentiment Metrics & Investor Demand.pdf',
+            '2025-F, Short-run Forex Eigenvector Model.pdf',
+            '2024-F, Event Contracts.pdf',
+            '2024-F, Mean Reversion Portfolio.pdf'
+        ];
+        let current_pdf = 0;
+        document.getElementById('left').addEventListener('click', function() {
+            const content = document.querySelector('.past-presentations iframe')
+            current_pdf -= 1
+            if (current_pdf < 0) {
+                current_pdf = pdfPaths.length - 1
+
+            }
+            content.src = pdfPaths[current_pdf]
+
+        });
+        document.getElementById('right').addEventListener('click', function() {
+            const content = document.querySelector('.past-presentations iframe')
+            current_pdf += 1
+            if (current_pdf >= pdfPaths.length) {
+                current_pdf = 0
+
+            }
+            content.src = pdfPaths[current_pdf]
+
         });
 
         // Card Animation in Extra Section
