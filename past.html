@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="ipEBMlETokwmhbnPzymJ5qvismEACkBQUqsNlLR1dnQ" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <title>Past Work - Financial Quants and Engineers Club (FQE) at Baruch College</title>
+    <meta name="description" content="Past projects, presentations, and team members of FQE Baruch.">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
+            background: black;
+            scroll-behavior: smooth;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        #navbar {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            margin: 0 auto;
+        }
+        #navbar img {
+            max-width: 300px;
+            height: auto;
+        }
+        #navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            width: 35em;
+        }
+        #navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #navbar ul li a:hover {
+            color: #0f0;
+        }
+        #canvas-section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        #extra-section {
+            width: 100%;
+            background: #ebeeee;
+            position: relative;
+            overflow: hidden;
+            padding-top: 40px;
+        }
+        #extra-content {
+            margin: 0 auto;
+            text-align: left;
+            color: #6E7881;
+            position: relative;
+            z-index: 1;
+        }
+        #extra-content h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: #369347;
+            margin-bottom: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #extra-content p {
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        #content {
+            width: 80%; 
+            margin: 0 auto;
+            position: absolute; 
+            bottom: 15%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: left; 
+            text-decoration: none;
+        }
+        #content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        #content h3 {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        #content button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        #project-section {
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 80px;
+            width: 75%;
+        }
+        #project-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        #project-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .project {
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .project h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .project-text {
+            width: 60%; 
+            text-align: left;
+            margin-bottom: 0; 
+        }
+        .project-img {
+            width: 35%; 
+            max-width: 100%; 
+        }
+        .project-img img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .card {
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            color: black;
+            animation: float 10s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateX(-200px) rotate(0deg); 
+            }
+            100% {
+                transform: translateX(calc(100vw + 400px)) rotate(360deg); 
+            }
+        }
+
+        #team-section {
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+            width: 75%;
+        }
+        #team-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2%;
+        }
+        
+        .team-member {
+            width: 20%;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #000;
+        }
+        
+        .team-img {
+            width: 100%;
+            padding-top: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .team-member p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .team-member {
+                width: 45%;
+            }
+        }
+
+        footer {
+            width: 100%;
+            background-image: url('sholes.jpg');
+            background-position: center;
+            position: relative;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content {
+            position: relative; 
+            z-index: 1;
+            text-align: center;
+        }
+
+        footer h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .footer-content a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: #369347; 
+        }
+
+        .footer-content i {
+            vertical-align: middle;
+        }
+
+        .past-presentations {
+            display: flex;
+            align-items: center;      
+            justify-content: center;
+            height: 60vh;            
+            gap: 8px;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        #left, #right {
+            flex: 0 0 auto;
+            width: 56px;
+            height: 56px;
+            min-width: 40px;
+            font-size: 28px;
+            padding: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            margin: 20px auto;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        #left:hover, #right:hover {
+            background-color: #3da350;
+        }
+        #pdfs {
+            flex: 1 1 auto;           
+            min-width: 300px;
+            height: 100%;
+            border: none;
+        }
+        #expand-prev-years-team {
+            font-size: 24px;
+            padding: 10px 20px;
+            background: #369347;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+        #expand-prev-years-team:hover {
+            background-color: #3da350; 
+        }
+        #prev-years-team {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        #prev-years-team.expanded {
+            max-height: 1000px;
+            opacity: 1;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            opacity: 0; 
+            animation: fadeIn 1s forwards; 
+            animation-delay: 1s; 
+        }
+
+        .fade-in-delayed-1 {
+            animation-delay: 3s;
+        }
+
+        .fade-in-delayed-2 {
+            animation-delay: 4s;
+        }
+
+        @media only screen and (max-width: 950px) {
+            #navbar ul {
+                display: none;
+            }
+
+            #navbar {
+                justify-content: center;
+            }
+
+            #navbar img {
+                max-width: 70%; 
+            }
+
+            #content {
+                top: 20%;
+                text-align: center;
+                position: relative; 
+                top: 20%; 
+                transform: none; 
+                left: 0%;
+            }
+
+            #project-section, #team-section {
+                width: 95%;
+            }
+
+            .project {
+                flex-direction: column;
+            }
+
+            .project-text, .project-img {
+                width: 100%; 
+                text-align: center; 
+            }
+
+            .project-img img {
+                margin-top: 20px; 
+            }
+        }
+        #pdf-list {
+            margin: 30px auto;
+            width: 90%;
+            text-align: center;
+        }
+        #pdf-list h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        #pdf-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        #pdf-list li {
+            margin-bottom: 7px;
+        }
+        #pdf-list a {
+            color: #257446;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+        #pdf-list a:hover {
+            color: #154b29;
+        }
+        #alumni-companies {
+            width: 100%;
+            height: 20vh;
+            min-height: 255px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #alumni-track {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 0 40px;
+            width: max-content;
+            will-change: transform;
+        }
+
+        #alumni-track img {
+            width: 255px;            
+            height: 255px;
+            object-fit: contain;    
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-section">
+        <canvas></canvas>
+        <div id="navbar">
+            <img src="logo_large_transparent_lighter.png" alt="FQE Baruch Logo" onclick="window.location.href='index.html';" style="cursor: pointer;" class="fade-in">
+            <ul class="fade-in">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="past.html">Past Work</a></li>
+            </ul>
+        </div>
+        <div id="content" class="fade-in">
+            <h1>Past Work</h1>
+            <h3>Explore our completed projects, presentations, and team history</h3>
+        </div>
+    </div>
+    
+    <div id="extra-section">
+        <div id="card-background"></div>
+        <div id="extra-content">
+            <!-- Past Projects Section -->
+            <div id="pst">
+                <div id="alumni-band">
+                    <div id="alumni-head">
+                        <h1>Our Alumni Have Worked At</h1>
+                    </div>
+                    <div id="alumni-companies">
+                        <div id="alumni-track">
+                            <img src="logos2/download__1_-removebg-preview.png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__2_-removebg-preview.png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__2_-removebg-preview (1).png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__3_-removebg-preview.png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__4_-removebg-preview (1).png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__4_-removebg-preview (2).png" alt="Company Logo" loading="lazy">
+                            <img src="logos2/download__5_-removebg-preview.png" alt="Company Logo" loading="lazy">
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="project-section">
+                    <h1>Past Projects</h1>
+                    <hr>
+                    <div id="project-container">
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Quantile Machine Learning Deep Dive</h2>
+                                <p>
+                                    The Quantile Machine Learning Project inspired by Fred Liu's "Quantile Machine Learning and the Cross-Section of Stock Returns" is a multi-task neural network designed to predict the cross section of equity returns. We gathered 150+ equity factors from Chen and Zimmerman's open source cross sectional asset pricing library and replicated the datasets used that are not updated in real time through the WRDS database's Compustat daily updates such that the trading strategy could be implemented in a real time setting. We use Chen and Zimmerman's open source factor library to train the multi-task neural network of monthly US equity returns with a rolling window for training and validation sets and begin the out of sample testing in year 2000. Each year proceeding sorts the expected monthly returns into deciles in which we implement a standard long-short portfolio by longing the 10th decile and shorting the 1st to capture the premium implied by the factors. We include an additional constraint upon sorting the expected returns such that all expected returns are calculated assuming you are executing a market order to ensure our portfolio's expected returns are realistic after costs. The results of our findings exceeded the original paper's findings with a Sharpe ratio of 2.1 after transactions costs from the period of 2000 to 2023 due to the increase in information provided from additional factors beyond Jeremiah green's factor library that was originally used in Liu (2023).
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="Picture1.png" alt="Project 1 Image">
+                            </div>
+                        </div>
+                        <div class="project">
+                            <div class="project-text">
+                                <h2>Kelly-criterion Portfolio Optimization</h2>
+                                <p>
+                                    The Kelly Project extends the Kelly-criterion for optimal portfolio sizing to a practical setting by incorporating both non-normal and correlated returns to solve for optimal weighting in a portfolio of assets that don't exhibit behaviors assumed by traditional portfolio sizing methods. We use historical stock returns of the assets in our portfolio along with a Cholesky Decomposition to simulate correlated stock returns via Monte Carlo. We use historical stock returns to estimate the distribution of returns for stocks in our portfolio via a Kernel Density Estimator (KDE). We apply a Cholesky Decomposition to simulate correlated returns across all of the individual stocks in our portfolio, and estimate the joint probability distribution using a gaussian mixture model to solve for the optimal Kelly weights. The resulting portfolio beats the benchmark (equally weighted portfolio) in terms of both risk-adjusted performance (Sharpe ratio) and annual return (compound annual growth rate).
+                                </p>
+                            </div>
+                            <div class="project-img">
+                                <img src="cluster_2.png" alt="Project 2 Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Presentations -->
+            <section id="pdf-list">
+                <h2>Past Presentations</h2>
+                <ul>
+                  <li>
+                    <a href="2025-F, Sentiment Metrics & Investor Demand.pdf" download>
+                      2025 Fall — Sentiment Metrics & Investor Demand
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, Markov Switching Variance Gamma.pdf" download>
+                      2025 Fall — Markov Switching Variance Gamma
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, HFT with Fractional Brownian Motion.pdf" download>
+                      2025 Fall — HFT with Fractional Brownian Motion
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, Short-run Forex Eigenvector Model.pdf" download>
+                      2025 Fall — Short-run Forex Eigenvector Model
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, MonteCarloConvertibleBondPricing.pdf" download>
+                      2025 Fall — Monte Carlo Convertible Bond Pricing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, FQE VOL MARKOV 2025.pdf" download>
+                      2025 Fall — FQE VOL MARKOV 2025
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-F, Momentum Risk Management.pdf" download>
+                      2025 Fall — Momentum Risk Management
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-S, Weather Contracts.pdf" download>
+                      2025 Spring — Weather Contracts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2025-S,Pairs Trading Exploration.pdf" download>
+                      2025 Spring — Pairs Trading Exploration
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2024-F, Event Contracts.pdf" download>
+                      2024 Fall — Event Contracts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="2024-F, Mean Reversion Portfolio.pdf" download>
+                      2024 Fall — Mean Reversion Portfolio
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            <div class="past-presentations">
+                <!-- <button id="left">←</button> -->
+                <iframe src="2025-S, Weather Contracts.pdf" 
+                        id = "pdfs"
+                        width="100%" 
+                        height="600px" 
+                        frameborder="0">
+                </iframe>
+                <!-- <button id="right">→</button> -->
+            </div>
+
+            <!-- Team Section -->
+            <div id="team-section">
+                <h1>Team</h1>
+                <hr>
+                <div id="team-container">
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('arthur3.jpeg');"></div>
+                        <h3>Arthur Faynin</h3>
+                        <p>President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alfred.jpg');"></div>
+                        <h3>Alfred Leong</h3>
+                        <p>Vice-President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alex.jpg');"></div>
+                        <h3>Alexi Tilly</h3>
+                        <p>Treasurer</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('abraham.jpg');"></div>
+                        <h3>Abie Lent</h3>
+                        <p>Secretary</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('frog.jpg');"></div>
+                        <h3>Daniel Shmir</h3>
+                        <p>Data Officer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('image.png');"></div>
+                        <h3>Kateryna Chevplianska</h3>
+                        <p>Data Officer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('image (1).webp');"></div>
+                        <h3>Mei Lin Pan</h3>
+                        <p>Marketing Officer</p>
+                    </div>
+                </div>
+                <button id="expand-prev-years-team">Previous Teams</button>
+                <div id="prev-years-team">
+                    <h1>2025 Fall Team</h1>
+                    <div id="team-container">
+                    <div class="team-member">
+                    <div class="team-img" style="background-image: url('arthur3.jpeg');"></div>
+                        <h3>Arthur Faynin</h3>
+                        <p>President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alfred.jpg');"></div>
+                        <h3>Alfred Leong</h3>
+                        <p>Vice-President</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('alex.jpg');"></div>
+                        <h3>Alexi Tilly</h3>
+                        <p>Treasurer</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('abraham.jpg');"></div>
+                        <h3>Abie Lent</h3>
+                        <p>Secretary</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('frog.jpg');"></div>
+                        <h3>Daniel Shmir</h3>
+                        <p>Data Officer</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="footer-overlay">
+            <div class="footer-content">
+                <h3>Contact Us</h3>
+                <p>Email: baruchfqe@gmail.com
+                    <a href="https://www.instagram.com/baruchfqe/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/fqebaruch/mycompany/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </p>
+                <p>&copy; 2026 Financial Quants and Engineers.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Canvas animation
+        var canvas = document.querySelector('canvas'),
+            ctx = canvas.getContext('2d');
+
+        canvas.width = document.querySelector('#canvas-section').offsetWidth; 
+        canvas.height = document.querySelector('#canvas-section').offsetHeight; 
+
+        var letters = 'αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ∂∆∇∫∑∏∞≈≠≡≤≥√∝%';
+        letters = letters.split('');
+
+        var fontSize = 10,
+            columns = canvas.width / fontSize;
+
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillStyle = '#0f0';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                drops[i]++;
+                if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        setInterval(draw, 28);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) { 
+                canvas.width = document.querySelector('#canvas-section').offsetWidth;
+                canvas.height = document.querySelector('#canvas-section').offsetHeight;
+                columns = canvas.width / fontSize;
+                drops = [];
+                for (var i = 0; i < columns; i++) {
+                    drops[i] = 1;
+                }
+            }
+        });
+
+        const alumniViewport = document.getElementById('alumni-companies');
+        const alumniTrack = document.getElementById('alumni-track');
+
+        // Duplicate the initial set once so the loop is seamless
+        const original = Array.from(alumniTrack.children);
+        original.forEach((node) => alumniTrack.appendChild(node.cloneNode(true)));
+
+        let offset = 0;
+        const speed = 0.3; // px per frame (increase = faster)
+        let halfWidth = alumniTrack.scrollWidth / 2;
+
+        function recomputeWidths() {
+            // After images load / on resize, recompute the reset point
+            halfWidth = alumniTrack.scrollWidth / 2;
+        }
+
+        // Recompute once images load
+        window.addEventListener('load', recomputeWidths);
+        window.addEventListener('resize', recomputeWidths);
+
+        function animate() {
+            if (halfWidth > 0) {
+                offset -= speed;
+
+                // When we've shifted one full "set" left, wrap back by one set
+                // if (offset <= -halfWidth) offset += halfWidth;
+
+                alumniTrack.style.transform = `translateX(${offset}px)`;
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Expand and unexpand previous teams
+        document.getElementById('expand-prev-years-team').addEventListener('click', function() {
+            const content = document.getElementById('prev-years-team');
+            content.classList.toggle('expanded')
+        });
+
+        // Switch between past pdfs 
+        const pdfPaths = [
+            '2025-S,Pairs Trading Exploration.pdf',
+            '2025-F, FQE VOL MARKOV 2025.pdf',
+            '2025-F, HFT with Fractional Brownian Motion.pdf',
+            '2025-F, Markov Switching Variance Gamma.pdf',
+            '2025-F, Momentum Risk Management.pdf',
+            '2025-F, MonteCarloConvertibleBondPricing.pdf',
+            '2025-F, Short-run Forex Eigenvector Model.pdf',
+            '2024-F, Event Contracts.pdf',
+            '2024-F, Mean Reversion Portfolio.pdf'
+        ];
+        let current_pdf = 0;
+        document.getElementById('left').addEventListener('click', function() {
+            const content = document.querySelector('.past-presentations iframe')
+            current_pdf -= 1
+            if (current_pdf < 0) {
+                current_pdf = pdfPaths.length - 1
+
+            }
+            content.src = pdfPaths[current_pdf]
+
+        });
+        document.getElementById('right').addEventListener('click', function() {
+            const content = document.querySelector('.past-presentations iframe')
+            current_pdf += 1
+            if (current_pdf >= pdfPaths.length) {
+                current_pdf = 0
+
+            }
+            content.src = pdfPaths[current_pdf]
+
+        });
+
+        // Card Animation in Extra Section
+        function createCards() {
+            const cardContainer = document.getElementById('card-background');
+            const sectionHeight = document.getElementById('extra-section').offsetHeight;
+            const cardHeight = 150;
+            const numberOfCards = Math.floor(sectionHeight / cardHeight);
+
+            const suits = ['♥', '♦', '♣', '♠'];
+            const colors = ['red', 'red', 'black', 'black'];
+
+            for (let i = 0; i < numberOfCards; i++) {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.style.top = `${i * cardHeight + (Math.random() * 50)}px`; 
+                card.style.left = `-${200 + Math.random() * 100}px`; 
+                card.style.animationDuration = `${10 + Math.random() * 10}s`;
+                card.style.animationDelay = `${Math.random() * 1}s`; 
+
+                const suitIndex = Math.floor(Math.random() * suits.length);
+                card.textContent = suits[suitIndex];
+                card.style.color = colors[suitIndex];
+
+                cardContainer.appendChild(card);
+            }
+        }
+
+        createCards();
+
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+    </script>
+</body>
+</html>

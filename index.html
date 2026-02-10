@@ -524,13 +524,19 @@
             border: none;
         }
         #expand-prev-years-team {
+            display: block;
+            text-decoration: none;
+            width: 20vw;
+            margin: 30px auto;
+            text-align: center;
             font-size: 24px;
-            padding: 10px 20px;
+            padding: 16px 32px;
             background: #369347;
             border: none;
             color: #000;
             cursor: pointer;
-            margin: 20px auto;
+            border-radius: 12px;
+            box-sizing: border-box;
         }
         #expand-prev-years-team:hover {
             background-color: #3da350; 
@@ -552,10 +558,8 @@
         <div id="navbar">
             <img src="logo_large_transparent_lighter.png" alt="FQE Baruch Logo - Financial Quants and Engineers Club" class="fade-in">
             <ul class="fade-in">
-                <li><a href="#about-section">About</a></li>
-                <li><a href="#crnt">Current Work</a></li>
-                <li><a href="#pst">Past Projects</a></li>
-                <li><a href="#team-section">Team</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="past.html">Past Work</a></li>
             </ul>
         </div>
         <div id="content" class="fade-in">
@@ -622,126 +626,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Past Projects Section -->
-            <div id="pst" class="fade-in">
-                <div id="project-section" class="fade-in">
-                    <h1>Past Projects</h1>
-                    <hr>
-                    <div id="project-container">
-                        <div class="project">
-                            <div class="project-text">
-                                <h2>Quantile Machine Learning Deep Dive</h2>
-                                <p>
-                                    The Quantile Machine Learning Project inspired by Fred Liu's “Quantile Machine Learning and the Cross-Section of Stock Returns” is a multi-task neural network designed to predict the cross section of equity returns. We gathered 150+ equity factors from Chen and Zimmerman’s open source cross sectional asset pricing library and replicated the datasets used that are not updated in real time through the WRDS database’s Compustat daily updates such that the trading strategy could be implemented in a real time setting. We use Chen and Zimmerman’s open source factor library to train the multi-task neural network of monthly US equity returns with a rolling window for training and validation sets and begin the out of sample testing in year 2000. Each year proceeding sorts the expected monthly returns into deciles in which we implement a standard long-short portfolio by longing the 10th decile and shorting the 1st to capture the premium implied by the factors. We include an additional constraint upon sorting the expected returns such that all expected returns are calculated assuming you are executing a market order to ensure our portfolio’s expected returns are realistic after costs. The results of our findings exceeded the original paper’s findings with a Sharpe ratio of 2.1 after transactions costs from the period of 2000 to 2023 due to the increase in information provided from additional factors beyond Jeremiah green’s factor library that was originally used in Liu (2023).
-                                </p>
-                            </div>
-                            <div class="project-img">
-                                <img src="Picture1.png" alt="Project 1 Image">
-                            </div>
-                        </div>
-                        <div class="project">
-                            <div class="project-text">
-                                <h2>Kelly-criterion Portfolio Optimization</h2>
-                                <p>
-                                    The Kelly Project extends the Kelly-criterion for optimal portfolio sizing to a practical setting by incorporating both non-normal and correlated returns to solve for optimal weighting in a portfolio of assets that don’t exhibit behaviors assumed by traditional portfolio sizing methods. We use historical stock returns of the assets in our portfolio along with a Cholesky Decomposition to simulate correlated stock returns via Monte Carlo. We use historical stock returns to estimate the distribution of returns for stocks in our portfolio via a Kernel Density Estimator (KDE). We apply a Cholesky Decomposition to simulate correlated returns across all of the individual stocks in our portfolio, and estimate the joint probability distribution using a gaussian mixture model to solve for the optimal Kelly weights. The resulting portfolio beats the benchmark (equally weighted portfolio) in terms of both risk-adjusted performance (Sharpe ratio) and annual return (compound annual growth rate).
-                                </p>
-                            </div>
-                            <div class="project-img">
-                                <img src="cluster_2.png" alt="Project 2 Image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="past-presentations">
-                <button id="left">←</button>
-                <iframe src="2025-S, Sports Exchange Based Betting.pdf" 
-                        id = "pdfs"
-                        width="100%" 
-                        height="600px" 
-                        frameborder="0">
-                </iframe>
-                <button id="right">→</button>
-            </div>
-			<div id="team-section" class="fade-in">
-                <h1>Team</h1>
-                <hr>
-                <div id="team-container">
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('arthur3.jpeg');"></div>
-                        <h3>Arthur Faynin</h3>
-                        <p>President</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('alfred.jpg');"></div>
-                        <h3>Alfred Leong</h3>
-                        <p>Vice-President</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('alex.jpg');"></div>
-                        <h3>Alexi Tilly</h3>
-                        <p>Treasurer</p>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('abraham.jpg');"></div>
-                        <h3>Abie Lent</h3>
-                        <p>Secretary</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('frog.jpg');"></div>
-                        <h3>Daniel Shmir</h3>
-                        <p>Data Officer</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('image.png');"></div>
-                        <h3>Kateryna Chevplianska</h3>
-                        <p>Data Officer</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('image (1).webp');"></div>
-                        <h3>Mei Lin Pan</h3>
-                        <p>Marketing Officer</p>
-                    </div>
-
-                    
-
-
-                </div>
-                <button id="expand-prev-years-team">Previous Teams</button>
-                <div id="prev-years-team">
-                    <h1>2025 Fall Team</h1>
-                    <div id="team-container">
-                    <div class="team-member">
-                    <div class="team-img" style="background-image: url('arthur3.jpeg');"></div>
-                        <h3>Arthur Faynin</h3>
-                        <p>President</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('alfred.jpg');"></div>
-                        <h3>Alfred Leong</h3>
-                        <p>Vice-President</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('alex.jpg');"></div>
-                        <h3>Alexi Tilly</h3>
-                        <p>Treasurer</p>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('abraham.jpg');"></div>
-                        <h3>Abie Lent</h3>
-                        <p>Secretary</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img" style="background-image: url('frog.jpg');"></div>
-                        <h3>Daniel Shmir</h3>
-                        <p>Data Officer</p>
-                    </div>
-                    </div>
-                </div>
+                <a id="expand-prev-years-team" href="past.html">Past Projects</a>
             </div>
 
 
@@ -760,7 +645,7 @@
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </p>
-                <p>&copy; 2025 Financial Quants and Engineers.</p>
+                <p>&copy; 2026 Financial Quants and Engineers.</p>
             </div>
         </div>
     </footer>
@@ -820,48 +705,6 @@
         });
 
 
-        // Expand and unexpand previous teams
-        document.getElementById('expand-prev-years-team').addEventListener('click', function() {
-
-            const content = document.getElementById('prev-years-team');
-            content.classList.toggle('expanded')
-        });
-
-        // Switch between past pdfs 
-        const pdfPaths = [
-            '2025-S, Weather Contracts.pdf',
-            '2025-S,Pairs Trading Exploration.pdf',
-            '2025-F, FQE VOL MARKOV 2025.pdf',
-            '2025-F, HFT with Fractional Brownian Motion.pdf',
-            '2025-F, Markov Switching Variance Gamma.pdf',
-            '2025-F, Momentum Risk Management.pdf',
-            '2025-F, MonteCarloConvertibleBondPricing.pdf',
-            '2025-F, Short-run Forex Eigenvector Model.pdf',
-            '2024-F, Event Contracts.pdf',
-            '2024-F, Mean Reversion Portfolio.pdf'
-        ];
-        let current_pdf = 0;
-        document.getElementById('left').addEventListener('click', function() {
-            const content = document.querySelector('.past-presentations iframe')
-            current_pdf -= 1
-            if (current_pdf < 0) {
-                current_pdf = pdfPaths.length - 1
-
-            }
-            content.src = pdfPaths[current_pdf]
-
-        });
-        document.getElementById('right').addEventListener('click', function() {
-            const content = document.querySelector('.past-presentations iframe')
-            current_pdf += 1
-            if (current_pdf >= pdfPaths.length) {
-                current_pdf = 0
-
-            }
-            content.src = pdfPaths[current_pdf]
-
-        });
-
         // Card Animation in Extra Section
         function createCards() {
             const cardContainer = document.getElementById('card-background');
@@ -892,10 +735,14 @@
 
         document.querySelectorAll('#navbar ul li a, #down-arrow').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const href = this.getAttribute('href');
+                // Only apply smooth scrolling to internal anchor links (starting with #)
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
