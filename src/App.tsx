@@ -11,17 +11,19 @@ import ContactSection from './sections/ContactSection';
 import ClosingSection from './sections/ClosingSection';
 import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { ArrowRight } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
 const LEGACY_COMP_HASH = '#/competitions';
 
-type CompetitionView = 'main' | 'trading' | 'applied';
+type CompetitionView = 'main' | 'trading' | 'applied' | 'not-found';
 
 function getCompetitionView(hash: string): CompetitionView {
   if (hash === TRADING_COMP_HASH || hash === LEGACY_COMP_HASH) return 'trading';
   if (hash === APPLIED_MATH_COMP_HASH) return 'applied';
+  if (hash.startsWith('#/') && hash !== '#/') return 'not-found';
   return 'main';
 }
 
@@ -77,6 +79,10 @@ function App() {
 
   if (competitionView === 'applied') {
     return <AppliedMathCompetitionPage />;
+  }
+
+  if (competitionView === 'not-found') {
+    return <NotFoundPage />;
   }
 
   return (
