@@ -9,6 +9,7 @@ import AlumniSection from './sections/AlumniSection';
 import LeadershipSection from './sections/BoardSection';
 import ContactSection from './sections/ContactSection';
 import ClosingSection from './sections/ClosingSection';
+import CalendarSection from './sections/CalendarSection';
 import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -17,6 +18,9 @@ import { ArrowRight } from 'lucide-react';
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
 const LEGACY_COMP_HASH = '#/competitions';
+// Optional .env override for the "Open Google Calendar" link in the calendar section:
+// VITE_GOOGLE_CALENDAR_MANAGE_URL=https://calendar.google.com
+const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_URL || 'https://calendar.google.com';
 
 type CompetitionView = 'main' | 'trading' | 'applied' | 'not-found';
 
@@ -31,6 +35,7 @@ function App() {
   const [competitionView, setCompetitionView] = useState<CompetitionView>(
     () => getCompetitionView(window.location.hash)
   );
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -73,6 +78,14 @@ function App() {
     };
   }, [competitionView]);
 
+  useEffect(() => {
+    if (!isCalendarOpen || competitionView !== 'main') return;
+    const section = document.getElementById('calendar');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [isCalendarOpen, competitionView]);
+
   if (competitionView === 'trading') {
     return <TradingCompetitionPage />;
   }
@@ -84,6 +97,12 @@ function App() {
   if (competitionView === 'not-found') {
     return <NotFoundPage />;
   }
+
+  const handleToggleCalendar = () => {
+    setIsCalendarOpen((prev) => !prev);
+  };
+
+  const calendarButtonText = isCalendarOpen ? 'Hide the Calendar' : 'See the Calendar';
 
   return (
     <div className="relative">
@@ -183,8 +202,13 @@ function App() {
             { label: 'Team Bonding', description: 'Poker nights and social events that strengthen collaboration.' },
             { label: 'Education Events', description: 'Math primers and technical learning sessions.' },
           ]}
-          ctaText="See the Calendar"
+          ctaText={calendarButtonText}
+          ctaOnClick={handleToggleCalendar}
         />
+
+        {isCalendarOpen && (
+          <CalendarSection manageUrl={GOOGLE_CALENDAR_MANAGE_URL} />
+        )}
 
         {/* Contact */}
         <ContactSection />

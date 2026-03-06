@@ -13,6 +13,7 @@ interface ContentSectionProps {
   ctaText?: string;
   ctaHref?: string;
   ctaVariant?: 'link' | 'button';
+  ctaOnClick?: () => void;
 }
 
 export default function ContentSection({
@@ -28,6 +29,7 @@ export default function ContentSection({
   ctaText,
   ctaHref = '#',
   ctaVariant = 'link',
+  ctaOnClick,
 }: ContentSectionProps) {
   const isLeftPhoto = layout === 'left-photo';
   const bgClass = background === 'primary' ? 'bg-primary-dark' : 'bg-secondary-dark';
@@ -80,13 +82,24 @@ export default function ContentSection({
 
           {/* CTA */}
           {ctaText && (
-            <a
-              href={ctaHref}
-              className={ctaVariant === 'button' ? 'cta-button w-fit' : 'text-link inline-flex items-center gap-2'}
-            >
-              <span>{ctaText}</span>
-              <ArrowRight size={ctaVariant === 'button' ? 16 : 14} />
-            </a>
+            ctaOnClick ? (
+              <button
+                type="button"
+                onClick={ctaOnClick}
+                className={ctaVariant === 'button' ? 'cta-button w-fit' : 'text-link inline-flex items-center gap-2'}
+              >
+                <span>{ctaText}</span>
+                <ArrowRight size={ctaVariant === 'button' ? 16 : 14} />
+              </button>
+            ) : (
+              <a
+                href={ctaHref}
+                className={ctaVariant === 'button' ? 'cta-button w-fit' : 'text-link inline-flex items-center gap-2'}
+              >
+                <span>{ctaText}</span>
+                <ArrowRight size={ctaVariant === 'button' ? 16 : 14} />
+              </a>
+            )
           )}
         </div>
       </div>
