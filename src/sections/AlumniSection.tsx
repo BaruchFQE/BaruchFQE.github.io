@@ -62,7 +62,7 @@ export default function AlumniSection() {
   return (
     <section
       id="alumni"
-      className="min-h-screen bg-primary-dark relative flex items-center py-[12vh]"
+      className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
     >
       <div className="w-full px-[6vw]">
         {/* Header */}
@@ -192,3 +192,4 @@ export default function AlumniSection() {
     </section>
   );
 }
+

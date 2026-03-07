@@ -37,7 +37,7 @@ export default function ContentSection({
   return (
     <section
       id={id}
-      className={`min-h-screen ${bgClass} relative flex items-center py-[12vh]`}
+      className={`min-h-screen ${bgClass} relative flex items-center py-[10vh]`}
     >
       <div className={`w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isLeftPhoto ? '' : 'lg:grid-flow-dense'}`}>
         {/* Photo Panel */}
@@ -106,3 +106,4 @@ export default function ContentSection({
     </section>
   );
 }
+

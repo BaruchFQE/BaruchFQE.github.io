@@ -28,6 +28,20 @@ type CalendarEvent = {
   url: string;
 };
 
+type GoogleCalendarApiEvent = {
+  id?: string;
+  summary?: string;
+  htmlLink?: string;
+  start?: {
+    dateTime?: string;
+    date?: string;
+  };
+};
+
+type GoogleCalendarApiResponse = {
+  items?: GoogleCalendarApiEvent[];
+};
+
 // Set these in your .env file to enable live Google Calendar events in this custom monthly view:
 // VITE_GOOGLE_CALENDAR_ID=<your_google_calendar_id>
 // VITE_GOOGLE_CALENDAR_API_KEY=<your_google_api_key>
@@ -43,7 +57,6 @@ export default function CalendarSection({ manageUrl }: CalendarSectionProps) {
 
   useEffect(() => {
     if (!GOOGLE_CALENDAR_ID || !GOOGLE_CALENDAR_API_KEY) {
-      setEvents([]);
       return;
     }
 
@@ -64,20 +77,20 @@ export default function CalendarSection({ manageUrl }: CalendarSectionProps) {
 
     fetch(endpoint.toString())
       .then((res) => (res.ok ? res.json() : Promise.reject(new Error('Failed to fetch calendar events'))))
-      .then((data) => {
+      .then((data: GoogleCalendarApiResponse) => {
         if (isCancelled) return;
-        const parsed: CalendarEvent[] = (data.items || [])
-          .map((item: any) => {
-            const rawStart = item?.start?.dateTime || item?.start?.date;
-            if (!rawStart || !item?.id || !item?.summary) return null;
+        const parsed: CalendarEvent[] = (data.items ?? [])
+          .map((item) => {
+            const rawStart = item.start?.dateTime || item.start?.date;
+            if (!rawStart || !item.id || !item.summary) return null;
             return {
               id: item.id,
               title: item.summary,
               start: parseISO(rawStart),
               url: item.htmlLink || manageUrl,
-            } as CalendarEvent;
+            };
           })
-          .filter(Boolean);
+          .filter((item): item is CalendarEvent => item !== null);
         setEvents(parsed);
       })
       .catch(() => {

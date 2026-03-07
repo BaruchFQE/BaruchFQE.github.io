@@ -139,7 +139,7 @@ function App() {
         {/* Competition */}
         <section
           id="competition"
-          className="min-h-screen bg-primary-dark relative flex items-center py-[12vh]"
+          className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
         >
           <div className="w-full px-[6vw]">
             <div className="max-w-4xl">
@@ -221,3 +221,4 @@ function App() {
 }
 
 export default App;
+

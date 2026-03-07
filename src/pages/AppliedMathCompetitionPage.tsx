@@ -248,7 +248,7 @@ export default function AppliedMathCompetitionPage() {
       </div>
 
       <main>
-        <section ref={heroSectionRef} className="min-h-screen bg-primary-dark relative flex items-center py-[12vh]">
+        <section ref={heroSectionRef} className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]">
           <canvas
             ref={canvasRef}
             className="absolute inset-0 z-10 w-full h-full pointer-events-none"
@@ -281,7 +281,7 @@ export default function AppliedMathCompetitionPage() {
           </div>
         </section>
 
-        <section id="requirements" className="bg-secondary-dark py-[12vh]">
+        <section id="requirements" className="bg-secondary-dark py-[10vh]">
           <div className="w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="border border-white/10 p-6">
               <div className="flex items-center gap-3 mb-4">
@@ -322,7 +322,7 @@ export default function AppliedMathCompetitionPage() {
           </div>
         </section>
 
-        <section id="structure" className="bg-primary-dark py-[12vh]">
+        <section id="structure" className="bg-primary-dark py-[10vh]">
           <div className="w-full px-[6vw]">
             <div className="mb-10">
               <span className="micro-label text-secondary-light mb-4 block">Competition Structure</span>
@@ -351,7 +351,7 @@ export default function AppliedMathCompetitionPage() {
           </div>
         </section>
 
-        <section id="evaluation" className="bg-secondary-dark py-[12vh]">
+        <section id="evaluation" className="bg-secondary-dark py-[10vh]">
           <div className="w-full px-[6vw]">
             <div className="mb-8">
               <span className="micro-label text-secondary-light mb-4 block">Evaluation Rubric</span>
@@ -378,7 +378,7 @@ export default function AppliedMathCompetitionPage() {
           </div>
         </section>
 
-        <section className="bg-primary-dark py-[12vh]">
+        <section className="bg-primary-dark py-[10vh]">
           <div className="w-full px-[6vw] grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="border border-white/10 p-6">
               <div className="flex items-center gap-3 mb-4">
@@ -408,6 +408,7 @@ export default function AppliedMathCompetitionPage() {
     </div>
   );
 }
+
 
 
 

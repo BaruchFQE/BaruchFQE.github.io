@@ -78,7 +78,7 @@ export default function HeroSection() {
       />
       <div className="vignette" />
 
-      <div className="relative z-20 w-full px-[6vw] py-[14vh] flex justify-center">
+      <div className="relative z-20 w-full px-[6vw] py-[12vh] flex justify-center">
         <div className="flex flex-col justify-center items-center text-center max-w-2xl">
           {/* Micro Label */}
           <span className="micro-label text-secondary-light mb-6">
@@ -155,3 +155,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
