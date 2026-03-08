@@ -3,13 +3,11 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   addDays,
   addMonths,
-  endOfMonth,
   endOfWeek,
   format,
   isSameDay,
   isSameMonth,
   isToday,
-  parseISO,
   setMonth,
   setYear,
   startOfMonth,
@@ -19,6 +17,7 @@ import {
 
 type CalendarSectionProps = {
   manageUrl: string;
+  icsUrl: string;
 };
 
 type CalendarEvent = {
@@ -28,70 +27,135 @@ type CalendarEvent = {
   url: string;
 };
 
-type GoogleCalendarApiEvent = {
-  id?: string;
-  summary?: string;
-  htmlLink?: string;
-  start?: {
-    dateTime?: string;
-    date?: string;
-  };
-};
-
-type GoogleCalendarApiResponse = {
-  items?: GoogleCalendarApiEvent[];
-};
-
-// Set these in your .env file to enable live Google Calendar events in this custom monthly view:
-// VITE_GOOGLE_CALENDAR_ID=<your_google_calendar_id>
-// VITE_GOOGLE_CALENDAR_API_KEY=<your_google_api_key>
-const GOOGLE_CALENDAR_ID = import.meta.env.VITE_GOOGLE_CALENDAR_ID;
-const GOOGLE_CALENDAR_API_KEY = import.meta.env.VITE_GOOGLE_CALENDAR_API_KEY;
 const MONTH_OPTIONS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-export default function CalendarSection({ manageUrl }: CalendarSectionProps) {
+function unfoldIcsLines(text: string): string[] {
+  const rawLines = text.split(/\r?\n/);
+  const lines: string[] = [];
+
+  for (const line of rawLines) {
+    if ((line.startsWith(' ') || line.startsWith('\t')) && lines.length > 0) {
+      lines[lines.length - 1] += line.slice(1);
+    } else {
+      lines.push(line);
+    }
+  }
+
+  return lines;
+}
+
+function decodeIcsText(value: string): string {
+  return value
+    .replace(/\\n/gi, '\n')
+    .replace(/\\,/g, ',')
+    .replace(/\\;/g, ';')
+    .replace(/\\\\/g, '\\')
+    .trim();
+}
+
+function parseIcsDate(value: string): Date | null {
+  const compact = value.trim();
+
+  if (/^\d{8}$/.test(compact)) {
+    const year = Number(compact.slice(0, 4));
+    const month = Number(compact.slice(4, 6)) - 1;
+    const day = Number(compact.slice(6, 8));
+    return new Date(year, month, day);
+  }
+
+  if (/^\d{8}T\d{6}Z$/.test(compact)) {
+    const year = Number(compact.slice(0, 4));
+    const month = Number(compact.slice(4, 6)) - 1;
+    const day = Number(compact.slice(6, 8));
+    const hour = Number(compact.slice(9, 11));
+    const minute = Number(compact.slice(11, 13));
+    const second = Number(compact.slice(13, 15));
+    return new Date(Date.UTC(year, month, day, hour, minute, second));
+  }
+
+  if (/^\d{8}T\d{6}$/.test(compact)) {
+    const year = Number(compact.slice(0, 4));
+    const month = Number(compact.slice(4, 6)) - 1;
+    const day = Number(compact.slice(6, 8));
+    const hour = Number(compact.slice(9, 11));
+    const minute = Number(compact.slice(11, 13));
+    const second = Number(compact.slice(13, 15));
+    return new Date(year, month, day, hour, minute, second);
+  }
+
+  const parsed = new Date(compact);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function parseIcsEvents(icsText: string, fallbackUrl: string): CalendarEvent[] {
+  const lines = unfoldIcsLines(icsText);
+  const events: CalendarEvent[] = [];
+  let inEvent = false;
+  let block: string[] = [];
+
+  for (const line of lines) {
+    if (line === 'BEGIN:VEVENT') {
+      inEvent = true;
+      block = [];
+      continue;
+    }
+
+    if (line === 'END:VEVENT') {
+      if (block.length > 0) {
+        let id = '';
+        let title = '';
+        let startRaw = '';
+        let eventUrl = '';
+
+        for (const entry of block) {
+          const separatorIndex = entry.indexOf(':');
+          if (separatorIndex === -1) continue;
+
+          const key = entry.slice(0, separatorIndex);
+          const value = entry.slice(separatorIndex + 1);
+
+          if (key.startsWith('UID')) id = decodeIcsText(value);
+          if (key.startsWith('SUMMARY')) title = decodeIcsText(value);
+          if (key.startsWith('DTSTART')) startRaw = value.trim();
+          if (key.startsWith('URL')) eventUrl = decodeIcsText(value);
+        }
+
+        const start = parseIcsDate(startRaw);
+        if (id && title && start) {
+          events.push({
+            id,
+            title,
+            start,
+            url: eventUrl || fallbackUrl,
+          });
+        }
+      }
+
+      inEvent = false;
+      block = [];
+      continue;
+    }
+
+    if (inEvent) block.push(line);
+  }
+
+  return events;
+}
+
+export default function CalendarSection({ manageUrl, icsUrl }: CalendarSectionProps) {
   const [currentMonth, setCurrentMonth] = useState<Date>(() => startOfMonth(new Date()));
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const currentYear = new Date().getFullYear();
   const yearOptions = Array.from({ length: 21 }, (_, i) => currentYear - 10 + i);
 
   useEffect(() => {
-    if (!GOOGLE_CALENDAR_ID || !GOOGLE_CALENDAR_API_KEY) {
-      return;
-    }
-
-    const monthStart = startOfMonth(currentMonth);
-    const monthEnd = endOfMonth(currentMonth);
-    const timeMin = monthStart.toISOString();
-    const timeMax = new Date(monthEnd.getTime() + 86400000).toISOString();
-
-    const endpoint = new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GOOGLE_CALENDAR_ID)}/events`);
-    endpoint.searchParams.set('key', GOOGLE_CALENDAR_API_KEY);
-    endpoint.searchParams.set('singleEvents', 'true');
-    endpoint.searchParams.set('orderBy', 'startTime');
-    endpoint.searchParams.set('timeMin', timeMin);
-    endpoint.searchParams.set('timeMax', timeMax);
-    endpoint.searchParams.set('maxResults', '250');
-
     let isCancelled = false;
 
-    fetch(endpoint.toString())
-      .then((res) => (res.ok ? res.json() : Promise.reject(new Error('Failed to fetch calendar events'))))
-      .then((data: GoogleCalendarApiResponse) => {
+    fetch(icsUrl)
+      .then((res) => (res.ok ? res.text() : Promise.reject(new Error('Failed to fetch calendar feed'))))
+      .then((icsText) => {
         if (isCancelled) return;
-        const parsed: CalendarEvent[] = (data.items ?? [])
-          .map((item) => {
-            const rawStart = item.start?.dateTime || item.start?.date;
-            if (!rawStart || !item.id || !item.summary) return null;
-            return {
-              id: item.id,
-              title: item.summary,
-              start: parseISO(rawStart),
-              url: item.htmlLink || manageUrl,
-            };
-          })
-          .filter((item): item is CalendarEvent => item !== null);
-        setEvents(parsed);
+        setEvents(parseIcsEvents(icsText, manageUrl));
       })
       .catch(() => {
         if (!isCancelled) setEvents([]);
@@ -100,11 +164,11 @@ export default function CalendarSection({ manageUrl }: CalendarSectionProps) {
     return () => {
       isCancelled = true;
     };
-  }, [currentMonth, manageUrl]);
+  }, [icsUrl, manageUrl]);
 
   const days = useMemo(() => {
     const monthStart = startOfMonth(currentMonth);
-    const monthEnd = endOfMonth(currentMonth);
+    const monthEnd = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
     const gridStart = startOfWeek(monthStart, { weekStartsOn: 0 });
     const gridEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
 

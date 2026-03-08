@@ -21,6 +21,9 @@ const LEGACY_COMP_HASH = '#/competitions';
 // Optional .env override for the "Open Google Calendar" link in the calendar section:
 // VITE_GOOGLE_CALENDAR_MANAGE_URL=https://calendar.google.com
 const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_URL || 'https://calendar.google.com';
+// Optional .env override for public ICS feed used by the custom calendar UI:
+// VITE_GOOGLE_CALENDAR_ICS_URL=https://calendar.google.com/calendar/ical/<id>/public/basic.ics
+const GOOGLE_CALENDAR_ICS_URL = import.meta.env.VITE_GOOGLE_CALENDAR_ICS_URL || 'https://calendar.google.com/calendar/ical/baruchfqe%40gmail.com/public/basic.ics';
 
 type CompetitionView = 'main' | 'trading' | 'applied' | 'not-found';
 
@@ -207,7 +210,10 @@ function App() {
         />
 
         {isCalendarOpen && (
-          <CalendarSection manageUrl={GOOGLE_CALENDAR_MANAGE_URL} />
+          <CalendarSection
+            manageUrl={GOOGLE_CALENDAR_MANAGE_URL}
+            icsUrl={GOOGLE_CALENDAR_ICS_URL}
+          />
         )}
 
         {/* Contact */}
