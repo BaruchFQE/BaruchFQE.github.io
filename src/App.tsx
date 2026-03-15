@@ -21,9 +21,11 @@ const LEGACY_COMP_HASH = '#/competitions';
 // Optional .env override for the "Open Google Calendar" link in the calendar section:
 // VITE_GOOGLE_CALENDAR_MANAGE_URL=https://calendar.google.com
 const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_URL || 'https://calendar.google.com';
-// Optional .env override for public ICS feed used by the custom calendar UI:
-// VITE_GOOGLE_CALENDAR_ICS_URL=https://calendar.google.com/calendar/ical/<id>/public/basic.ics
-const GOOGLE_CALENDAR_ICS_URL = import.meta.env.VITE_GOOGLE_CALENDAR_ICS_URL || 'https://calendar.google.com/calendar/ical/baruchfqe%40gmail.com/public/basic.ics';
+// Optional .env override for iframe embed URL:
+// VITE_GOOGLE_CALENDAR_EMBED_URL=https://calendar.google.com/calendar/embed?...&mode=MONTH
+const GOOGLE_CALENDAR_EMBED_URL =
+  import.meta.env.VITE_GOOGLE_CALENDAR_EMBED_URL
+  || 'https://calendar.google.com/calendar/embed?height=720&wkst=1&ctz=America%2FNew_York&bgcolor=%23103322&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=YmFydWNoZnFlQGdtYWlsLmNvbQ&color=%23039BE5';
 
 type CompetitionView = 'main' | 'trading' | 'applied' | 'not-found';
 
@@ -212,7 +214,7 @@ function App() {
         {isCalendarOpen && (
           <CalendarSection
             manageUrl={GOOGLE_CALENDAR_MANAGE_URL}
-            icsUrl={GOOGLE_CALENDAR_ICS_URL}
+            embedUrl={GOOGLE_CALENDAR_EMBED_URL}
           />
         )}
 
@@ -227,4 +229,3 @@ function App() {
 }
 
 export default App;
-
