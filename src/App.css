@@ -55,6 +55,11 @@ img {
   opacity: 1;
 }
 
+/* Darken Google Calendar iframe embed (Google does not provide full native dark theme controls). */
+.calendar-embed-dark {
+  filter: invert(0.9) hue-rotate(180deg) saturate(0.8) brightness(0.9) contrast(0.95);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .photo-frame {
@@ -67,4 +72,3 @@ img {
     font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
   }
 }
-
