@@ -13,7 +13,7 @@ import CalendarSection from './sections/CalendarSection';
 import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { ArrowRight, ArrowUp, BarChart3, BrainCircuit, Sparkles, Trophy } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUp, BarChart3, BrainCircuit, CalendarDays, Clock3, ExternalLink, Sparkles, Trophy } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
@@ -155,6 +155,28 @@ function App() {
       status: 'Soon',
     },
   ];
+  const eventPillars = [
+    {
+      title: 'Workshops',
+      description: 'Hackathons, resume reviews, LeetCode sessions, and technical walkthroughs.',
+      Icon: CalendarDays,
+    },
+    {
+      title: 'Alumni and Networking',
+      description: 'In-person bank visits, guest speakers, and direct industry exposure.',
+      Icon: ExternalLink,
+    },
+    {
+      title: 'Team Culture',
+      description: 'Poker nights, collaborative socials, and events that strengthen execution as a team.',
+      Icon: Sparkles,
+    },
+    {
+      title: 'Education Events',
+      description: 'Math primers and focused sessions that build core quantitative depth.',
+      Icon: Clock3,
+    },
+  ];
 
   return (
     <div className="relative">
@@ -176,8 +198,8 @@ function App() {
           microLabel="About"
           headline=" FQE @ Baruch"
           body="Financial Quants and Engineers (FQE) develops technical depth and professional readiness at the intersection of quantitative finance and technology. Members work across data science, risk analysis, quantitative modeling, and algorithmic trading through workshops, technical discussions, and practical projects. Our goal is to help Baruch undergraduates build the skills, portfolio, and network needed for competitive quant pathways."
-          imageSrc="/about_whiteboard.jpg"
-          imageAlt="Student writing on whiteboard"
+          imageSrc="/about-baruch.jpg"
+          imageAlt="Baruch campus building"
           items={[
             { label: 'Workshops', description: 'Applied sessions in computer science, math, hackathons, and computer architecture.' },
             { label: 'Projects', description: 'End-to-end research, backtests, and real world applications.' },
@@ -256,23 +278,51 @@ function App() {
         <LeadershipSection />
 
         {/* Events */}
-        <ContentSection
-          id="events"
-          layout="right-photo"
-          microLabel="Events"
-          headline="FQE Activities"
-          body="Ongoing technical programming, collaborative research projects, and curated industry engagements."
-          imageSrc="/events_group.jpg"
-          imageAlt="Group collaboration"
-          items={[
-            { label: 'Workshops', description: 'Hackathons, resume reviews, LeetCode sessions, and more.' },
-            { label: 'Alumni & Networking', description: 'In-person bank visits, guest speakers, and industry connections.' },
-            { label: 'Team Bonding', description: 'Poker nights and social events that strengthen collaboration.' },
-            { label: 'Education Events', description: 'Math primers and technical learning sessions.' },
-          ]}
-          ctaText={calendarButtonText}
-          ctaOnClick={handleToggleCalendar}
-        />
+        <section id="events" className="min-h-screen bg-secondary-dark relative flex items-center py-[10vh]">
+          <div className="w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="photo-frame aspect-[3/4] max-h-[72vh]">
+              <img
+                src="/bny-visit.jfif"
+                alt="Group collaboration"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: '18% center', filter: 'brightness(1.08) contrast(1.06)' }}
+              />
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <span className="micro-label text-secondary-light mb-6">Events</span>
+              <h2 className="headline-lg text-primary-light mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+                FQE Activities and Schedule
+              </h2>
+              <p className="body-text text-secondary-light mb-8">
+                Ongoing technical programming, collaborative project sessions, and curated industry engagement.
+                Use the live calendar controls below to open and navigate the full event schedule instantly.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                {eventPillars.map(({ title, description, Icon }) => (
+                  <div key={title} className="hover-panel border border-white/10 bg-primary-dark/30 p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon size={14} className="text-accent-green" />
+                      <span className="micro-label text-accent-green">{title}</span>
+                    </div>
+                    <p className="body-text text-secondary-light text-sm">{description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={handleToggleCalendar}
+                aria-expanded={isCalendarOpen}
+                className="cta-button w-fit"
+              >
+                <span>{calendarButtonText}</span>
+                {isCalendarOpen ? <ArrowDown size={16} /> : <ArrowRight size={16} />}
+              </button>
+            </div>
+          </div>
+        </section>
 
         {isCalendarOpen && (
           <CalendarSection

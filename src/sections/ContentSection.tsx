@@ -70,7 +70,7 @@ export default function ContentSection({
           {items.length > 0 && (
             <div className="space-y-4 mb-8">
               {items.map((item, index) => (
-                <div key={index} className="flex flex-col">
+                <div key={index} className="hover-panel border border-white/10 bg-primary-dark/30 p-4 flex flex-col">
                   <span className="micro-label text-accent-green mb-1">{item.label}</span>
                   <span className="body-text text-secondary-light" style={{ fontSize: '0.9rem' }}>
                     {item.description}

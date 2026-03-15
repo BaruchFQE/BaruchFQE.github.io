@@ -262,3 +262,13 @@
   text-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
 }
 
+/* Utility: hide scrollbars while preserving scroll behavior */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+

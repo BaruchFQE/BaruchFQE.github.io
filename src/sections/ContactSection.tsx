@@ -59,9 +59,10 @@ export default function ContactSection() {
           {/* Photo Panel */}
           <div className="photo-frame aspect-[3/4] max-h-[72vh]">
             <img
-              src="/contact_join.jpg"
+              src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1600&w=1200"
               alt="Students collaborating"
               className="w-full h-full object-cover"
+              style={{ objectPosition: 'right center' }}
             />
           </div>
         </div>

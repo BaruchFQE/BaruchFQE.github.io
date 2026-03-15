@@ -1,5 +1,3 @@
-import { ArrowRight } from 'lucide-react';
-
 type CalendarSectionProps = {
   manageUrl: string;
   embedUrl: string;
@@ -7,31 +5,40 @@ type CalendarSectionProps = {
 
 export default function CalendarSection({ manageUrl, embedUrl }: CalendarSectionProps) {
   return (
-    <section id="calendar" className="bg-[#103322] py-[8vh]">
+    <section id="calendar" className="bg-primary-dark py-[10vh] relative">
       <div className="w-full px-[6vw]">
-        <div className="max-w-4xl mb-6">
-          <span className="micro-label text-primary-light mb-3 block">Calendar</span>
-          <h2 className="headline-lg text-primary-light mb-4" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3rem)' }}>
-            FQE Calendar
-          </h2>
-          <a
-            href={manageUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-link inline-flex items-center gap-2"
-          >
-            <span>Open Google Calendar</span>
-            <ArrowRight size={14} />
-          </a>
-        </div>
+        <div className="calendar-shell border border-white/15 bg-secondary-dark/35 p-2 md:p-3">
+          <div className="calendar-shell-header border border-white/10 bg-primary-dark/70 px-4 py-3 mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="calendar-tabs" role="tablist" aria-label="Calendar links">
+              <a
+                href={embedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="calendar-tab calendar-tab-active"
+              >
+                Open Embedded View
+              </a>
+              <a
+                href={manageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="calendar-tab"
+              >
+                Open Google Calendar
+              </a>
+            </div>
+            <span className="micro-label text-secondary-light">Official FQE Schedule</span>
+          </div>
 
-        <div className="border border-white/15 bg-primary-dark/35 p-2 md:p-4">
-          <iframe
-            src={embedUrl}
-            title="FQE Google Calendar"
-            className="calendar-embed-dark w-full h-[720px] border-0"
-            loading="lazy"
-          />
+          <div className="relative border border-white/10 bg-primary-dark/80">
+            <iframe
+              src={embedUrl}
+              title="FQE Google Calendar"
+              className="calendar-embed-dark w-full h-[760px] md:h-[840px] border-0"
+              loading="lazy"
+            />
+            <div className="pointer-events-none absolute inset-0 border border-accent-green/15" />
+          </div>
         </div>
       </div>
     </section>

@@ -32,32 +32,46 @@ const companyLogos = [
 
 const alumniStories = [
   {
-    name: 'Alumni Name 1',
-    company: 'Goldman Sachs',
+    name: 'William V',
+    role: 'Systematic Trading',
     testimonial:
-      'FQE gave me the technical foundation and confidence to break into quant-focused work. The project experience directly helped me in interviews.',
+      "FQE prepares students for the 'real' Wall Street. By focusing on low-latency execution and model back-testing, members enter internships with a technical maturity that sets them apart from typical undergraduates.",
     linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
   {
-    name: 'Alumni Name 2',
-    company: 'JPMorgan Chase',
+    name: 'Dzara M',
+    role: 'Senior Developer',
     testimonial:
-      'Working on collaborative projects at FQE improved my problem solving, communication, and ability to deliver under deadlines.',
+      "The FQE community is filled with like-minded students who are genuinely passionate about math and coding. It's the best place on campus to find a study partner for stochastic calculus or a teammate for a trading competition.",
     linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
   {
-    name: 'Alumni Name 3',
-    company: 'Bloomberg',
+    name: 'Jun T',
+    role: 'Commodities Trading',
     testimonial:
-      'FQE connected me with a strong network of peers and mentors. The hands-on technical environment made a big difference in my career path.',
+      'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles.',
+    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
+  },
+  {
+    name: 'David M',
+    role: 'Quant Research',
+    testimonial:
+      'I went from having a traditional financial math background with an interest in coding to a competitive MFE candidate because the club pushed me to apply what I learned around Linear Algebra and C++ - the gatekeeper skills for any top program.',
+    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
+  },
+  {
+    name: 'Zhi L',
+    role: 'Quant Developer',
+    testimonial:
+      'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles and prepare me for graduate school applications.',
     linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
 ];
 
 export default function AlumniSection() {
   const [isStoriesOpen, setIsStoriesOpen] = useState(false);
-  // Double the logos for seamless infinite scroll
-  const allLogos = [...companyLogos, ...companyLogos];
+  // Duplicate logos for seamless infinite auto-scroll across all screen sizes.
+  const logosForCarousel = [...companyLogos, ...companyLogos];
 
   return (
     <section
@@ -80,19 +94,19 @@ export default function AlumniSection() {
 
         {/* Placement Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="border border-white/10 p-6">
+          <div className="hover-panel border border-white/10 p-6">
             <span className="micro-label text-accent-green mb-2 block">ALPHA & PORTFOLIO STRATEGIES</span>
             <p className="body-text text-secondary-light text-sm">
               Systematic funds and asset management firms
             </p>
           </div>
-          <div className="border border-white/10 p-6">
+          <div className="hover-panel border border-white/10 p-6">
             <span className="micro-label text-accent-green mb-2 block">DERIVATIVES & MARKET STRUCTURE</span>
             <p className="body-text text-secondary-light text-sm">
               Quant research, trading, and market making
             </p>
           </div>
-          <div className="border border-white/10 p-6">
+          <div className="hover-panel border border-white/10 p-6">
             <span className="micro-label text-accent-green mb-2 block">DATA, ML & INFRASTRUCTURE</span>
             <p className="body-text text-secondary-light text-sm">
               Quant engineering and financial systems
@@ -110,11 +124,11 @@ export default function AlumniSection() {
 
         {/* Logo Carousel */}
         <div className="relative overflow-hidden">
-          <div className="logo-carousel flex w-max gap-8">
-            {allLogos.map((company, index) => (
+          <div className="logo-carousel flex w-max gap-4 sm:gap-8">
+            {logosForCarousel.map((company, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-48 h-32 photo-frame bg-[#F6FFF6] overflow-hidden p-3 flex items-center justify-center hover:opacity-80 transition-opacity"
+                className="flex-shrink-0 photo-frame logo-frame bg-[#F6FFF6] overflow-hidden p-3 flex items-center justify-center hover:opacity-80 transition-opacity w-40 h-24 sm:w-48 sm:h-32"
               >
                 <img
                   src={company.image}
@@ -156,11 +170,11 @@ export default function AlumniSection() {
             <div className="p-6">
               {alumniStories.map((story, index) => (
                 <div
-                  key={`${story.name}-${story.company}`}
+                  key={`${story.name}-${story.role}`}
                   className={`mb-8 pb-8 ${index !== alumniStories.length - 1 ? 'border-b border-white/10' : ''}`}
                 >
                   <p className="micro-label text-accent-green mb-3">
-                    {story.name} - {story.company}
+                    {story.name} - {story.role}
                   </p>
                   <p className="body-text text-secondary-light mb-4">
                     {story.testimonial}
