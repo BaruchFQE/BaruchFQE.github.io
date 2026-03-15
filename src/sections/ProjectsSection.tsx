@@ -97,7 +97,7 @@ export default function ProjectsSection() {
 
             {/* Body */}
             <p className="body-text text-secondary-light mb-8">
-              From alpha research to devlopment, we build applicable and relevant hands on projects.
+              From alpha research to development, we build practical, relevant, hands-on projects.
             </p>
 
             {/* Projects List */}

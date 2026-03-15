@@ -191,6 +191,14 @@
   @apply w-full;
 }
 
+.nav-link.is-active {
+  @apply text-[#F0FAF4];
+}
+
+.nav-link.is-active::after {
+  @apply w-full;
+}
+
 /* Background Colors */
 .bg-primary-dark {
   background-color: #05140a;

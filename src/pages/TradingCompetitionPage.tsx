@@ -2,73 +2,86 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, Calculator, Clock3, ShieldAlert, Sigma, Trophy, Users } from 'lucide-react';
 
 const deadlines = [
-  'Application deadline: March 20th',
-  'Notice of acceptance and coding assessment: March 22nd',
-  'Coding assessment due: March 27th',
-  'Live Trading Day #1: April 11th, 8am to 12pm',
-  'Live Trading Day #2: April 18th, 8am to 12pm',
-  'Award ceremony: April 18th, 1pm',
+  'Application deadline - March 20th',
+  'Notice of Acceptance & Coding Assessment - March 22nd',
+  'Coding Assessment Due - March 27th',
+  'Acceptance into the competition & release of documentation - March 31st',
+  'Live Trading Day #1 - April 11th, 8am to 12pm',
+  'Live Trading Day #2 - April 18th, 8am to 12pm',
+  'Award Ceremony - April 18th, 1pm',
 ];
 
 const setup = [
   'Systematic division',
   'Maximum three people per team',
-  'Current Baruch undergraduate students',
-  'Basic coding knowledge is strongly recommended',
+  'Current undergraduate student at Baruch College',
+  'Coding experience is strongly recommended',
 ];
 
 const phases = [
   {
-    phase: 'Phase 0',
+    phase: 'Step 0',
+    title: 'Trading Competition Interest & Application',
+    duration: 'Before Assessment',
+    details: [
+      'Complete the interest form to be considered for participation.',
+      'Participation is confirmed for teams that submit the form.',
+    ],
+  },
+  {
+    phase: 'Step 1',
     title: 'Coding Assessment',
-    duration: 'Pre-competition',
+    duration: 'About 2 to 3 Hours',
     details: [
-      'Complete a practical coding assessment before live trading.',
-      'Assessment is designed as a quick screening challenge (about 2 to 3 hours).',
+      'Complete a straightforward coding problem used as a screening checkpoint.',
+      'Assessment helps ensure a productive competition environment for all participants.',
     ],
   },
   {
-    phase: 'Phase 1',
-    title: 'Ramp Up and Strategy Build',
-    duration: 'Before Trading Day #1',
+    phase: 'Step 2',
+    title: 'Ramp Up and Trading Day #1 Preparation',
+    duration: 'Before Day #1',
     details: [
-      'Design your initial trading strategy and assumptions.',
-      'Prepare execution logic and core risk controls.',
+      'Create your initial trading strategy before the first live session.',
+      'Prepare execution assumptions and trading logic.',
     ],
   },
   {
-    phase: 'Phase 2',
-    title: 'Live Trading Day #1',
+    phase: 'Step 3',
+    title: 'Trading Day #1',
+    duration: '4 Hours',
+    details: ['Compete in a 4-hour live trading window.', 'Track real-time behavior and outcomes to inform refinements.'],
+  },
+  {
+    phase: 'Step 4',
+    title: 'Ramp Up and Trading Day #2',
+    duration: 'Before Day #2',
+    details: [
+      'Refine your core strategy after Day #1 results.',
+      'Adjust execution choices before the final live session.',
+    ],
+  },
+  {
+    phase: 'Step 5',
+    title: 'Trading Day #2',
     duration: '4 Hours',
     details: [
-      'Run and monitor strategy performance in real time.',
-      'Document observations and identify model adjustments.',
-    ],
-  },
-  {
-    phase: 'Phase 3',
-    title: 'Refinement and Trading Day #2',
-    duration: 'Ramp Up + 4 Hours',
-    details: [
-      'Refine your strategy based on Day #1 outcomes.',
-      'Execute final live trading session and submit final results.',
+      'Compete in the final 4-hour live trading window.',
+      'Final standings are determined after this session.',
     ],
   },
 ];
 
 const rubric = [
-  { category: 'Coding Assessment', score: '1 to 10', weight: '25%' },
-  { category: 'Strategy Design and Logic', score: '1 to 10', weight: '20%' },
-  { category: 'Execution and Performance', score: '1 to 10', weight: '20%' },
-  { category: 'Risk Management', score: '1 to 5', weight: '15%' },
-  { category: 'Adaptability Across Trading Days', score: '1 to 5', weight: '10%' },
-  { category: 'Communication and Technical Q&A', score: '1 to 5', weight: '10%' },
+  { category: 'Sharpe Ratio', score: 'Ranking', weight: 'Composite Mix' },
+  { category: 'Total P&L', score: 'Ranking', weight: 'Composite Mix' },
+  { category: 'Highest Loss', score: 'Ranking', weight: 'Composite Mix' },
 ];
 
 const incentives = [
   'Prize pool of 300, 200, 100 for the top 3 teams',
-  'Bragging rights and LinkedIn feature on FQE channels',
-  'Resume building experience',
+  'Bragging rights and LinkedIn feature on our page',
+  'Resume building',
   'Published on the FQE website',
 ];
 
@@ -310,6 +323,9 @@ export default function TradingCompetitionPage() {
               <h1 className="headline-xl text-primary-light mb-6" style={{ fontSize: 'clamp(2.3rem, 5vw, 4.4rem)', lineHeight: 1.04 }}>
                 FQE Undergraduate Trading Competition
               </h1>
+              <p className="body-text text-secondary-light text-sm md:text-base max-w-2xl mb-2">
+                1st Annual competition for Baruch undergraduates interested in trading and real-time strategy building.
+              </p>
               <div className="flex flex-col gap-4 items-center">
                 <a
                   href="https://linktr.ee/FQEBaruch"
@@ -336,7 +352,7 @@ export default function TradingCompetitionPage() {
                 <Users className="text-accent-green" size={18} />
                 <span className="micro-label text-accent-green">Eligibility and Setup</span>
               </div>
-              <ul className="space-y-2 body-text text-secondary-light text-sm">
+              <ul className="list-disc pl-5 space-y-2 body-text text-secondary-light text-sm">
                 {setup.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -348,7 +364,7 @@ export default function TradingCompetitionPage() {
                 <Clock3 className="text-accent-green" size={18} />
                 <span className="micro-label text-accent-green">Important Dates</span>
               </div>
-              <ul className="space-y-2 body-text text-secondary-light text-sm">
+              <ul className="list-disc pl-5 space-y-2 body-text text-secondary-light text-sm">
                 {deadlines.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -444,7 +460,7 @@ export default function TradingCompetitionPage() {
                 <Trophy className="text-accent-green" size={18} />
                 <span className="micro-label text-accent-green">Incentives</span>
               </div>
-              <ul className="space-y-2 body-text text-secondary-light text-sm">
+              <ul className="list-disc pl-5 space-y-2 body-text text-secondary-light text-sm">
                 {incentives.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

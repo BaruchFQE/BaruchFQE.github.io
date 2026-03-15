@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -13,6 +13,45 @@ const navLinks = [
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState('#about');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = navLinks.map((link) => link.href.replace('#', ''));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]) {
+          setActiveLink(`#${visible[0].target.id}`);
+        }
+      },
+      {
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: [0.2, 0.35, 0.5],
+      }
+    );
+
+    ids.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -20,6 +59,7 @@ export default function Navigation() {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
+    setActiveLink(href);
     setIsMobileMenuOpen(false);
   };
 
@@ -40,13 +80,19 @@ export default function Navigation() {
       </div>
 
       {/* Desktop Navigation */}
-      <nav className="fixed top-6 right-6 z-[200] hidden md:flex items-center gap-8">
+      <nav
+        className={`fixed top-6 right-6 z-[200] hidden md:flex items-center gap-8 px-5 py-3 border transition-all duration-300 ${
+          isScrolled
+            ? 'bg-primary-dark/90 border-white/20 backdrop-blur-md'
+            : 'bg-primary-dark/65 border-white/10 backdrop-blur-sm'
+        }`}
+      >
         {navLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
             onClick={(e) => handleNavClick(e, link.href)}
-            className="nav-link"
+            className={`nav-link ${activeLink === link.href ? 'is-active' : ''}`}
           >
             {link.label}
           </a>
@@ -72,7 +118,9 @@ export default function Navigation() {
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="font-display text-2xl font-bold text-primary-light hover:text-accent-green transition-colors"
+              className={`font-display text-2xl font-bold transition-colors ${
+                activeLink === link.href ? 'text-accent-green' : 'text-primary-light hover:text-accent-green'
+              }`}
             >
               {link.label}
             </a>

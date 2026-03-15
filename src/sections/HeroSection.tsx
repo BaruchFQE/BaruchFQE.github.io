@@ -4,6 +4,28 @@ import { ArrowRight, Github, Instagram, Linkedin, Mail } from 'lucide-react';
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const socialLinks = [
+    {
+      href: 'https://github.com/BaruchFinancialQuantsEngineers-FQE/',
+      label: 'FQE GitHub',
+      Icon: Github,
+    },
+    {
+      href: 'https://www.linkedin.com/company/fqe-baruch/',
+      label: 'FQE LinkedIn',
+      Icon: Linkedin,
+    },
+    {
+      href: 'https://www.instagram.com/baruchfqe/',
+      label: 'FQE Instagram',
+      Icon: Instagram,
+    },
+    {
+      href: 'mailto:baruchfqe@gmail.com',
+      label: 'Email FQE',
+      Icon: Mail,
+    },
+  ];
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -97,7 +119,8 @@ export default function HeroSection() {
 
           {/* Subheadline */}
           <p className="body-text text-secondary-light mb-8 max-w-md mx-auto" style={{ fontSize: '1.05rem' }}>
-            We focus on developing current undergraduate students at Baruch College to the become the next generation of quants through a series of interactive workshops, project experience, and more
+            We develop Baruch undergraduates into the next generation of quants through interactive workshops,
+            hands-on projects, and technical collaboration.
           </p>
 
           {/* CTAs */}
@@ -110,47 +133,38 @@ export default function HeroSection() {
               Join the Club
             </a>
           </div>
+
+          <div className="mt-8 flex md:hidden items-center gap-4">
+            {socialLinks.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-secondary-light hover:text-accent-green transition-colors"
+              >
+                <Icon size={18} strokeWidth={1.5} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Bottom Socials */}
-      <div className="absolute right-[6vw] bottom-[6vh] z-20 flex items-center gap-4">
-        <a
-          href="https://github.com/BaruchFinancialQuantsEngineers-FQE/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="FQE GitHub"
-          className="text-secondary-light hover:text-accent-green transition-colors"
-        >
-          <Github size={18} strokeWidth={1.5} />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/fqe-baruch/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="FQE LinkedIn"
-          className="text-secondary-light hover:text-accent-green transition-colors"
-        >
-          <Linkedin size={18} strokeWidth={1.5} />
-        </a>
-        <a
-          href="https://www.instagram.com/baruchfqe/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="FQE Instagram"
-          className="text-secondary-light hover:text-accent-green transition-colors"
-        >
-          <Instagram size={18} strokeWidth={1.5} />
-        </a>
-        <a
-          href="mailto:baruchfqe@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Email FQE"
-          className="text-secondary-light hover:text-accent-green transition-colors"
-        >
-          <Mail size={18} strokeWidth={1.5} />
-        </a>
+      <div className="absolute right-[6vw] bottom-[6vh] z-20 hidden md:flex items-center gap-4">
+        {socialLinks.map(({ href, label, Icon }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="text-secondary-light hover:text-accent-green transition-colors"
+          >
+            <Icon size={18} strokeWidth={1.5} />
+          </a>
+        ))}
       </div>
     </section>
   );

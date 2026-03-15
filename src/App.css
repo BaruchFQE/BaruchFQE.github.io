@@ -29,6 +29,32 @@ img {
   user-select: none;
 }
 
+/* Main page card polish */
+.competition-card {
+  position: relative;
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.competition-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(140deg, rgba(74, 222, 128, 0.12), transparent 45%);
+  transition: opacity 250ms ease;
+}
+
+.competition-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(74, 222, 128, 0.65);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.26);
+}
+
+.competition-card:hover::before {
+  opacity: 1;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .photo-frame {

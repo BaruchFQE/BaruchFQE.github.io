@@ -13,11 +13,12 @@ import CalendarSection from './sections/CalendarSection';
 import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUp, BarChart3, BrainCircuit, Sparkles, Trophy } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
 const LEGACY_COMP_HASH = '#/competitions';
+const LIVE_SCOREBOARD_HASH = '#/live-scoreboard';
 // Optional .env override for the "Open Google Calendar" link in the calendar section:
 // VITE_GOOGLE_CALENDAR_MANAGE_URL=https://calendar.google.com
 const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_URL || 'https://calendar.google.com';
@@ -39,6 +40,7 @@ function App() {
     () => getCompetitionView(window.location.hash)
   );
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -89,6 +91,19 @@ function App() {
     }
   }, [isCalendarOpen, competitionView]);
 
+  useEffect(() => {
+    if (competitionView !== 'main') return;
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 560);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [competitionView]);
+
   if (competitionView === 'trading') {
     return <TradingCompetitionPage />;
   }
@@ -106,6 +121,38 @@ function App() {
   };
 
   const calendarButtonText = isCalendarOpen ? 'Hide the Calendar' : 'See the Calendar';
+  const competitionCards = [
+    {
+      label: 'Trading',
+      title: 'FQE Trading Competition',
+      description: 'Build and iterate on live strategies with milestone-based execution across two trading days.',
+      highlights: ['Team based (up to 3 students)', 'Coding assessment + live sessions', 'Performance and risk evaluated'],
+      href: TRADING_COMP_HASH,
+      cta: 'Explore Trading Track',
+      Icon: BarChart3,
+      status: 'Open',
+    },
+    {
+      label: 'Applied Math',
+      title: 'FQE Applied Math Competition',
+      description: 'Solve rigorous quantitative problems under time constraints with clean logic and analytical depth.',
+      highlights: ['Individual and team rigor', 'Math-first problem solving', 'Structured competition format'],
+      href: APPLIED_MATH_COMP_HASH,
+      cta: 'Explore Applied Math Track',
+      Icon: BrainCircuit,
+      status: 'Open',
+    },
+    {
+      label: 'Coming Soon',
+      title: 'Trading Competition Live Score Board',
+      description: 'A real-time standings view for competition day performance, rankings, and key metrics.',
+      highlights: ['Live updates', 'Transparent rankings', 'Post-round snapshots'],
+      href: LIVE_SCOREBOARD_HASH,
+      cta: 'Live Score Board',
+      Icon: Trophy,
+      status: 'Soon',
+    },
+  ];
 
   return (
     <div className="relative">
@@ -126,7 +173,7 @@ function App() {
           layout="right-photo"
           microLabel="About"
           headline=" FQE @ Baruch"
-          body="The Financial Quants and Engineers (FQE) develops students' technical skills and network at the intersection of quantitative finance and technology. Members will work on a variety of projects within data science, risk analysis, quantitative modeling, and algorithmic trading. The main goal of the organization is to provide the necessary exposure and skills for students to gain roles in quantitative fields. FQE regularly hosts seminars, organizes discussions with leading professors, and offers opportunities for members to work on innovative projects, providing valuable hands-on experience. Our goal is to empower the next generation of quants to lead and innovate in the ever-evolving landscape of finance and technology. "
+          body="Financial Quants and Engineers (FQE) develops technical depth and professional readiness at the intersection of quantitative finance and technology. Members work across data science, risk analysis, quantitative modeling, and algorithmic trading through workshops, technical discussions, and practical projects. Our goal is to help Baruch undergraduates build the skills, portfolio, and network needed for competitive quant pathways."
           imageSrc="/about_whiteboard.jpg"
           imageAlt="Student writing on whiteboard"
           items={[
@@ -145,41 +192,57 @@ function App() {
           className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
         >
           <div className="w-full px-[6vw]">
-            <div className="max-w-4xl">
-              <span className="micro-label text-secondary-light mb-6 block">
+            <div className="max-w-5xl relative z-10">
+              <span className="micro-label text-secondary-light mb-4 block">
                 Competition
               </span>
-              <h2 className="headline-lg text-primary-light mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
-                Our Competitions
+              <h2 className="headline-lg text-primary-light mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+                Compete with Precision
               </h2>
-              <p className="body-text text-secondary-light mb-10">
-                FQE runs two competition tracks for undergraduates at Baruch: FQE Trading Competition and FQE Applied Math Competition.
-                Explore each page for details, format, and deadlines.
+              <p className="body-text text-secondary-light max-w-3xl mb-8">
+                FQE runs two active competition tracks for Baruch undergraduates, with a live scoreboard experience in progress.
+                Each track emphasizes rigor, speed, and disciplined technical execution.
               </p>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="border border-white/10 p-6">
-                <span className="micro-label text-accent-green mb-3 block">Trading</span>
-                <p className="body-text text-secondary-light mb-6">
-                  Build and iterate on a live trading strategy with structured milestones and team-based execution.
-                </p>
-                <a href={TRADING_COMP_HASH} className="cta-button w-fit">
-                  <span>Trading Competition</span>
-                  <ArrowRight size={16} />
-                </a>
+              <div className="flex flex-wrap gap-3 mb-10">
+                <span className="micro-label text-primary-light border border-white/15 bg-white/5 px-3 py-2">Undergraduate Focus</span>
+                <span className="micro-label text-primary-light border border-white/15 bg-white/5 px-3 py-2">Technical Screening</span>
+                <span className="micro-label text-primary-light border border-white/15 bg-white/5 px-3 py-2">Live Performance Metrics</span>
+                <span className="micro-label text-primary-light border border-white/15 bg-white/5 px-3 py-2">Team-Based Format</span>
               </div>
 
-              <div className="border border-white/10 p-6">
-                <span className="micro-label text-accent-green mb-3 block">Applied Math</span>
-                <p className="body-text text-secondary-light mb-6">
-                  Apply mathematics and modeling to problems that emphasize rigor, logic, and problem-solving speed.
-                </p>
-                <a href={APPLIED_MATH_COMP_HASH} className="cta-button w-fit">
-                  <span>Applied Math Competition</span>
-                  <ArrowRight size={16} />
-                </a>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {competitionCards.map(({ label, title, description, highlights, href, cta, Icon, status }) => (
+                  <div key={title} className="competition-card border border-white/10 bg-secondary-dark/40 p-6 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-5">
+                        <span className="micro-label text-accent-green">{label}</span>
+                        <div className="flex items-center gap-2">
+                          <span className={`micro-label px-2 py-1 border ${status === 'Open' ? 'text-emerald-300 border-emerald-300/40' : 'text-amber-300 border-amber-300/40'}`}>
+                            {status}
+                          </span>
+                          <Icon size={18} className="text-accent-green" />
+                        </div>
+                      </div>
+                      <h3 className="font-display text-primary-light text-xl font-semibold mb-3">{title}</h3>
+                      <p className="body-text text-secondary-light text-sm mb-5">{description}</p>
+                      <ul className="space-y-2 mb-6">
+                        {highlights.map((item) => (
+                          <li key={item} className="body-text text-secondary-light text-sm flex items-start gap-2">
+                            <Sparkles size={14} className="text-accent-green mt-1 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <a href={href} className="cta-button w-fit">
+                      <span>{cta}</span>
+                      <ArrowRight size={16} />
+                    </a>
+                  </div>
+                ))}
               </div>
+
             </div>
           </div>
         </section>
@@ -222,6 +285,17 @@ function App() {
         {/* Closing */}
         <ClosingSection />
       </main>
+
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed right-5 bottom-5 z-[250] inline-flex items-center justify-center w-11 h-11 border border-accent-green/60 bg-primary-dark/90 text-accent-green hover:bg-accent-green/10 transition-colors"
+          aria-label="Back to top"
+        >
+          <ArrowUp size={16} />
+        </button>
+      )}
     </div>
   );
 }
