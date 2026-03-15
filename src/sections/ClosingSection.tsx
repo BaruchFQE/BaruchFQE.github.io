@@ -3,38 +3,13 @@ import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 export default function ClosingSection() {
   return (
     <section className="bg-primary-dark py-[8vh]">
-      {/* Collage Strip */}
-      <div className="flex justify-center gap-[3vw] px-[6vw] pb-[6vh]">
-        <div className="photo-frame" style={{ width: '26vw', height: '34vh' }}>
-          <img
-            src="/alpha_cheese.png"
-            alt="Workspace"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="photo-frame" style={{ width: '26vw', height: '38vh', marginTop: '-4vh' }}>
-          <img
-            src="/alpha_cheese.png"
-            alt="Campus architecture"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="photo-frame" style={{ width: '26vw', height: '34vh' }}>
-          <img
-            src="/alpha_cheese.png"
-            alt="Group study"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
       {/* Closing Word */}
       <div className="text-center py-[6vh]">
         <h2
           className="headline-lg text-primary-light"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}
         >
-          Alpha Cheese
+          STAY CURIOUS. STAY QUANT.
         </h2>
       </div>
 
@@ -103,9 +78,12 @@ export default function ClosingSection() {
           </a>
         </div>
 
-        {/* Copyright */}
-        <p className="micro-label text-secondary-light/40">
+        {/* Closer */}
+        <p className="micro-label text-secondary-light/40 text-center">
           FQE. Built by Students.
+          <a href="#/alpha-cheese" className="ml-1 text-secondary-light/20 hover:text-accent-green transition-colors" aria-label="Alpha Cheese easter egg">
+            alpha cheese
+          </a>
         </p>
       </div>
     </section>

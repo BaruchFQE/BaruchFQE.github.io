@@ -13,12 +13,17 @@ import CalendarSection from './sections/CalendarSection';
 import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
+import AlphaCheesePage from './pages/AlphaCheesePage';
 import { ArrowDown, ArrowRight, ArrowUp, BarChart3, BrainCircuit, CalendarDays, Clock3, ExternalLink, Sparkles, Trophy } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
 const LEGACY_COMP_HASH = '#/competitions';
 const LIVE_SCOREBOARD_HASH = '#/live-scoreboard';
+const ALPHA_CHEESE_HASH = '#/alpha-cheese';
+const ALPHA_CHEESE_HASH_ALT_1 = '#/alphja-cheese';
+const ALPHA_CHEESE_HASH_ALT_2 = '#/alpha_cheese';
+const ALPHA_CHEESE_HASH_ALT_3 = '#/alphacheese';
 // Optional .env override for the "Open Google Calendar" link in the calendar section:
 // VITE_GOOGLE_CALENDAR_MANAGE_URL=https://calendar.google.com
 const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_URL || 'https://calendar.google.com';
@@ -28,11 +33,17 @@ const GOOGLE_CALENDAR_EMBED_URL =
   import.meta.env.VITE_GOOGLE_CALENDAR_EMBED_URL
   || 'https://calendar.google.com/calendar/embed?height=720&wkst=1&ctz=America%2FNew_York&bgcolor=%23103322&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=YmFydWNoZnFlQGdtYWlsLmNvbQ&color=%23039BE5';
 
-type CompetitionView = 'main' | 'trading' | 'applied' | 'not-found';
+type CompetitionView = 'main' | 'trading' | 'applied' | 'alpha-cheese' | 'not-found';
 
 function getCompetitionView(hash: string): CompetitionView {
   if (hash === TRADING_COMP_HASH || hash === LEGACY_COMP_HASH) return 'trading';
   if (hash === APPLIED_MATH_COMP_HASH) return 'applied';
+  if (
+    hash === ALPHA_CHEESE_HASH
+    || hash === ALPHA_CHEESE_HASH_ALT_1
+    || hash === ALPHA_CHEESE_HASH_ALT_2
+    || hash === ALPHA_CHEESE_HASH_ALT_3
+  ) return 'alpha-cheese';
   if (hash.startsWith('#/') && hash !== '#/') return 'not-found';
   return 'main';
 }
@@ -112,6 +123,10 @@ function App() {
 
   if (competitionView === 'applied') {
     return <AppliedMathCompetitionPage />;
+  }
+
+  if (competitionView === 'alpha-cheese') {
+    return <AlphaCheesePage />;
   }
 
   if (competitionView === 'not-found') {
