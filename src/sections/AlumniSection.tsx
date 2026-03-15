@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const companyLogos = [
   { name: 'American Express', image: '/logo_americanexpress.png' },
@@ -33,38 +33,33 @@ const companyLogos = [
 const alumniStories = [
   {
     name: 'William V',
-    role: 'Systematic Trading',
+    role: 'Systematic Trading @Investment Bank',
     testimonial:
       "FQE prepares students for the 'real' Wall Street. By focusing on low-latency execution and model back-testing, members enter internships with a technical maturity that sets them apart from typical undergraduates.",
-    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
   {
     name: 'Dzara M',
-    role: 'Senior Developer',
+    role: 'Senior Developer @Financial Data Provider',
     testimonial:
       "The FQE community is filled with like-minded students who are genuinely passionate about math and coding. It's the best place on campus to find a study partner for stochastic calculus or a teammate for a trading competition.",
-    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
   {
     name: 'Jun T',
-    role: 'Commodities Trading',
+    role: 'Commodities Trading @Financial Services Provider',
     testimonial:
       'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles.',
-    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
   {
     name: 'David M',
-    role: 'Quant Research',
+    role: 'Quant Research @Investment Bank',
     testimonial:
-      'I went from having a traditional financial math background with an interest in coding to a competitive MFE candidate because the club pushed me to apply what I learned around Linear Algebra and C++ - the gatekeeper skills for any top program.',
-    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
+      'I went from being having a traditional financial math background with an interest in coding to a competitive MFE candidate because the club pushed me to apply what I learn around Linear Algebra and C++ - the gatekeeper skills for any top program.',
   },
   {
     name: 'Zhi L',
-    role: 'Quant Developer',
+    role: 'Quant Trader @Hedge Fund',
     testimonial:
       'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles and prepare me for graduate school applications.',
-    linkedin: 'https://www.linkedin.com/company/fqe-baruch/',
   },
 ];
 
@@ -179,15 +174,6 @@ export default function AlumniSection() {
                   <p className="body-text text-secondary-light mb-4">
                     {story.testimonial}
                   </p>
-                  <a
-                    href={story.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-link inline-flex items-center gap-2"
-                  >
-                    <span>LinkedIn</span>
-                    <ExternalLink size={14} />
-                  </a>
                 </div>
               ))}
             </div>
