@@ -126,11 +126,11 @@ export default function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-col gap-4 items-center">
             <a href="#about" className="cta-button w-fit">
-              <span>About Us</span>
+              <span>About</span>
               <ArrowRight size={16} />
             </a>
             <a href="#contact" className="text-link">
-              Join the Club
+              Join Us
             </a>
           </div>
 

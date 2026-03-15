@@ -65,23 +65,11 @@ export default function ClosingSection() {
           </a>
         </div>
 
-        {/* Footer Links */}
-        <div className="flex items-center gap-6 mb-6">
-          <a href="#" className="micro-label text-secondary-light/60 hover:text-secondary-light transition-colors">
-            Privacy
-          </a>
-          <a href="#" className="micro-label text-secondary-light/60 hover:text-secondary-light transition-colors">
-            Terms
-          </a>
-          <a href="#" className="micro-label text-secondary-light/60 hover:text-secondary-light transition-colors">
-            Code of Conduct
-          </a>
-        </div>
-
-        {/* Closer */}
-        <p className="micro-label text-secondary-light/40 text-center">
+        <p className="micro-label text-secondary-light/40 text-center mb-2">
           FQE. Built by Students.
-          <a href="#/alpha-cheese" className="ml-1 text-secondary-light/20 hover:text-accent-green transition-colors" aria-label="Alpha Cheese easter egg">
+        </p>
+        <p className="micro-label text-center">
+          <a href="#/alpha-cheese" className="text-secondary-light/20 hover:text-accent-green transition-colors" aria-label="Alpha Cheese easter egg">
             alpha cheese
           </a>
         </p>
