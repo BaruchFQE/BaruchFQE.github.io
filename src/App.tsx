@@ -57,7 +57,13 @@ function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      setCompetitionView(getCompetitionView(window.location.hash));
+      const nextView = getCompetitionView(window.location.hash);
+      if (nextView === 'alpha-cheese') {
+        const resetTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        resetTop();
+        window.requestAnimationFrame(resetTop);
+      }
+      setCompetitionView(nextView);
     };
 
     window.addEventListener('hashchange', handleHashChange);

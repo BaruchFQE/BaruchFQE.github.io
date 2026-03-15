@@ -69,7 +69,19 @@ export default function ClosingSection() {
           FQE. Built by Students.
         </p>
         <p className="micro-label text-center">
-          <a href="#/alpha-cheese" className="text-secondary-light/20 hover:text-accent-green transition-colors" aria-label="Alpha Cheese easter egg">
+          <a
+            href="#/alpha-cheese"
+            className="text-secondary-light/20 hover:text-accent-green transition-colors"
+            aria-label="Alpha Cheese easter egg"
+            onClick={(event) => {
+              event.preventDefault();
+              window.location.hash = '#/alpha-cheese';
+              window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+              window.requestAnimationFrame(() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+              });
+            }}
+          >
             alpha cheese
           </a>
         </p>

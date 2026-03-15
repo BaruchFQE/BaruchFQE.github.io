@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 
 const cheeseTiles = [
@@ -60,6 +60,7 @@ export default function AlphaCheesePage() {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [sigmaValue, setSigmaValue] = useState(() => 100 + Math.floor(Math.random() * 300));
   const [jumpScareActive, setJumpScareActive] = useState(false);
+  const rainCheeseCount = Math.min(18 + mintedCheese * 3, 180);
   const chaosStats = useMemo(
     () => ({
       alpha: (420 + Math.floor(Math.random() * 580)).toString(),
@@ -81,6 +82,40 @@ export default function AlphaCheesePage() {
     const timeout = window.setTimeout(() => setJumpScareActive(false), 1050);
     return () => window.clearTimeout(timeout);
   }, [jumpScareActive]);
+
+  useLayoutEffect(() => {
+    const previousRestoration = 'scrollRestoration' in window.history ? window.history.scrollRestoration : null;
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const forceTop = () => {
+      const html = document.documentElement;
+      const previousInlineBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      html.scrollTop = 0;
+      document.body.scrollTop = 0;
+      html.style.scrollBehavior = previousInlineBehavior;
+    };
+
+    forceTop();
+    const rafId = window.requestAnimationFrame(forceTop);
+    const intervalId = window.setInterval(forceTop, 50);
+    const timeoutId = window.setTimeout(() => {
+      window.clearInterval(intervalId);
+      forceTop();
+    }, 800);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
+      if (previousRestoration) {
+        window.history.scrollRestoration = previousRestoration;
+      }
+    };
+  }, []);
 
   return (
     <div className={`min-h-screen bg-primary-dark relative ${rainbowMode ? 'rainbow-mode' : ''} ${shakeMode ? 'shake-mode' : ''}`}>
@@ -185,7 +220,7 @@ export default function AlphaCheesePage() {
           </div>
         </div>
       )}
-      {Array.from({ length: 18 }).map((_, i) => (
+      {Array.from({ length: rainCheeseCount }).map((_, i) => (
         <span
           key={i}
           className="cheese-rain"
