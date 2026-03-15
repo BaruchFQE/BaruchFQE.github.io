@@ -137,15 +137,16 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
-  const isCompactDesktop = isPastHero && !isMobileMenuOpen && !isPinnedStandard;
-  const shouldShowDesktopLinks = !isCompactDesktop;
+  const isCompactNav = isPastHero && !isMobileMenuOpen && !isPinnedStandard;
+  const shouldShowDesktopLinks = !isCompactNav;
+  const navSizeClass = isCompactNav
+    ? 'w-auto px-2.5 py-2'
+    : 'w-[calc(100vw-2.5rem)] px-2.5 py-2 md:w-[min(96vw,1200px)] md:px-2';
 
   return (
     <>
       <nav
-        className={`fixed top-5 left-5 z-[220] border nav-shell px-2 transition-all duration-300 ${
-          isCompactDesktop ? 'w-auto md:px-2.5 py-2' : 'w-[min(96vw,1200px)] py-2'
-        } ${
+        className={`fixed top-5 left-5 z-[220] border nav-shell transition-all duration-300 ${navSizeClass} ${
           isScrolled
             ? 'bg-primary-dark/95 border-white/25 backdrop-blur-xl shadow-[0_14px_40px_rgba(0,0,0,0.45)]'
             : 'bg-primary-dark/78 border-white/15 backdrop-blur-md'
@@ -154,16 +155,14 @@ export default function Navigation() {
         <div className="flex items-center gap-3 justify-between">
           <a
             href="#"
-            className={`inline-flex items-center gap-3 hover:text-accent-green transition-colors ${
-              isCompactDesktop ? 'px-2 py-2' : 'px-3 py-2'
-            }`}
+            className={`inline-flex items-center gap-3 hover:text-accent-green transition-colors ${isCompactNav ? 'px-2 py-2' : 'px-3 py-2'}`}
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
             <span className="font-display font-bold text-primary-light tracking-tight text-xl">FQE</span>
-            <span className={`micro-label text-accent-green ${isCompactDesktop ? 'hidden' : 'hidden lg:inline'}`}>Finance Quant Engineering</span>
+            <span className={`micro-label text-accent-green ${isCompactNav ? 'hidden' : 'hidden lg:inline'}`}>Finance Quant Engineering</span>
           </a>
 
           <div className={`hidden md:flex items-center gap-2 transition-opacity duration-200 ${shouldShowDesktopLinks ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}>
@@ -184,10 +183,10 @@ export default function Navigation() {
               type="button"
               onClick={() => setIsPinnedStandard((prev) => !prev)}
               className="hidden md:inline-flex items-center justify-center p-2 text-primary-light hover:text-accent-green transition-colors"
-              aria-label={isCompactDesktop ? 'Expand navigation' : 'Collapse navigation'}
-              title={isCompactDesktop ? 'Expand navigation' : 'Collapse navigation'}
+              aria-label={isCompactNav ? 'Expand navigation' : 'Collapse navigation'}
+              title={isCompactNav ? 'Expand navigation' : 'Collapse navigation'}
             >
-              {isCompactDesktop ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+              {isCompactNav ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
             </button>
           )}
 
@@ -206,8 +205,12 @@ export default function Navigation() {
         className={`fixed inset-0 z-[150] bg-primary-dark/85 backdrop-blur-md md:hidden transition-all duration-300 ${
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
+        onClick={() => setIsMobileMenuOpen(false)}
       >
-        <div className={`ml-auto h-full w-[84vw] max-w-[360px] border-l border-white/15 bg-secondary-dark/95 p-8 pt-24 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div
+          className={`ml-auto h-full w-[84vw] max-w-[360px] border-l border-white/15 bg-secondary-dark/95 p-8 pt-24 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          onClick={(event) => event.stopPropagation()}
+        >
           <span className="micro-label text-accent-green mb-6 block">Navigation</span>
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
