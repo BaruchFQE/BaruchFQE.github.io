@@ -7,21 +7,21 @@ const projects = [
     label: 'Kalman Filter For Volatility Surface',
     shortDesc: 'Real-time options theoretical value updates using an Unscented Kalman Filter.',
     fullDesc: 'We construct a methodology that offers a quick way for option market makers to update their theoretical values for options in real-time. We use an Unscented Kalman Filter (UKF) to quickly calibrate the implied volatility surface parameterization, which replaces the need for a costly objective function that needs to be minimized, allowing for real-time updates of the volatility surface.',
-    slideshowLink: '#volatility-slideshow',
+    pdfLink: '/project-pdfs/kalman-filter-for-volatility-surface.pdf',
   },
   {
     id: 2,
     label: 'Sentiment Analysis Project',
     shortDesc: 'Predicting stock movement using sentiment from social/news/event text plus price data.',
     fullDesc: 'This project aims to predict stock price movements by integrating sentiment analysis of Twitter posts, financial news articles, and Kalshi event contract names with historical stock data. By quantifying public sentiment overall and toward specific stocks, we seek to uncover patterns and correlations that influence market dynamics. A Long-Short-Term Memory (LSTM) neural network will model temporal dependencies within the combined sentiment metrics and stock prices.',
-    slideshowLink: '#statarb-slideshow',
+    pdfLink: '/project-pdfs/sentiment-analysis-project.pdf',
   },
   {
     id: 3,
-    label: 'Kalshi Weather Contracts',
-    shortDesc: 'Using weather data to predict Kalshi event contract prices.',
-    fullDesc: 'We use weather data to build predictive models for Kalshi event contracts. This project explores the relationship between meteorological conditions and the pricing of event-based financial instruments.',
-    slideshowLink: '#mlorderflow-slideshow',
+    label: 'Kalshi Predictive Position Building',
+    shortDesc: 'Implement market making strategies to provide and take event liquidity.',
+    fullDesc: 'We use market making strategies to defined by the level of uncertainty (risk averse and eager counterparties) to define optimal outcomes to build into an event contract position. Given high uncertainty in the market the optimal response is to be more certain, the opposite response is to make the market of an eager competitor with high certainty.',
+    pdfLink: '/project-pdfs/kalshi-predictive-position-building.pdf',
   },
 ];
 
@@ -50,8 +50,8 @@ const pastProjects = [
   {
     id: 4,
     year: 2025,
-    label: 'Kalshi Weather Contracts',
-    fullDesc: 'This project developed a real-time valuation engine for Kalshi weather contracts by integrating high-frequency meteorological data with limit order book dynamics. Our team built a Stochastic Differential Equation (SDE) model to estimate the "fair value" of temperature and precipitation outcomes, identifying arbitrage opportunities when market prices lagged behind shifting weather forecasts. The completed system successfully executed low-latency trades by capturing discrepancies between official NOAA updates and the implied probabilities traded on the exchange.',
+    label: 'Kalshi Predictive Position Building',
+    fullDesc: 'We use market making strategies to defined by the level of uncertainty (risk averse and eager counterparties) to define optimal outcomes to build into an event contract position. Given high uncertainty in the market the optimal response is to be more certain, the opposite response is to make the market of an eager competitor with high certainty.',
     members: 'Alexandre T, Arthur F, Zachary J',
   },
   {
@@ -269,12 +269,12 @@ export default function ProjectsSection() {
                   <div className="flex items-start justify-between mb-3">
                     <span className="micro-label text-accent-green">{project.label}</span>
                     <a
-                      href={project.slideshowLink}
+                      href={project.pdfLink}
                       className="text-link inline-flex items-center gap-1 text-xs"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span>View Slideshow</span>
+                      <span>View PDF</span>
                       <ExternalLink size={12} />
                     </a>
                   </div>
