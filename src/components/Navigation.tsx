@@ -162,7 +162,7 @@ export default function Navigation() {
             }}
           >
             <span className="font-display font-bold text-primary-light tracking-tight text-xl">FQE</span>
-            <span className={`micro-label text-accent-green ${isCompactNav ? 'hidden' : 'hidden lg:inline'}`}>Finance Quant Engineering</span>
+            <span className={`micro-label text-accent-green ${isCompactNav ? 'hidden' : 'hidden lg:inline'}`}>Financial Quants & Engineers</span>
           </a>
 
           <div className={`hidden md:flex items-center gap-2 transition-opacity duration-200 ${shouldShowDesktopLinks ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}>
