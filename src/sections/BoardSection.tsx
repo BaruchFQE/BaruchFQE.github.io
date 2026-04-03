@@ -3,7 +3,7 @@ const leadershipMembers = [
   { name: 'Alfred Leong', role: 'Vice-President', image: '/Alfred_Leong.jpg', email: 'alfred.leong@baruchmail.cuny.edu' },
   { name: 'Alexi Tilly', role: 'Treasurer', image: '/Alexi_Tilly.jpg', email: 'alexandre.tilly@baruchmail.cuny.edu' },
   { name: 'Abie Lent', role: 'Secretary', image: '/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
-  { name: 'Daniel Shmir', role: 'Data Officer', image: '/Daniel_2.png', email: 'daniel.shmir@baruchmail.cuny.edu' },
+  { name: 'Daniel Shmir', role: 'Data Officer', image: '/daniel.png', email: 'daniel.shmir@baruchmail.cuny.edu' },
   { name: 'Kateryna Chevplianska', role: 'Data Officer', image: '/Katy.jpg', email: 'kateryna.chevplianska@baruchmail.cuny.edu' },
   { name: 'Mei Lin Pan', role: 'Marketing Officer', image: '/Mei.png', email: 'meilin.pan@baruchmail.cuny.edu' },
   { name: 'Dmytro Popov', role: 'Events Officer', image: '/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
