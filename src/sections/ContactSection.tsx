@@ -1,26 +1,8 @@
 import { useState } from 'react';
-import { ArrowRight, CalendarDays, Info, Mail, X } from 'lucide-react';
+import { ArrowRight, Info, X } from 'lucide-react';
 
 export default function ContactSection() {
   const [isInterviewInfoOpen, setIsInterviewInfoOpen] = useState(false);
-  const contactQuickFacts = [
-    {
-      label: 'Next Meeting',
-      value: 'Check the live events calendar for the latest room and time.',
-      Icon: CalendarDays,
-    },
-    {
-      label: 'Recruiting Status',
-      value: 'Applications are open each term for Baruch undergraduates.',
-      Icon: Info,
-    },
-    {
-      label: 'Direct Email',
-      value: 'baruchfqe@gmail.com',
-      href: 'mailto:baruchfqe@gmail.com',
-      Icon: Mail,
-    },
-  ];
 
   return (
     <>
@@ -45,24 +27,6 @@ export default function ContactSection() {
             <p className="body-text text-secondary-light mb-10">
               Whether you are writing your first backtest or optimizing execution, there is a seat at the table.
             </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-              {contactQuickFacts.map(({ label, value, href, Icon }) => (
-                <div key={label} className="hover-panel border border-white/10 bg-secondary-dark/35 p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Icon size={14} className="text-accent-green" />
-                    <span className="micro-label text-accent-green">{label}</span>
-                  </div>
-                  {href ? (
-                    <a href={href} className="body-text text-secondary-light text-sm hover:text-accent-green transition-colors break-all">
-                      {value}
-                    </a>
-                  ) : (
-                    <p className="body-text text-secondary-light text-sm">{value}</p>
-                  )}
-                </div>
-              ))}
-            </div>
 
             {/* Primary CTA */}
             <a
