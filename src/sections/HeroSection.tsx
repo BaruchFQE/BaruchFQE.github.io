@@ -67,7 +67,7 @@ export default function HeroSection() {
     resetDrops();
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(5, 20, 10, 0.12)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
       ctx.fillRect(0, 0, sectionWidth, sectionHeight);
       for (let i = 0; i < drops.length; i += 1) {
         const text = letters[Math.floor(Math.random() * letters.length)];
@@ -159,7 +159,7 @@ export default function HeroSection() {
     <section
       id="canvas-section"
       ref={sectionRef}
-      className="min-h-screen bg-primary-dark relative flex items-center"
+      className="min-h-screen bg-black relative flex items-center"
     >
       <canvas
         ref={canvasRef}
