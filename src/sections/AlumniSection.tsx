@@ -8,7 +8,7 @@ const companyLogos = [
   { name: 'BNY Mellon', image: '/logo_bnymellon.svg.png' },
   { name: 'Cargill', image: '/logo_cargill.svg.png' },
   { name: 'Chimera', image: '/logo_chimera.svg.svg' },
-  { name: 'Citi', image: '/logo_citi.svg.svg' },
+  { name: 'Citi', image: '/logo_citi.png' },
   { name: 'Credit Agricole CIB', image: '/logo_creditagricolecib.svg.png' },
   { name: 'Deloitte', image: '/logo_deloitte.svg.png' },
   { name: 'Deutsche Bank', image: '/logo_deutschebank.svg.png' },
@@ -20,13 +20,13 @@ const companyLogos = [
   { name: 'JPMorgan Chase', image: '/logo_jpmorganchase.svg.png' },
   { name: 'Marex Solutions', image: '/logo_marexsolutions.svg' },
   { name: 'Meta', image: '/logo_meta.svg.svg' },
-  { name: 'MUFG', image: '/logo_mufg.svg' },
+  { name: 'MUFG', image: '/logo_mufg.png' },
   { name: 'PwC', image: '/logo_pwc.svg' },
   { name: 'Raymond James', image: '/logo_raymondjames.svg.svg' },
-  { name: 'State Street', image: '/logo_statestreet.svg' },
-  { name: 'The Depository Trust & Clearing Corporation (DTCC)', image: '/logo_dtcc.svg' },
-  { name: 'VanEck', image: '/logo_vaneck.svg' },
-  { name: 'Wells Fargo', image: '/logo_wellsfargo.svg' },
+  { name: 'State Street', image: '/logo_statestreet.png' },
+  { name: 'The Depository Trust & Clearing Corporation (DTCC)', image: '/logo_dtcc.png' },
+  { name: 'VanEck', image: '/logo_vaneck.png' },
+  { name: 'Wells Fargo', image: '/logo_wellsfargo.png' },
   { name: 'Wolfe Research', image: '/logo_wolferesearch.svg.png' },
 ];
 
@@ -192,4 +192,3 @@ export default function AlumniSection() {
     </section>
   );
 }
-

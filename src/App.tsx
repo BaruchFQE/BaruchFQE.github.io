@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import './App.css';
 
 import Navigation from './components/Navigation';
@@ -14,7 +14,7 @@ import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AlphaCheesePage from './pages/AlphaCheesePage';
-import { ArrowDown, ArrowRight, ArrowUp, BarChart3, BrainCircuit, CalendarDays, Clock3, ExternalLink, Sparkles, Trophy } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, BarChart3, BrainCircuit, CalendarDays, Clock3, ExternalLink, LockKeyhole, Sparkles, Trophy } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
 const APPLIED_MATH_COMP_HASH = '#/applied-math-competition';
@@ -32,8 +32,13 @@ const GOOGLE_CALENDAR_MANAGE_URL = import.meta.env.VITE_GOOGLE_CALENDAR_MANAGE_U
 const GOOGLE_CALENDAR_EMBED_URL =
   import.meta.env.VITE_GOOGLE_CALENDAR_EMBED_URL
   || 'https://calendar.google.com/calendar/embed?height=720&wkst=1&ctz=America%2FNew_York&bgcolor=%23103322&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=YmFydWNoZnFlQGdtYWlsLmNvbQ&color=%23039BE5';
+const COMPETITION_GATE_PASSWORD = 'FQE123ABC';
 
 type CompetitionView = 'main' | 'trading' | 'applied' | 'alpha-cheese' | 'not-found';
+
+function isProtectedCompetitionView(view: CompetitionView) {
+  return view === 'trading' || view === 'applied';
+}
 
 function getCompetitionView(hash: string): CompetitionView {
   if (hash === TRADING_COMP_HASH || hash === LEGACY_COMP_HASH) return 'trading';
@@ -48,16 +53,92 @@ function getCompetitionView(hash: string): CompetitionView {
   return 'main';
 }
 
+function CompetitionPasswordWall({
+  targetLabel,
+  password,
+  error,
+  onPasswordChange,
+  onUnlock,
+}: {
+  targetLabel: string;
+  password: string;
+  error: string;
+  onPasswordChange: (value: string) => void;
+  onUnlock: (event: FormEvent<HTMLFormElement>) => void;
+}) {
+  return (
+    <div className="min-h-screen bg-primary-dark text-primary-light relative overflow-hidden">
+      <div className="grain-overlay" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.16),transparent_38%),linear-gradient(180deg,rgba(5,20,10,0.2),rgba(5,20,10,0.82))]" />
+
+      <div className="relative min-h-screen px-[6vw] py-10 flex items-center justify-center">
+        <div className="w-full max-w-xl border border-white/10 bg-secondary-dark/55 backdrop-blur-md shadow-[0_30px_80px_rgba(0,0,0,0.36)] p-8 md:p-10">
+          <a
+            href="#competition"
+            className="inline-flex items-center gap-2 micro-label text-secondary-light hover:text-accent-green transition-colors mb-8"
+          >
+            <ArrowLeft size={14} />
+            Back to competition overview
+          </a>
+
+          <div className="w-14 h-14 rounded-full border border-accent-green/35 bg-accent-green/10 flex items-center justify-center mb-6">
+            <LockKeyhole size={22} className="text-accent-green" />
+          </div>
+
+          <span className="micro-label text-secondary-light mb-4 block">Protected Access</span>
+          <h1 className="headline-lg text-primary-light mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}>
+            ENTER PASSWORD
+          </h1>
+          <p className="body-text text-secondary-light mb-8 max-w-lg">
+            Enter the shared password to continue to {targetLabel}.
+          </p>
+
+          <form onSubmit={onUnlock} className="space-y-4">
+            <label className="block">
+              <span className="micro-label text-secondary-light mb-2 block">Password</span>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => onPasswordChange(event.target.value)}
+                className="competition-password-input w-full"
+                placeholder="Enter password"
+                autoComplete="current-password"
+              />
+            </label>
+
+            {error && (
+              <p className="body-text text-red-300 text-sm">
+                {error}
+              </p>
+            )}
+
+            <button type="submit" className="cta-button w-full sm:w-fit">
+              <span>Unlock Competition Page</span>
+              <ArrowRight size={16} />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [competitionView, setCompetitionView] = useState<CompetitionView>(
     () => getCompetitionView(window.location.hash)
   );
+  const [competitionPassword, setCompetitionPassword] = useState('');
+  const [competitionPasswordError, setCompetitionPasswordError] = useState('');
+  const [unlockedCompetitionHash, setUnlockedCompetitionHash] = useState<string | null>(null);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const nextView = getCompetitionView(window.location.hash);
+      setUnlockedCompetitionHash(null);
+      setCompetitionPassword('');
+      setCompetitionPasswordError('');
       if (nextView === 'alpha-cheese') {
         const resetTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         resetTop();
@@ -75,6 +156,12 @@ function App() {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
   }, [competitionView]);
+
+  useEffect(() => {
+    if (competitionPasswordError) {
+      setCompetitionPasswordError('');
+    }
+  }, [competitionPassword, competitionPasswordError]);
 
   useEffect(() => {
     if (competitionView !== 'main') return;
@@ -123,6 +210,37 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [competitionView]);
 
+  const protectedCompetitionLabel = competitionView === 'trading'
+    ? 'FQE Trading Competition'
+    : competitionView === 'applied'
+      ? 'FQE Applied Math Competition'
+      : '';
+
+  const handleUnlockCompetition = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (competitionPassword === COMPETITION_GATE_PASSWORD) {
+      setUnlockedCompetitionHash(window.location.hash);
+      setCompetitionPassword('');
+      setCompetitionPasswordError('');
+      return;
+    }
+
+    setCompetitionPasswordError('Incorrect password. Please try again.');
+  };
+
+  if (isProtectedCompetitionView(competitionView) && unlockedCompetitionHash !== window.location.hash) {
+    return (
+      <CompetitionPasswordWall
+        targetLabel={protectedCompetitionLabel}
+        password={competitionPassword}
+        error={competitionPasswordError}
+        onPasswordChange={setCompetitionPassword}
+        onUnlock={handleUnlockCompetition}
+      />
+    );
+  }
+
   if (competitionView === 'trading') {
     return <TradingCompetitionPage />;
   }
@@ -166,6 +284,7 @@ function App() {
       status: 'Open',
     },
     {
+      isVisible: false,
       label: 'Coming Soon',
       title: 'Trading Competition Live Score Board',
       description: 'A real-time standings view for competition day performance, rankings, and key metrics.',
@@ -198,7 +317,6 @@ function App() {
       Icon: Clock3,
     },
   ];
-
   return (
     <div className="relative">
       {/* Grain Overlay */}
@@ -245,7 +363,7 @@ function App() {
                 Compete with Precision
               </h2>
               <p className="body-text text-secondary-light max-w-3xl mb-8">
-                FQE runs two active competition tracks for Baruch undergraduates, with a live scoreboard experience in progress.
+                FQE runs two active competition tracks for Baruch undergraduates.
                 Each track emphasizes rigor, speed, and disciplined technical execution.
               </p>
 
@@ -257,7 +375,9 @@ function App() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {competitionCards.map(({ label, title, description, highlights, href, cta, Icon, status }) => (
+                {competitionCards
+                  .filter(({ isVisible = true }) => isVisible)
+                  .map(({ label, title, description, highlights, href, cta, Icon, status }) => (
                   <div key={title} className="competition-card border border-white/10 bg-secondary-dark/40 p-6 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-5">

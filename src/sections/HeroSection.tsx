@@ -35,55 +35,123 @@ export default function HeroSection() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const setCanvasSize = () => {
-      canvas.width = section.offsetWidth;
-      canvas.height = section.offsetHeight;
+      const width = section.offsetWidth;
+      const height = section.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     setCanvasSize();
 
     const letters = '\u03B1\u03B2\u03B3\u03B4\u03B5\u03B6\u03B7\u03B8\u03B9\u03BA\u03BB\u03BC\u03BD\u03BE\u03BF\u03C0\u03C1\u03C3\u03C4\u03C5\u03C6\u03C7\u03C8\u03C9\u0391\u0392\u0393\u0394\u0395\u0396\u0397\u0398\u0399\u039A\u039B\u039C\u039D\u039E\u039F\u03A0\u03A1\u03A3\u03A4\u03A5\u03A6\u03A7\u03A8\u03A9\u2202\u2206\u2207\u222B\u2211\u220F\u221E\u2248\u2260\u2261\u2264\u2265\u221A\u221D%01'.split('');
-    const fontSize = 10;
+    let fontSize = window.innerWidth < 768 ? 12 : 10;
+    let sectionWidth = section.offsetWidth;
+    let sectionHeight = section.offsetHeight;
     ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
 
-    let columns = canvas.width / fontSize;
+    let columns = Math.max(1, Math.floor(sectionWidth / fontSize));
     let drops: number[] = [];
-    for (let i = 0; i < columns; i += 1) {
-      drops[i] = 1;
-    }
+    let rafId = 0;
+    let lastFrameTime = 0;
+
+    const resetDrops = () => {
+      drops = Array.from({ length: columns }, () => 1);
+    };
+
+    resetDrops();
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, .1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(5, 20, 10, 0.12)';
+      ctx.fillRect(0, 0, sectionWidth, sectionHeight);
       for (let i = 0; i < drops.length; i += 1) {
         const text = letters[Math.floor(Math.random() * letters.length)];
         ctx.fillStyle = '#0f0';
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         drops[i] += 1;
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+        if (drops[i] * fontSize > sectionHeight && Math.random() > 0.95) {
           drops[i] = 0;
         }
       }
     };
 
-    const intervalId = window.setInterval(draw, 28);
-
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setCanvasSize();
-        ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
-        columns = canvas.width / fontSize;
-        drops = [];
-        for (let i = 0; i < columns; i += 1) {
-          drops[i] = 1;
-        }
+    const stopAnimation = () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
       }
     };
 
+    const animate = (timestamp: number) => {
+      if (document.hidden || motionQuery.matches) {
+        stopAnimation();
+        return;
+      }
+
+      if (timestamp - lastFrameTime >= 42) {
+        draw();
+        lastFrameTime = timestamp;
+      }
+
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const startAnimation = () => {
+      if (motionQuery.matches) {
+        ctx.clearRect(0, 0, sectionWidth, sectionHeight);
+        return;
+      }
+
+      if (!rafId) {
+        draw();
+        lastFrameTime = 0;
+        rafId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    const handleResize = () => {
+      setCanvasSize();
+      sectionWidth = section.offsetWidth;
+      sectionHeight = section.offsetHeight;
+      fontSize = window.innerWidth < 768 ? 12 : 10;
+      ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
+      columns = Math.max(1, Math.floor(sectionWidth / fontSize));
+      resetDrops();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
+    const handleMotionChange = () => {
+      handleResize();
+      if (motionQuery.matches) {
+        stopAnimation();
+        ctx.clearRect(0, 0, sectionWidth, sectionHeight);
+      } else {
+        startAnimation();
+      }
+    };
+
+    startAnimation();
     window.addEventListener('resize', handleResize);
+    window.addEventListener('visibilitychange', handleVisibilityChange);
+    motionQuery.addEventListener('change', handleMotionChange);
+
     return () => {
-      window.clearInterval(intervalId);
+      stopAnimation();
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('visibilitychange', handleVisibilityChange);
+      motionQuery.removeEventListener('change', handleMotionChange);
     };
   }, []);
 
@@ -169,4 +237,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

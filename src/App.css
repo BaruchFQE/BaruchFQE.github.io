@@ -55,6 +55,28 @@ img {
   opacity: 1;
 }
 
+.competition-password-input {
+  border: 1px solid rgba(240, 250, 244, 0.14);
+  background: rgba(5, 20, 10, 0.72);
+  color: #f0faf4;
+  padding: 0.9rem 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.competition-password-input::placeholder {
+  color: rgba(163, 184, 170, 0.72);
+}
+
+.competition-password-input:focus {
+  border-color: rgba(74, 222, 128, 0.72);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.12);
+  background: rgba(5, 20, 10, 0.88);
+}
+
 /* Events and calendar integration */
 .hover-panel {
   transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;

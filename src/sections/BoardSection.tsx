@@ -2,11 +2,11 @@ const leadershipMembers = [
   { name: 'Arthur Faynin', role: 'President', image: '/Arthur_Faynin.jpg', email: 'arthur.faynin@baruchmail.cuny.edu' },
   { name: 'Alfred Leong', role: 'Vice-President', image: '/Alfred_Leong.jpg', email: 'alfred.leong@baruchmail.cuny.edu' },
   { name: 'Alexi Tilly', role: 'Treasurer', image: '/Alexi_Tilly.jpg', email: 'alexandre.tilly@baruchmail.cuny.edu' },
-  { name: 'Abie Lent', role: 'Secretary', image: '/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
-  { name: 'Daniel Shmir', role: 'Data Officer', image: '/daniel.png', email: 'daniel.shmir@baruchmail.cuny.edu' },
-  { name: 'Kateryna Chevplianska', role: 'Data Officer', image: '/Katy.jpg', email: 'kateryna.chevplianska@baruchmail.cuny.edu' },
-  { name: 'Mei Lin Pan', role: 'Marketing Officer', image: '/Mei.png', email: 'meilin.pan@baruchmail.cuny.edu' },
-  { name: 'Dmytro Popov', role: 'Events Officer', image: '/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
+  { name: 'Dmytro Popov', role: 'Secretary', image: '/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
+  { name: 'Placeholder Name', role: 'Math Officer', image: '/placeholder_leader.png' },
+  { name: 'Placeholder Name', role: 'Tech Officer', image: '/placeholder_leader.png' },
+  { name: 'Maahin Nafi', role: 'Marketing Officer', image: '/placeholder_leader.png' },
+  { name: 'Abie Lent', role: 'Events Officer', image: '/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
 ];
 
 export default function LeadershipSection() {
@@ -40,12 +40,18 @@ export default function LeadershipSection() {
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <a
-                href={`mailto:${member.email}`}
-                className="font-display font-semibold text-primary-light text-center leadership-name-link"
-              >
-                {member.name}
-              </a>
+              {member.email ? (
+                <a
+                  href={`mailto:${member.email}`}
+                  className="font-display font-semibold text-primary-light text-center leadership-name-link"
+                >
+                  {member.name}
+                </a>
+              ) : (
+                <span className="font-display font-semibold text-primary-light text-center">
+                  {member.name}
+                </span>
+              )}
               <span className="micro-label text-accent-green mt-1">
                 {member.role}
               </span>
@@ -56,4 +62,3 @@ export default function LeadershipSection() {
     </section>
   );
 }
-
