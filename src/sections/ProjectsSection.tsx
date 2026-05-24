@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, X, ExternalLink } from 'lucide-react';
+import MainSectionBackground from '@/components/MainSectionBackground';
 
 const projects = [
   {
@@ -183,9 +184,10 @@ export default function ProjectsSection() {
     <>
       <section
         id="projects"
-        className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
+        className="min-h-screen bg-primary-dark relative overflow-hidden flex items-center py-[10vh]"
       >
-        <div className="w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <MainSectionBackground />
+        <div className="relative z-10 w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Photo Panel */}
           <div className="photo-frame aspect-[3/4] max-h-[72vh]">
             <img

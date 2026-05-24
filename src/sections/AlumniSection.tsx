@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import LogoLoop, { type LogoLoopImage } from '@/components/LogoLoop.jsx';
+import LogoLoop, { type LogoLoopItem } from '@/components/LogoLoop.jsx';
+import MainSectionBackground from '@/components/MainSectionBackground';
 
-const companyLogos: LogoLoopImage[] = [
+const companyLogos: LogoLoopItem[] = [
   { alt: 'American Express', src: '/logo_americanexpress.png' },
   { alt: 'Bank of America', src: '/logo_bankofamerica.svg.png' },
   { alt: 'Bloomberg', src: '/logo_bloomberg.svg.png' },
@@ -23,12 +24,21 @@ const companyLogos: LogoLoopImage[] = [
   { alt: 'Meta', src: '/logo_meta.svg.svg' },
   { alt: 'MUFG', src: '/logo_mufg.png' },
   { alt: 'PwC', src: '/logo_pwc.svg' },
-  { alt: 'Raymond James', src: '/logo_raymondjames.svg.svg' },
+  {
+    ariaLabel: 'Raymond James',
+    node: <span className="alumni-logo-wordmark alumni-logo-wordmark--compact">R. JAMES</span>,
+  },
   { alt: 'State Street', src: '/logo_statestreet.png' },
   { alt: 'The Depository Trust & Clearing Corporation (DTCC)', src: '/logo_dtcc.png' },
   { alt: 'VanEck', src: '/logo_vaneck.png' },
-  { alt: 'Wells Fargo', src: '/logo_wellsfargo.png' },
-  { alt: 'Wolfe Research', src: '/logo_wolferesearch.svg.png' },
+  {
+    ariaLabel: 'Wells Fargo',
+    node: <span className="alumni-logo-wordmark alumni-logo-wordmark--stacked">WELLS<br />FARGO</span>,
+  },
+  {
+    ariaLabel: 'Wolfe Research',
+    node: <span className="alumni-logo-wordmark">WOLFE</span>,
+  },
 ];
 
 const alumniStories = [
@@ -70,9 +80,10 @@ export default function AlumniSection() {
   return (
     <section
       id="alumni"
-      className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
+      className="min-h-screen bg-primary-dark relative overflow-hidden flex items-center py-[10vh]"
     >
-      <div className="w-full px-[6vw]">
+      <MainSectionBackground />
+      <div className="relative z-10 w-full px-[6vw]">
         {/* Header */}
         <div className="mb-12">
           <span className="micro-label text-secondary-light mb-4 block">
@@ -129,7 +140,13 @@ export default function AlumniSection() {
             fadeOutColor="#06140B"
             ariaLabel="Companies where FQE alumni work"
             renderItem={(company) => {
-              if ('node' in company) return null;
+              if ('node' in company) {
+                return (
+                  <div className="alumni-logo-item" title={company.ariaLabel ?? company.title}>
+                    {company.node}
+                  </div>
+                );
+              }
 
               return (
                 <div className="alumni-logo-item" title={company.alt}>

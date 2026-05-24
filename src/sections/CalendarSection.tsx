@@ -1,3 +1,5 @@
+import MainSectionBackground from '@/components/MainSectionBackground';
+
 type CalendarSectionProps = {
   manageUrl: string;
   embedUrl: string;
@@ -5,8 +7,9 @@ type CalendarSectionProps = {
 
 export default function CalendarSection({ manageUrl, embedUrl }: CalendarSectionProps) {
   return (
-    <section id="calendar" className="bg-primary-dark py-[10vh] relative">
-      <div className="w-full px-[6vw]">
+    <section id="calendar" className="bg-primary-dark py-[10vh] relative overflow-hidden">
+      <MainSectionBackground />
+      <div className="relative z-10 w-full px-[6vw]">
         <div className="calendar-shell border border-white/15 bg-secondary-dark/35 p-2 md:p-3">
           <div className="calendar-shell-header border border-white/10 bg-primary-dark/70 px-4 py-3 mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="calendar-tabs" role="tablist" aria-label="Calendar links">

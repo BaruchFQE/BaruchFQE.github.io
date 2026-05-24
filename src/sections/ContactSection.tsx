@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, Info, X } from 'lucide-react';
+import MainSectionBackground from '@/components/MainSectionBackground';
 
 export default function ContactSection() {
   const [isInterviewInfoOpen, setIsInterviewInfoOpen] = useState(false);
@@ -8,9 +9,10 @@ export default function ContactSection() {
     <>
       <section
         id="contact"
-        className="bg-primary-dark relative flex items-center py-[12vh] lg:py-[14vh]"
+        className="bg-primary-dark relative overflow-hidden flex items-center py-[12vh] lg:py-[14vh]"
       >
-        <div className="w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <MainSectionBackground />
+        <div className="relative z-10 w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Block */}
           <div className="flex flex-col justify-center">
             {/* Micro Label */}

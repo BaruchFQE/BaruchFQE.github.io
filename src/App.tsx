@@ -14,6 +14,7 @@ import TradingCompetitionPage from './pages/TradingCompetitionPage';
 import AppliedMathCompetitionPage from './pages/AppliedMathCompetitionPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AlphaCheesePage from './pages/AlphaCheesePage';
+import MainSectionBackground from './components/MainSectionBackground';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, BarChart3, BrainCircuit, CalendarDays, Clock3, ExternalLink, LockKeyhole, Sparkles, Trophy } from 'lucide-react';
 
 const TRADING_COMP_HASH = '#/trading-competition';
@@ -352,9 +353,10 @@ function App() {
         {/* Competition */}
         <section
           id="competition"
-          className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
+          className="min-h-screen bg-primary-dark relative overflow-hidden flex items-center py-[10vh]"
         >
-          <div className="w-full px-[6vw]">
+          <MainSectionBackground />
+          <div className="relative z-10 w-full px-[6vw]">
             <div className="max-w-5xl relative z-10">
               <span className="micro-label text-secondary-light mb-4 block">
                 Competition
@@ -419,8 +421,9 @@ function App() {
         <LeadershipSection />
 
         {/* Events */}
-        <section id="events" className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]">
-          <div className="w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section id="events" className="min-h-screen bg-primary-dark relative overflow-hidden flex items-center py-[10vh]">
+          <MainSectionBackground />
+          <div className="relative z-10 w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="photo-frame aspect-[3/4] max-h-[72vh]">
               <img
                 src="/bny-visit.jfif"

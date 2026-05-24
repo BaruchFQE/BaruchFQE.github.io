@@ -1,10 +1,12 @@
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import MainSectionBackground from '@/components/MainSectionBackground';
 
 export default function ClosingSection() {
   return (
-    <section className="bg-primary-dark py-[8vh]">
+    <section className="bg-primary-dark relative overflow-hidden py-[8vh]">
+      <MainSectionBackground />
       {/* Closing Word */}
-      <div className="text-center py-[6vh]">
+      <div className="relative z-10 text-center py-[6vh]">
         <h2
           className="headline-lg text-primary-light"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}
@@ -14,7 +16,7 @@ export default function ClosingSection() {
       </div>
 
       {/* Contact Block */}
-      <div className="flex flex-col items-center pb-[6vh]">
+      <div className="relative z-10 flex flex-col items-center pb-[6vh]">
         <a
           href="mailto:baruchfqe@gmail.com"
           className="micro-label text-accent-green mb-4 hover:underline"

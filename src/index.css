@@ -257,6 +257,18 @@
   background-color: #0a1f12;
 }
 
+.main-section-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #05140a;
+}
+
+.main-section-background .pixel-blast-container {
+  opacity: 0.72;
+}
+
 /* Text Colors */
 .text-primary-light {
   color: #F0FAF4;
@@ -333,6 +345,27 @@
   max-height: 100%;
   object-fit: contain;
   filter: grayscale(1) brightness(0) invert(1);
+}
+
+.alumni-logo-wordmark {
+  color: #f3f4f6;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3.1vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.86;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.alumni-logo-wordmark--stacked {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.alumni-logo-wordmark--compact {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  font-weight: 800;
 }
 
 @supports (mix-blend-mode: screen) {

@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import MainSectionBackground from '@/components/MainSectionBackground';
 
 interface ContentSectionProps {
   id?: string;
@@ -37,9 +38,10 @@ export default function ContentSection({
   return (
     <section
       id={id}
-      className={`${bgClass} relative flex items-center py-[12vh] lg:py-[14vh]`}
+      className={`${bgClass} relative overflow-hidden flex items-center py-[12vh] lg:py-[14vh]`}
     >
-      <div className={`w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isLeftPhoto ? '' : 'lg:grid-flow-dense'}`}>
+      <MainSectionBackground />
+      <div className={`relative z-10 w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isLeftPhoto ? '' : 'lg:grid-flow-dense'}`}>
         {/* Photo Panel */}
         <div className={`photo-frame aspect-[3/4] max-h-[72vh] ${isLeftPhoto ? '' : 'lg:col-start-2'}`}>
           <img

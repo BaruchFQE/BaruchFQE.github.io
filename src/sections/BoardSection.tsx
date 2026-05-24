@@ -1,3 +1,5 @@
+import MainSectionBackground from '@/components/MainSectionBackground';
+
 const leadershipMembers = [
   { name: 'Arthur Faynin', role: 'President', image: '/Arthur_Faynin.jpg', email: 'arthur.faynin@baruchmail.cuny.edu' },
   { name: 'Alfred Leong', role: 'Vice-President', image: '/Alfred_Leong.jpg', email: 'alfred.leong@baruchmail.cuny.edu' },
@@ -13,9 +15,10 @@ export default function LeadershipSection() {
   return (
     <section
       id="leadership"
-      className="min-h-screen bg-primary-dark relative flex items-center py-[10vh]"
+      className="min-h-screen bg-primary-dark relative overflow-hidden flex items-center py-[10vh]"
     >
-      <div className="w-full px-[6vw]">
+      <MainSectionBackground />
+      <div className="relative z-10 w-full px-[6vw]">
         {/* Header */}
         <div className="mb-12">
           <span className="micro-label text-secondary-light mb-4 block">
