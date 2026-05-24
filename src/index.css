@@ -301,6 +301,46 @@
   animation-play-state: paused;
 }
 
+.alumni-logo-loop {
+  margin-inline: calc(-1 * min(6vw, 72px));
+}
+
+.alumni-logo-loop .logoloop {
+  padding-block: 0.75rem;
+}
+
+.alumni-logo-loop .logoloop__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.alumni-logo-item {
+  width: clamp(6rem, 11vw, 9rem);
+  height: clamp(3.5rem, 6vw, 5rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.88;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.alumni-logo-item:hover {
+  opacity: 1;
+}
+
+.alumni-logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+@supports (mix-blend-mode: screen) {
+  .alumni-logo-item img {
+    mix-blend-mode: screen;
+  }
+}
+
 /* Leadership Name Link */
 .leadership-name-link {
   transition: color 200ms ease, text-shadow 200ms ease;

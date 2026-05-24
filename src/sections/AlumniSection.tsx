@@ -1,33 +1,34 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import LogoLoop, { type LogoLoopImage } from '@/components/LogoLoop.jsx';
 
-const companyLogos = [
-  { name: 'American Express', image: '/logo_americanexpress.png' },
-  { name: 'Bank of America', image: '/logo_bankofamerica.svg.png' },
-  { name: 'Bloomberg', image: '/logo_bloomberg.svg.png' },
-  { name: 'BNY Mellon', image: '/logo_bnymellon.svg.png' },
-  { name: 'Cargill', image: '/logo_cargill.svg.png' },
-  { name: 'Chimera', image: '/logo_chimera.svg.svg' },
-  { name: 'Citi', image: '/logo_citi.png' },
-  { name: 'Credit Agricole CIB', image: '/logo_creditagricolecib.svg.png' },
-  { name: 'Deloitte', image: '/logo_deloitte.svg.png' },
-  { name: 'Deutsche Bank', image: '/logo_deutschebank.svg.png' },
-  { name: 'EY', image: '/logo_ey.svg.png' },
-  { name: 'Fidelity', image: '/logo_fidelity.svg.svg' },
-  { name: 'FTI Consulting', image: '/logo_fticonsulting.png.png' },
-  { name: 'Goldman Sachs', image: '/logo_goldman.svg.svg' },
-  { name: 'Intel', image: '/logo_intel.svg.svg' },
-  { name: 'JPMorgan Chase', image: '/logo_jpmorganchase.svg.png' },
-  { name: 'Marex Solutions', image: '/logo_marexsolutions.svg' },
-  { name: 'Meta', image: '/logo_meta.svg.svg' },
-  { name: 'MUFG', image: '/logo_mufg.png' },
-  { name: 'PwC', image: '/logo_pwc.svg' },
-  { name: 'Raymond James', image: '/logo_raymondjames.svg.svg' },
-  { name: 'State Street', image: '/logo_statestreet.png' },
-  { name: 'The Depository Trust & Clearing Corporation (DTCC)', image: '/logo_dtcc.png' },
-  { name: 'VanEck', image: '/logo_vaneck.png' },
-  { name: 'Wells Fargo', image: '/logo_wellsfargo.png' },
-  { name: 'Wolfe Research', image: '/logo_wolferesearch.svg.png' },
+const companyLogos: LogoLoopImage[] = [
+  { alt: 'American Express', src: '/logo_americanexpress.png' },
+  { alt: 'Bank of America', src: '/logo_bankofamerica.svg.png' },
+  { alt: 'Bloomberg', src: '/logo_bloomberg.svg.png' },
+  { alt: 'BNY Mellon', src: '/logo_bnymellon.svg.png' },
+  { alt: 'Cargill', src: '/logo_cargill.svg.png' },
+  { alt: 'Chimera', src: '/logo_chimera.svg.svg' },
+  { alt: 'Citi', src: '/logo_citi.png' },
+  { alt: 'Credit Agricole CIB', src: '/logo_creditagricolecib.svg.png' },
+  { alt: 'Deloitte', src: '/logo_deloitte.svg.png' },
+  { alt: 'Deutsche Bank', src: '/logo_deutschebank.svg.png' },
+  { alt: 'EY', src: '/logo_ey.svg.png' },
+  { alt: 'Fidelity', src: '/logo_fidelity.svg.svg' },
+  { alt: 'FTI Consulting', src: '/logo_fticonsulting.png.png' },
+  { alt: 'Goldman Sachs', src: '/logo_goldman.svg.svg' },
+  { alt: 'Intel', src: '/logo_intel.svg.svg' },
+  { alt: 'JPMorgan Chase', src: '/logo_jpmorganchase.svg.png' },
+  { alt: 'Marex Solutions', src: '/logo_marexsolutions.svg' },
+  { alt: 'Meta', src: '/logo_meta.svg.svg' },
+  { alt: 'MUFG', src: '/logo_mufg.png' },
+  { alt: 'PwC', src: '/logo_pwc.svg' },
+  { alt: 'Raymond James', src: '/logo_raymondjames.svg.svg' },
+  { alt: 'State Street', src: '/logo_statestreet.png' },
+  { alt: 'The Depository Trust & Clearing Corporation (DTCC)', src: '/logo_dtcc.png' },
+  { alt: 'VanEck', src: '/logo_vaneck.png' },
+  { alt: 'Wells Fargo', src: '/logo_wellsfargo.png' },
+  { alt: 'Wolfe Research', src: '/logo_wolferesearch.svg.png' },
 ];
 
 const alumniStories = [
@@ -65,8 +66,6 @@ const alumniStories = [
 
 export default function AlumniSection() {
   const [isStoriesOpen, setIsStoriesOpen] = useState(false);
-  // Duplicate logos for seamless infinite auto-scroll across all screen sizes.
-  const logosForCarousel = [...companyLogos, ...companyLogos];
 
   return (
     <section
@@ -118,21 +117,30 @@ export default function AlumniSection() {
 
 
         {/* Logo Carousel */}
-        <div className="relative overflow-hidden">
-          <div className="logo-carousel flex w-max gap-4 sm:gap-8">
-            {logosForCarousel.map((company, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 photo-frame logo-frame bg-[#F6FFF6] overflow-hidden p-3 flex items-center justify-center hover:opacity-80 transition-opacity w-40 h-24 sm:w-48 sm:h-32"
-              >
-                <img
-                  src={company.image}
-                  alt={company.name}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="alumni-logo-loop relative overflow-hidden py-6">
+          <LogoLoop
+            logos={companyLogos}
+            speed={76}
+            gap={68}
+            logoHeight={58}
+            pauseOnHover
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#06140B"
+            ariaLabel="Companies where FQE alumni work"
+            renderItem={(company) => {
+              if ('node' in company) return null;
+
+              return (
+                <div className="alumni-logo-item" title={company.alt}>
+                  <img
+                    src={company.src}
+                    alt={company.alt}
+                  />
+                </div>
+              );
+            }}
+          />
         </div>
 
         {/* CTA */}

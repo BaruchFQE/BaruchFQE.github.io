@@ -5,7 +5,7 @@ const leadershipMembers = [
   { name: 'Dmytro Popov', role: 'Secretary', image: '/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
   { name: 'Placeholder Name', role: 'Math Officer', image: '/placeholder_leader.png' },
   { name: 'Placeholder Name', role: 'Tech Officer', image: '/placeholder_leader.png' },
-  { name: 'Maahin Nafi', role: 'Marketing Officer', image: '/placeholder_leader.png' },
+  { name: 'Maahin Nafi', role: 'Marketing Officer', image: '/Maahin Nafi Headshot.jpg' },
   { name: 'Abie Lent', role: 'Events Officer', image: '/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
 ];
 
