@@ -357,7 +357,7 @@ function App() {
         >
           <MainSectionBackground />
           <div className="relative z-10 w-full px-[6vw]">
-            <div className="max-w-5xl relative z-10">
+            <div className="max-w-5xl mx-auto relative z-10">
               <span className="micro-label text-secondary-light mb-4 block">
                 Competition
               </span>
@@ -376,7 +376,7 @@ function App() {
                 <span className="micro-label text-primary-light border border-white/15 bg-white/5 px-3 py-2">Team-Based Format</span>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {competitionCards
                   .filter(({ isVisible = true }) => isVisible)
                   .map(({ label, title, description, highlights, href, cta, Icon, status }) => (
