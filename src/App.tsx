@@ -38,7 +38,7 @@ const COMPETITION_GATE_PASSWORD = 'FQE123ABC';
 type CompetitionView = 'main' | 'trading' | 'applied' | 'alpha-cheese' | 'not-found';
 
 function isProtectedCompetitionView(view: CompetitionView) {
-  return view === 'trading' || view === 'applied';
+  return view === 'applied';
 }
 
 function getCompetitionView(hash: string): CompetitionView {
@@ -211,11 +211,9 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [competitionView]);
 
-  const protectedCompetitionLabel = competitionView === 'trading'
-    ? 'FQE Trading Competition'
-    : competitionView === 'applied'
-      ? 'FQE Applied Math Competition'
-      : '';
+  const protectedCompetitionLabel = competitionView === 'applied'
+    ? 'FQE Applied Math Competition'
+    : '';
 
   const handleUnlockCompetition = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -267,8 +265,8 @@ function App() {
     {
       label: 'Trading',
       title: 'FQE Trading Competition',
-      description: 'Build and iterate on live strategies with milestone-based execution across two trading days.',
-      highlights: ['Team based (up to 3 students)', 'Coding assessment + live sessions', 'Performance and risk evaluated'],
+      description: 'Fall 2026, 2nd annual trading competition for CUNY students interested in real-time strategy building.',
+      highlights: ['Open to all CUNY students', 'Applications close September 28', 'Trading day: October 2'],
       href: TRADING_COMP_HASH,
       cta: 'Explore Trading Track',
       Icon: BarChart3,
@@ -277,12 +275,12 @@ function App() {
     {
       label: 'Applied Math',
       title: 'FQE Applied Math Competition',
-      description: 'Solve rigorous quantitative problems under time constraints with clean logic and analytical depth.',
-      highlights: ['Individual and team rigor', 'Math-first problem solving', 'Structured competition format'],
+      description: 'A rigorous quantitative problem-solving competition currently being prepared for Baruch undergraduates.',
+      highlights: ['Applications coming soon', 'Math-first problem solving', 'Structured competition format'],
       href: APPLIED_MATH_COMP_HASH,
-      cta: 'Explore Applied Math Track',
+      cta: 'Preview Applied Math Track',
       Icon: BrainCircuit,
-      status: 'Open',
+      status: 'Coming Soon',
     },
     {
       isVisible: false,
@@ -365,8 +363,8 @@ function App() {
                 Compete with Precision
               </h2>
               <p className="body-text text-secondary-light max-w-3xl mb-8">
-                FQE runs two active competition tracks for Baruch undergraduates.
-                Each track emphasizes rigor, speed, and disciplined technical execution.
+                FQE runs technical competition tracks for quantitatively curious students.
+                The trading track is active, and the applied math competition is coming soon.
               </p>
 
               <div className="flex flex-wrap gap-3 mb-10">

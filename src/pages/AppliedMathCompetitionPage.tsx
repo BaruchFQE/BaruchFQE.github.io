@@ -262,16 +262,14 @@ export default function AppliedMathCompetitionPage() {
               <h1 className="headline-xl text-primary-light mb-6" style={{ fontSize: 'clamp(2.3rem, 5vw, 4.4rem)', lineHeight: 1.04 }}>
                 FQE Undergraduate Applied Mathematics Competition
               </h1>
+              <p className="body-text text-secondary-light text-sm md:text-base max-w-2xl mb-6">
+                Applications are not open yet. Competition details and application dates will be announced soon.
+              </p>
               <div className="flex flex-col gap-4 items-center">
-                <a
-                  href="https://linktr.ee/FQEBaruch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cta-button w-fit"
-                >
-                  <span>Apply to Compete</span>
-                  <ArrowRight size={16} />
-                </a>
+                <div className="inline-flex items-center gap-2 px-6 py-3 border border-amber-300/50 bg-amber-300/5 text-amber-300 font-mono text-sm tracking-wider uppercase">
+                  <Clock3 size={16} />
+                  <span>Coming Soon</span>
+                </div>
                 <button type="button" onClick={handleViewStructure} className="text-link inline-flex items-center gap-2">
                   <span>View Structure</span>
                   <ArrowRight size={14} />
@@ -408,7 +406,6 @@ export default function AppliedMathCompetitionPage() {
     </div>
   );
 }
-
 
 
 

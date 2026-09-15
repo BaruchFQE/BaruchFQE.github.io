@@ -2,72 +2,64 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, Calculator, Clock3, ShieldAlert, Sigma, Trophy, Users } from 'lucide-react';
 
 const deadlines = [
-  'Application deadline - March 20th',
-  'Notice of Acceptance & Coding Assessment - March 22nd',
-  'Coding Assessment Due - March 27th',
-  'Acceptance into the competition & release of documentation - March 31st',
-  'Live Trading Day #1 - April 11th, 8am to 12pm',
-  'Live Trading Day #2 - April 18th, 8am to 12pm',
-  'Award Ceremony - April 18th, 1pm',
+  'Applications close - September 28, 2026',
+  'Trading day - October 2, 2026 at Baruch College (location TBD)',
+  'Morning session - 10am to 1pm',
+  'Strategy refinement break - 1pm to 2pm',
+  'Afternoon session - 2pm to 5pm',
 ];
 
 const setup = [
-  'Systematic division',
-  'Maximum three people per team',
-  'Current undergraduate student at Baruch College',
+  'Fall 2026 competition cycle',
+  'Open to all CUNY students',
   'Coding experience is strongly recommended',
+  'Real-time trading strategy development',
 ];
 
 const phases = [
   {
     phase: 'Step 0',
     title: 'Trading Competition Interest & Application',
-    duration: 'Before Assessment',
+    duration: 'Due September 28, 2026',
     details: [
       'Complete the interest form to be considered for participation.',
-      'Participation is confirmed for teams that submit the form.',
+      'Applications are open to all current CUNY students.',
     ],
   },
   {
     phase: 'Step 1',
-    title: 'Coding Assessment',
-    duration: 'About 2 to 3 Hours',
+    title: 'Competition Briefing',
+    duration: 'Before Trading Day',
     details: [
-      'Complete a straightforward coding problem used as a screening checkpoint.',
-      'Assessment helps ensure a productive competition environment for all participants.',
+      'Participants receive trading instructions and logistics before the live session.',
+      'Location details will be shared once finalized.',
     ],
   },
   {
     phase: 'Step 2',
-    title: 'Ramp Up and Trading Day #1 Preparation',
-    duration: 'Before Day #1',
+    title: 'Morning Trading Session',
+    duration: '10am to 1pm',
     details: [
-      'Create your initial trading strategy before the first live session.',
-      'Prepare execution assumptions and trading logic.',
+      'Compete in a 3-hour morning trading session.',
+      'Work on a trading strategy in real time.',
     ],
   },
   {
     phase: 'Step 3',
-    title: 'Trading Day #1',
-    duration: '4 Hours',
-    details: ['Compete in a 4-hour live trading window.', 'Track real-time behavior and outcomes to inform refinements.'],
-  },
-  {
-    phase: 'Step 4',
-    title: 'Ramp Up and Trading Day #2',
-    duration: 'Before Day #2',
+    title: 'Strategy Refinement Break',
+    duration: '1pm to 2pm',
     details: [
-      'Refine your core strategy after Day #1 results.',
-      'Adjust execution choices before the final live session.',
+      'Take a 1-hour break to refine and develop the strategy if necessary.',
+      'Use morning results to improve execution for the afternoon session.',
     ],
   },
   {
-    phase: 'Step 5',
-    title: 'Trading Day #2',
-    duration: '4 Hours',
+    phase: 'Step 4',
+    title: 'Afternoon Trading Session',
+    duration: '2pm to 5pm',
     details: [
-      'Compete in the final 4-hour live trading window.',
-      'Final standings are determined after this session.',
+      'Compete in a 3-hour afternoon trading session.',
+      'Final performance is evaluated after the session concludes.',
     ],
   },
 ];
@@ -321,14 +313,14 @@ export default function TradingCompetitionPage() {
             <div className="flex flex-col justify-center items-center text-center max-w-3xl">
               <span className="micro-label text-secondary-light mb-6">Competition</span>
               <h1 className="headline-xl text-primary-light mb-6" style={{ fontSize: 'clamp(2.3rem, 5vw, 4.4rem)', lineHeight: 1.04 }}>
-                FQE Undergraduate Trading Competition
+                Fall 2026 - 2nd Annual FQE Undergraduate Trading Competition
               </h1>
               <p className="body-text text-secondary-light text-sm md:text-base max-w-2xl mb-2">
-                1st Annual competition for Baruch undergraduates interested in trading and real-time strategy building.
+                Financial Quants & Engineers at Baruch are hosting a trading competition for CUNY students interested in working on trading strategies in real time.
               </p>
               <div className="flex flex-col gap-4 items-center">
                 <a
-                  href="https://linktr.ee/FQEBaruch"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeUc5y97f8UF_9bd6_6ETmcXAEgLEH5epX0H2n8RtWM_AuWbA/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cta-button w-fit"
@@ -450,8 +442,8 @@ export default function TradingCompetitionPage() {
                 <span className="micro-label text-accent-green">Live Sessions</span>
               </div>
               <p className="body-text text-secondary-light text-sm">
-                Teams participate in two 4-hour live trading sessions with a ramp-up period between sessions
-                to refine strategies and improve execution quality.
+                Participants compete on October 2, 2026 at Baruch College, with a 3-hour morning session,
+                a 1-hour strategy refinement break, and a 3-hour afternoon session.
               </p>
             </div>
 
@@ -472,4 +464,3 @@ export default function TradingCompetitionPage() {
     </div>
   );
 }
-
