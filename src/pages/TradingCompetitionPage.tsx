@@ -4,16 +4,16 @@ import { ArrowLeft, ArrowRight, Calculator, Clock3, ShieldAlert, Sigma, Trophy, 
 const deadlines = [
   'Applications close - September 28, 2026',
   'Trading day - October 2, 2026 at Baruch College (location TBD)',
-  'Morning session - 10am to 1pm',
-  'Strategy refinement break - 1pm to 2pm',
-  'Afternoon session - 2pm to 5pm',
+  'Session 1 - 1pm to 3:15pm',
+  'Break - 3:15pm to 3:45pm',
+  'Session 2 - 3:45pm to 6pm',
 ];
 
 const setup = [
   'Fall 2026 competition cycle',
   'Open to all CUNY students',
-  'Coding experience is strongly recommended',
-  'Real-time trading strategy development',
+  'Coding experience is strongly recommended, but not necessary',
+  'Open to discretionary & systematic trading',
 ];
 
 const phases = [
@@ -37,41 +37,38 @@ const phases = [
   },
   {
     phase: 'Step 2',
-    title: 'Morning Trading Session',
-    duration: '10am to 1pm',
+    title: 'Session 1',
+    duration: '1pm to 3:15pm',
     details: [
-      'Compete in a 3-hour morning trading session.',
-      'Work on a trading strategy in real time.',
+      'Compete in the first live trading session.',
+      'Execute discretionary or systematic trading strategies in real time.',
     ],
   },
   {
     phase: 'Step 3',
-    title: 'Strategy Refinement Break',
-    duration: '1pm to 2pm',
+    title: 'Break and Refinement',
+    duration: '3:15pm to 3:45pm',
     details: [
-      'Take a 1-hour break to refine and develop the strategy if necessary.',
-      'Use morning results to improve execution for the afternoon session.',
+      'Take a 30-minute break to refine and develop the strategy if necessary.',
+      'Use Session 1 results to improve execution for Session 2.',
     ],
   },
   {
     phase: 'Step 4',
-    title: 'Afternoon Trading Session',
-    duration: '2pm to 5pm',
+    title: 'Session 2',
+    duration: '3:45pm to 6pm',
     details: [
-      'Compete in a 3-hour afternoon trading session.',
+      'Compete in the final live trading session.',
       'Final performance is evaluated after the session concludes.',
     ],
   },
 ];
 
 const rubric = [
-  { category: 'Sharpe Ratio', score: 'Ranking', weight: 'Composite Mix' },
-  { category: 'Total P&L', score: 'Ranking', weight: 'Composite Mix' },
-  { category: 'Highest Loss', score: 'Ranking', weight: 'Composite Mix' },
+  { category: 'Highest P&L', score: 'Ranking', weight: '100%' },
 ];
 
 const incentives = [
-  'Prize pool of 300, 200, 100 for the top 3 teams',
   'Bragging rights and LinkedIn feature on our page',
   'Resume building',
   'Published on the FQE website',
@@ -371,8 +368,8 @@ export default function TradingCompetitionPage() {
                 <span className="micro-label text-red-300">Integrity Policy</span>
               </div>
               <p className="body-text text-secondary-light text-sm">
-                The use of Artificial Intelligence to generate code is strictly prohibited.
-                Teams found using AI-generated code will be immediately disqualified.
+                The use of AI for all processes is strictly prohibited.
+                Teams found integrating all processes with AI will be immediately disqualified.
               </p>
             </div>
           </div>
@@ -442,8 +439,8 @@ export default function TradingCompetitionPage() {
                 <span className="micro-label text-accent-green">Live Sessions</span>
               </div>
               <p className="body-text text-secondary-light text-sm">
-                Participants compete on October 2, 2026 at Baruch College, with a 3-hour morning session,
-                a 1-hour strategy refinement break, and a 3-hour afternoon session.
+                Participants compete on October 2, 2026 at Baruch College, with Session 1 from 1pm to 3:15pm,
+                a break from 3:15pm to 3:45pm, and Session 2 from 3:45pm to 6pm.
               </p>
             </div>
 
