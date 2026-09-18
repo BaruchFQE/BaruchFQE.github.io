@@ -2,18 +2,18 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, Calculator, Clock3, ShieldAlert, Sigma, Trophy, Users } from 'lucide-react';
 
 const deadlines = [
-  'Applications close - September 28, 2026',
-  'Trading day - October 2, 2026 at Baruch College (location TBD)',
-  'Session 1 - 1pm to 3:15pm',
+  'Application deadline - September 28, 2026',
+  'Competition day - October 2, 2026 at Baruch College (location TBD)',
+  'Session 1 - 1:00pm to 3:15pm',
   'Break - 3:15pm to 3:45pm',
-  'Session 2 - 3:45pm to 6pm',
+  'Session 2 - 3:45pm to 6:00pm',
 ];
 
 const setup = [
   'Fall 2026 competition cycle',
   'Open to all CUNY students',
-  'Coding experience is strongly recommended, but not necessary',
-  'Open to discretionary & systematic trading',
+  'Coding experience is strongly recommended, but not required',
+  'Discretionary and systematic trading approaches are welcome',
 ];
 
 const phases = [
@@ -22,8 +22,8 @@ const phases = [
     title: 'Trading Competition Interest & Application',
     duration: 'Due September 28, 2026',
     details: [
-      'Complete the interest form to be considered for participation.',
-      'Applications are open to all current CUNY students.',
+      'Submit the interest form by the application deadline to be considered.',
+      'Applications are open to current CUNY students.',
     ],
   },
   {
@@ -31,17 +31,17 @@ const phases = [
     title: 'Competition Briefing',
     duration: 'Before Trading Day',
     details: [
-      'Participants receive trading instructions and logistics before the live session.',
-      'Location details will be shared once finalized.',
+      'Participants will receive competition instructions and logistics before the live session.',
+      'Final location details will be shared once confirmed.',
     ],
   },
   {
     phase: 'Step 2',
     title: 'Session 1',
-    duration: '1pm to 3:15pm',
+    duration: '1:00pm to 3:15pm',
     details: [
-      'Compete in the first live trading session.',
-      'Execute discretionary or systematic trading strategies in real time.',
+      'Trade in the first live competition session.',
+      'Apply discretionary or systematic strategies in real time.',
     ],
   },
   {
@@ -49,29 +49,29 @@ const phases = [
     title: 'Break and Refinement',
     duration: '3:15pm to 3:45pm',
     details: [
-      'Take a 30-minute break to refine and develop the strategy if necessary.',
-      'Use Session 1 results to improve execution for Session 2.',
+      'Use the 30-minute break to review performance and refine the strategy if needed.',
+      'Carry insights from Session 1 into Session 2.',
     ],
   },
   {
     phase: 'Step 4',
     title: 'Session 2',
-    duration: '3:45pm to 6pm',
+    duration: '3:45pm to 6:00pm',
     details: [
-      'Compete in the final live trading session.',
-      'Final performance is evaluated after the session concludes.',
+      'Trade in the final live competition session.',
+      'Final rankings are determined after the session concludes.',
     ],
   },
 ];
 
 const rubric = [
-  { category: 'Highest P&L', score: 'Ranking', weight: '100%' },
+  { category: 'Highest P&L', score: 'Ranked result', weight: '100%' },
 ];
 
 const incentives = [
-  'Bragging rights and LinkedIn feature on our page',
-  'Resume building',
-  'Published on the FQE website',
+  'Bragging rights and a LinkedIn feature on FQE channels',
+  'Resume-building experience',
+  'Publication on the FQE website',
 ];
 
 export default function TradingCompetitionPage() {
@@ -313,7 +313,7 @@ export default function TradingCompetitionPage() {
                 Fall 2026 - 2nd Annual FQE Undergraduate Trading Competition
               </h1>
               <p className="body-text text-secondary-light text-sm md:text-base max-w-2xl mb-2">
-                Financial Quants & Engineers at Baruch are hosting a trading competition for CUNY students interested in working on trading strategies in real time.
+                Financial Quants & Engineers at Baruch is hosting a real-time trading strategy competition for CUNY students.
               </p>
               <div className="flex flex-col gap-4 items-center">
                 <a
@@ -368,8 +368,8 @@ export default function TradingCompetitionPage() {
                 <span className="micro-label text-red-300">Integrity Policy</span>
               </div>
               <p className="body-text text-secondary-light text-sm">
-                The use of AI for all processes is strictly prohibited.
-                Teams found integrating all processes with AI will be immediately disqualified.
+                AI use is strictly prohibited across all competition processes.
+                Teams found using AI in any part of their process will be immediately disqualified.
               </p>
             </div>
           </div>
@@ -411,6 +411,9 @@ export default function TradingCompetitionPage() {
               <h2 className="headline-lg text-primary-light" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
                 Scoring Framework
               </h2>
+              <p className="body-text text-secondary-light text-sm mt-3 max-w-2xl">
+                Standings are determined by highest P&L.
+              </p>
             </div>
 
             <div className="border border-white/10 overflow-hidden">
@@ -439,8 +442,8 @@ export default function TradingCompetitionPage() {
                 <span className="micro-label text-accent-green">Live Sessions</span>
               </div>
               <p className="body-text text-secondary-light text-sm">
-                Participants compete on October 2, 2026 at Baruch College, with Session 1 from 1pm to 3:15pm,
-                a break from 3:15pm to 3:45pm, and Session 2 from 3:45pm to 6pm.
+                Participants compete on October 2, 2026 at Baruch College. Session 1 runs from 1:00pm to 3:15pm,
+                followed by a 3:15pm to 3:45pm break and Session 2 from 3:45pm to 6:00pm.
               </p>
             </div>
 
