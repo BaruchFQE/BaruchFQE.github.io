@@ -1,14 +1,14 @@
 import MainSectionBackground from '@/components/MainSectionBackground';
 
 const leadershipMembers = [
-  { name: 'Arthur Faynin', role: 'President', image: '/Arthur_Faynin.jpg', email: 'arthur.faynin@baruchmail.cuny.edu' },
-  { name: 'Alfred Leong', role: 'Vice-President', image: '/Alfred_Leong.jpg', email: 'alfred.leong@baruchmail.cuny.edu' },
-  { name: 'Alexi Tilly', role: 'Treasurer', image: '/Alexi_Tilly.jpg', email: 'alexandre.tilly@baruchmail.cuny.edu' },
-  { name: 'Dmytro Popov', role: 'Secretary', image: '/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
-  { name: 'Placeholder Name', role: 'Math Officer', image: '/placeholder_leader.png' },
-  { name: 'Placeholder Name', role: 'Tech Officer', image: '/placeholder_leader.png' },
-  { name: 'Maahin Nafi', role: 'Marketing Officer', image: '/Maahin Nafi Headshot.jpg' },
-  { name: 'Abie Lent', role: 'Events Officer', image: '/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
+  { name: 'Arthur Faynin', role: 'President', image: '/images/leadership/Arthur_Faynin.jpg', email: 'arthur.faynin@baruchmail.cuny.edu' },
+  { name: 'Alfred Leong', role: 'Vice-President', image: '/images/leadership/Alfred_Leong.jpg', email: 'alfred.leong@baruchmail.cuny.edu' },
+  { name: 'Alexi Tilly', role: 'Treasurer', image: '/images/leadership/Alexi_Tilly.jpg', email: 'alexandre.tilly@baruchmail.cuny.edu' },
+  { name: 'Dmytro Popov', role: 'Secretary', image: '/images/leadership/Dmytroo.jpg', email: 'dmytro.popov@baruchmail.cuny.edu' },
+  { name: 'Placeholder Name', role: 'Math Officer', image: '/images/leadership/placeholder_leader.png' },
+  { name: 'Placeholder Name', role: 'Tech Officer', image: '/images/leadership/placeholder_leader.png' },
+  { name: 'Maahin Nafi', role: 'Marketing Officer', image: '/images/leadership/Maahin Nafi Headshot.jpg' },
+  { name: 'Abie Lent', role: 'Events Officer', image: '/images/leadership/Abie_Lent.jpg', email: 'abraham.lent@baruchmail.cuny.edu' },
 ];
 
 export default function LeadershipSection() {

@@ -209,7 +209,7 @@ export default function AlphaCheesePage() {
         >
           <div className="text-center">
             <img
-              src="/alpha_cheese.png"
+              src="/images/site/alpha_cheese.png"
               alt="ALPHA CHEESE JUMPSCARE"
               className="w-[min(90vw,560px)] h-auto object-contain"
               style={{ animation: 'jumpZoom 950ms cubic-bezier(0.1, 0.85, 0.2, 1) forwards, alphaPulse 90ms linear infinite' }}
@@ -353,7 +353,7 @@ export default function AlphaCheesePage() {
                 }}
               >
                 <img
-                  src="/alpha_cheese.png"
+                  src="/images/site/alpha_cheese.png"
                   alt="Alpha Cheese"
                   className="w-full h-[180px] md:h-[240px] object-cover"
                 />

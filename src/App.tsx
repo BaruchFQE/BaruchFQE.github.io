@@ -336,7 +336,7 @@ function App() {
           microLabel="About"
           headline=" FQE @ Baruch"
           body="Financial Quants and Engineers (FQE) develops technical depth and professional readiness at the intersection of quantitative finance and technology. Members work across data science, risk analysis, quantitative modeling, and algorithmic trading through workshops, technical discussions, and practical projects. Our goal is to help Baruch undergraduates build the skills, portfolio, and network needed for competitive quant pathways."
-          imageSrc="/about-baruch.jpg"
+          imageSrc="/images/site/about-baruch.jpg"
           imageAlt="Baruch campus building"
           items={[
             { label: 'Workshops', description: 'Applied sessions in computer science, math, hackathons, and computer architecture.' },
@@ -424,7 +424,7 @@ function App() {
           <div className="relative z-10 w-full px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="photo-frame aspect-[3/4] max-h-[72vh]">
               <img
-                src="/bny-visit.jfif"
+                src="/images/site/bny-visit.jfif"
                 alt="Group collaboration"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: '18% center', filter: 'brightness(1.08) contrast(1.06)' }}
