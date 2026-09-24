@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cp index.source.html index.html && vite",
-    "build": "cp index.source.html index.html && tsc -b && vite build && rm -rf assets images project-pdfs && cp -R dist/. .",
+    "dev": "cp templates/index.source.html index.html && vite",
+    "build": "cp templates/index.source.html index.html && tsc -b && vite build && rm -rf assets images project-pdfs && cp -R dist/. .",
     "lint": "eslint .",
     "preview": "vite preview"
   },
