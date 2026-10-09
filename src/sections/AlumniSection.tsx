@@ -43,31 +43,31 @@ const companyLogos: LogoLoopItem[] = [
 
 const alumniStories = [
   {
-    name: 'William V',
+    name: 'Mathematics, Class 2025',
     role: 'Systematic Trading @Investment Bank',
     testimonial:
       "FQE prepares students for the 'real' Wall Street. By focusing on low-latency execution and model back-testing, members enter internships with a technical maturity that sets them apart from typical undergraduates.",
   },
   {
-    name: 'Dzara M',
+    name: 'Computer Science, Class 2024',
     role: 'Senior Developer @Financial Data Provider',
     testimonial:
       "The FQE community is filled with like-minded students who are genuinely passionate about math and coding. It's the best place on campus to find a study partner for stochastic calculus or a teammate for a trading competition.",
   },
   {
-    name: 'Jun T',
-    role: 'Commodities Trading @Financial Services Provider',
+    name: 'Statistics & Quantitiative Modeling, Class 2023',
+    role: 'Power Trading @Investment Bank',
     testimonial:
       'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles.',
   },
   {
-    name: 'David M',
+    name: 'Financial Math, Class 2019',
     role: 'Quant Research @Investment Bank',
     testimonial:
       'I went from being having a traditional financial math background with an interest in coding to a competitive MFE candidate because the club pushed me to apply what I learn around Linear Algebra and C++ - the gatekeeper skills for any top program.',
   },
   {
-    name: 'Zhi L',
+    name: 'Financial Math, Class 2023',
     role: 'Quant Trader @Hedge Fund',
     testimonial:
       'By working on innovative projects like Unscented Kalman Filters for volatility surfaces or Sentiment Analysis, students gain hands-on technical experience that makes them competitive candidates for quantitative roles and prepare me for graduate school applications.',
